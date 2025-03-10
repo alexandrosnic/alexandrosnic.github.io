@@ -289,6 +289,11 @@ function populateRepo(items, id) {
 function populateExp_Edu(items, id) {
   let mainContainer = document.getElementById(id);
 
+  // Add debugging
+  console.log(`Attempting to populate ${id}`);
+  console.log('Container:', mainContainer);
+  console.log('Items:', items);
+
   for (let i = 0; i < items.length; i++) {
     let spanTimelineSublabel = document.createElement("span");
     spanTimelineSublabel.className = "timeline-sublabel";
@@ -451,8 +456,10 @@ populateSkills(skills, "skills");
 fetchReposFromGit(gitRepo);
 fetchGitConnectedData(gitConnected);
 
+console.log('About to populate experience:', experience);
 populateExp_Edu(experience, "experience");
 // populateTrekking(trekking);
+console.log('About to populate education:', education);
 populateExp_Edu(education, "education");
 
 populateLinks(footer, "footer");
