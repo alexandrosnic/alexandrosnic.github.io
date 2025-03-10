@@ -1,3 +1,4 @@
+
 * {
 	box-sizing: border-box;
 }
@@ -729,64 +730,6 @@ body.offcanvas .colorlib-nav-toggle {
 
 #more-projects {
 	display: none;
-}
-
-/* Project Grid Styles */
-.project-card {
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-    padding: 20px;
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-}
-
-.project-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
-.project-card h3 {
-    margin: 15px 0;
-    font-size: 1.2em;
-}
-
-.project-links {
-    margin-top: 15px;
-}
-
-/* Individual Project Page Styles */
-.project-content {
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.project-image {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 30px;
-}
-
-.tech-stack {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.tech-stack li {
-    background: #f0f0f0;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.9em;
 }
 
 .panel-heading a {
