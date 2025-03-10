@@ -73,16 +73,29 @@ export const hobbies = [
 
 export const education = [
   {
-    title: "Degree in Robotics & AI",
-    duration: "Year of Graduation",
-    subtitle: "University Name",
+    title: "MSc in Robotics & AI",
+    duration: "2022 - 2024",
+    subtitle: "University of Potsdam",
     details: [
-      "Specialized in computer vision, machine learning, and robotic control systems.",
-      "Worked on autonomous navigation and reinforcement learning for real-world applications.",
+      "Specialized in Robot Learning and Computer Vision",
+      "Research focus on Reinforcement Learning and Motion Planning",
+      "Key projects in Industrial Robotics and Autonomous Systems"
     ],
-    tags: ["Machine Learning", "Computer Vision", "Robotics"],
-    icon: "graduation-cap",
+    tags: ["Robotics", "AI", "Computer Vision", "Machine Learning"],
+    icon: "graduation-cap"
   },
+  {
+    title: "BSc in Computer Science",
+    duration: "2018 - 2022",
+    subtitle: "Technical University of XXXX", // Replace with actual university
+    details: [
+      "Focus on Software Engineering and AI fundamentals",
+      "Graduated with honors",
+      "Thesis on autonomous systems and robot control"
+    ],
+    tags: ["Computer Science", "Software Engineering", "AI"],
+    icon: "graduation-cap"
+  }
 ];
 
 export const footer = [
