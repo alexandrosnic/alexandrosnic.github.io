@@ -9,6 +9,8 @@ import {
 
 import { URLs } from "./user-data/urls.js";
 
+import { projects } from './user-data/projects.js';
+
 const { medium, gitConnected, gitRepo } = URLs;
 
 // async function fetchBlogsFromMedium(url) {
@@ -190,6 +192,28 @@ function populateBlogs(items, id) {
   }
 }
 
+
+function populateProjects(items, id) {
+  const container = document.getElementById(id);
+  
+  items.forEach(project => {
+      const projectCard = document.createElement('div');
+      projectCard.className = 'col-md-4 animate-box';
+      projectCard.innerHTML = `
+          <div class="project-card">
+              <img src="images/projects/${project.image}" alt="${project.title}">
+              <h3>${project.title}</h3>
+              <p>${project.description}</p>
+              <div class="project-links">
+                  <a href="${project.demoLink}" class="btn btn-primary">View Project</a>
+                  <a href="${project.sourceLink}" class="btn btn-secondary">Source Code</a>
+              </div>
+          </div>
+      `;
+      container.appendChild(projectCard);
+  });
+}
+
 function populateRepo(items, id) {
   const projectdesign = document.getElementById(id);
   const count = 4; // Adjust this count based on the number of repos you want to display
@@ -290,9 +314,9 @@ function populateExp_Edu(items, id) {
   let mainContainer = document.getElementById(id);
 
   // Add debugging
-  console.log(`Attempting to populate ${id}`);
-  console.log('Container:', mainContainer);
-  console.log('Items:', items);
+  // console.log(`Attempting to populate ${id}`);
+  // console.log('Container:', mainContainer);
+  // console.log('Items:', items);
 
   for (let i = 0; i < items.length; i++) {
     let spanTimelineSublabel = document.createElement("span");
@@ -455,6 +479,8 @@ populateSkills(skills, "skills");
 // fetchBlogsFromMedium(medium);
 fetchReposFromGit(gitRepo);
 fetchGitConnectedData(gitConnected);
+
+populateProjects(projects, 'projects-grid');
 
 console.log('About to populate experience:', experience);
 populateExp_Edu(experience, "experience");
