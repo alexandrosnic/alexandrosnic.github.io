@@ -108,7 +108,7 @@ export const footer = [
       },
       {
         text: "Tampa Tumpu Music",
-        link: "Your Music Link Here",
+        link: "https://soundcloud.com/tampatumpu",
       },
     ],
   },

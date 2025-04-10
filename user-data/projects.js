@@ -1,7 +1,7 @@
 export const projects = [
     {
         title: "Bosch's autonomous vehicle project",
-        image: "robotic-arm.jpg",
+        image: "...",
         description: "Optimized latency and throughput of sensor data",
         technologies: ["C++", "ROS", "Python", "Motion Planning"],
         demoLink: "/projects/bosch-autonomous-vehicle.html",
@@ -9,7 +9,7 @@ export const projects = [
     },
     {
         title: "Robotic Arm Manipulation",
-        image: "robotic-arm.jpg",
+        image: "...",
         description: "Development of a control system for a 6-DOF robotic arm",
         technologies: ["C++", "ROS", "Python", "Motion Planning"],
         demoLink: "/projects/robotic-arm.html",
