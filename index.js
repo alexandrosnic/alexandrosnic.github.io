@@ -195,22 +195,123 @@ function populateBlogs(items, id) {
 
 function populateProjects(items, id) {
   const container = document.getElementById(id);
-  
   items.forEach(project => {
-      const projectCard = document.createElement('div');
-      projectCard.className = 'col-md-4 animate-box';
-      projectCard.innerHTML = `
-          <div class="project-card">
-              <img src="images/projects/${project.image}" alt="${project.title}">
-              <h3>${project.title}</h3>
-              <p>${project.description}</p>
-              <div class="project-links">
-                  <a href="${project.demoLink}" class="btn btn-primary">View Project</a>
-                  <a href="${project.sourceLink}" class="btn btn-secondary">Source Code</a>
-              </div>
-          </div>
+    const projectCard = document.createElement('div');
+    projectCard.className = 'col-md-4 animate-box';
+    projectCard.innerHTML = `
+      <div class="project-card">
+        <img src="images/projects/${project.image}" alt="${project.title}">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <div class="project-links">
+          <a href="${project.demoLink}" class="btn btn-primary">View Project</a>
+          <a href="${project.sourceLink}" class="btn btn-secondary">Source Code</a>
+        </div>
+      </div>
+    `;
+    container.appendChild(projectCard);
+  });
+}
+
+// New: Featured carousel (3-4 projects, rotate every ~5s)
+function getFeaturedProjects(items) {
+  const featured = items.filter(p => p.featured);
+  if (featured.length > 0) {
+    return featured.slice(0, 4);
+  }
+  return items.slice(0, Math.min(4, items.length));
+}
+
+function populateFeaturedProjects(items, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container || items.length === 0) return;
+
+  container.innerHTML = '';
+
+  items.forEach((project, idx) => {
+    const slide = document.createElement('div');
+    slide.className = `featured-slide${idx === 0 ? ' active' : ''}`;
+
+    // image vs video support
+    let mediaHtml = '';
+    if (project.video) {
+      mediaHtml = `
+        <video class="featured-media" autoplay muted loop playsinline preload="metadata">
+          <source src="${project.video}" type="video/mp4" />
+        </video>
       `;
-      container.appendChild(projectCard);
+    } else {
+      mediaHtml = `<img class="featured-media" src="images/projects/${project.image}" alt="${project.title}">`;
+    }
+
+    slide.innerHTML = `
+      ${mediaHtml}
+      <a href="${project.demoLink}" class="featured-link" aria-label="Open ${project.title}"></a>
+      <div class="featured-caption">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+      </div>
+    `;
+
+    container.appendChild(slide);
+  });
+
+  // Auto-rotate
+  let current = 0;
+  const changeSlide = () => {
+    const slides = container.querySelectorAll('.featured-slide');
+    if (slides.length === 0) return;
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  };
+  setInterval(changeSlide, 5000);
+}
+
+// New: Gallery with show-more
+function populateProjectsGallery(items, featuredItems, galleryId, toggleBtnId) {
+  const gallery = document.getElementById(galleryId);
+  const toggleBtn = document.getElementById(toggleBtnId);
+  if (!gallery || !toggleBtn) return;
+
+  // Exclude featured from gallery
+  const featuredTitles = new Set(featuredItems.map(p => p.title));
+  const rest = items.filter(p => !featuredTitles.has(p.title));
+
+  // Render all but control visibility
+  gallery.innerHTML = '';
+  rest.forEach((project, idx) => {
+    const col = document.createElement('div');
+    col.className = 'col-md-4 animate-box gallery-item';
+    // Initially only show first 3
+    if (idx >= 3) col.classList.add('collapsed');
+    col.innerHTML = `
+      <div class="project-card">
+        <img src="images/projects/${project.image}" alt="${project.title}">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <div class="project-links">
+          <a href="${project.demoLink}" class="btn btn-primary">View Project</a>
+          <a href="${project.sourceLink}" class="btn btn-secondary">Source Code</a>
+        </div>
+      </div>
+    `;
+    gallery.appendChild(col);
+  });
+
+  // Toggle behavior
+  let expanded = false;
+  toggleBtn.onclick = () => {
+    expanded = !expanded;
+    toggleBtn.innerText = expanded ? 'Show Less' : 'Show More';
+    gallery.querySelectorAll('.gallery-item.collapsed').forEach(el => {
+      el.style.display = expanded ? '' : 'none';
+    });
+  };
+
+  // Apply initial collapsed state
+  gallery.querySelectorAll('.gallery-item.collapsed').forEach(el => {
+    el.style.display = 'none';
   });
 }
 
@@ -480,7 +581,9 @@ populateSkills(skills, "skills");
 fetchReposFromGit(gitRepo);
 fetchGitConnectedData(gitConnected);
 
-populateProjects(projects, 'projects-grid');
+const featured = getFeaturedProjects(projects);
+populateFeaturedProjects(featured, 'featured-projects');
+populateProjectsGallery(projects, featured, 'projects-gallery', 'show-more-projects');
 
 console.log('About to populate experience:', experience);
 populateExp_Edu(experience, "experience");

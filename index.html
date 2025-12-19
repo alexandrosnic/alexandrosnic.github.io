@@ -211,7 +211,16 @@
                         <h1>Projects</h1>
                     </div>
                 </div>
-                <div class="row" id="projects-grid"></div>
+                <!-- Featured carousel: shows 3-4 highlighted projects, auto-rotates -->
+                <div id="featured-projects" class="featured-carousel animate-box" data-animate-effect="fadeInLeft"></div>
+
+                <!-- Gallery: one row, three columns, expandable -->
+                <div class="row" id="projects-gallery"></div>
+                <div class="row" id="projects-gallery-actions">
+                  <div class="col-md-12" style="text-align:center; margin-top: 10px;">
+                    <button id="show-more-projects" class="btn btn-default">Show More</button>
+                  </div>
+                </div>
             </div>
           </section>
           <section class="colorlib-experience" data-section="experience">

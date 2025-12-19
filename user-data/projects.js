@@ -38,6 +38,46 @@ export const projects = [
         technologies: ["Python", "OpenCV", "TensorFlow", "Deep Learning"],
         demoLink: "./projects/event-based-computer-vision.html",
         sourceLink: "https://github.com/alexandrosnic/event-based-computer-vision"
+    },
+    {
+        title: "Image-based computer vision",
+        image: "image-based-computer-vision.jpg",
+        description: "image-based-computer-vision",
+        technologies: ["Python", "OpenCV", "TensorFlow", "Deep Learning"],
+        demoLink: "./projects/image-based-computer-vision.html",
+        sourceLink: "https://github.com/alexandrosnic/image-based-computer-vision"
+    },
+    {
+        title: "AI Projects",
+        image: "ai-projects.jpg",
+        description: "image-based-computer-vision",
+        technologies: ["Python", "OpenCV", "TensorFlow", "Deep Learning"],
+        demoLink: "./projects/image-based-computer-vision.html",
+        sourceLink: "https://github.com/alexandrosnic/image-based-computer-vision"
+    },
+    {
+        title: "ML Projects",
+        image: "ai-projects.jpg",
+        description: "image-based-computer-vision",
+        technologies: ["Python", "OpenCV", "TensorFlow", "Deep Learning"],
+        demoLink: "./projects/image-based-computer-vision.html",
+        sourceLink: "https://github.com/alexandrosnic/image-based-computer-vision"
+    },
+    {
+        title: "Bachelor Thesis Project",
+        image: "ai-projects.jpg",
+        description: "image-based-computer-vision",
+        technologies: ["Python", "OpenCV", "TensorFlow", "Deep Learning"],
+        demoLink: "./projects/image-based-computer-vision.html",
+        sourceLink: "https://github.com/alexandrosnic/image-based-computer-vision"
+    },
+    {
+        title: "Mobile manipulation robot",
+        image: "ai-projects.jpg",
+        description: "image-based-computer-vision",
+        technologies: ["Python", "OpenCV", "TensorFlow", "Deep Learning"],
+        demoLink: "./projects/image-based-computer-vision.html",
+        sourceLink: "https://github.com/alexandrosnic/image-based-computer-vision"
     }
     // Add more projects from your portfolio
 ];
