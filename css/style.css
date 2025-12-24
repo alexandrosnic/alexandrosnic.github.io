@@ -811,6 +811,35 @@ body.offcanvas .colorlib-nav-toggle {
 .project-card h3 { margin: 10px 0 6px 0; font-size: 18px; font-weight: 600; color: #333; }
 .project-card p { margin: 0 0 10px 0; font-size: 13px; color: #555; }
 .project-links .btn { margin-right: 8px; }
+/* Hero Projects Grid */
+.hero-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 16px;
+	margin-bottom: 16px;
+}
+@media screen and (max-width: 992px) { .hero-grid { grid-template-columns: 1fr; } }
+
+.hero-card {
+	display: grid;
+	grid-template-rows: 180px auto;
+	border-radius: 12px;
+	overflow: hidden;
+	background: #0f1320;
+	color: #e6e9f5;
+	box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+	position: relative;
+	transition: box-shadow .25s ease, transform .25s ease;
+}
+.hero-card:hover { box-shadow: 0 16px 36px rgba(66, 99, 235, 0.35); transform: translateY(-2px); }
+.hero-media { width: 100%; height: 100%; object-fit: cover; background: #000; }
+.hero-content { padding: 14px; }
+.hero-title { margin: 0 0 6px 0; font-size: 18px; font-weight: 700; color: #fff; }
+.hero-subtitle { margin: 0 0 10px 0; font-size: 13px; color: #b8c0ff; }
+.hero-narrative { margin: 0 0 10px 0; font-size: 13px; color: #e6e9f5; }
+.hero-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+.hero-chip { font-size: 11px; padding: 4px 8px; border-radius: 14px; background: rgba(66,99,235,0.15); color: #cfd8ff; border: 1px solid rgba(66,99,235,0.35); }
+.hero-link { position: absolute; inset: 0; }
 
 .panel-heading a:after {
 	font-family: "icomoon";

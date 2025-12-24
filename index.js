@@ -10,6 +10,7 @@ import {
 import { URLs } from "./user-data/urls.js";
 
 import { projects } from './user-data/projects.js';
+import { heroProjects } from './user-data/hero-projects.js';
 import { corePillars, domainMatrix, toolbox } from './skillset/data.js';
 
 const { medium, gitConnected, gitRepo } = URLs;
@@ -582,9 +583,54 @@ populateSkills(skills, "skills");
 fetchReposFromGit(gitRepo);
 fetchGitConnectedData(gitConnected);
 
+// Render Hero Projects (4 cards)
+function populateHeroProjects(items, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container || items.length === 0) return;
+
+  container.innerHTML = '';
+  items.forEach((p) => {
+    const card = document.createElement('div');
+    card.className = 'hero-card';
+
+    // Media: support optional video
+    let mediaHtml = '';
+    if (p.media && p.media.video) {
+      mediaHtml = `<video class="hero-media" autoplay muted loop playsinline preload="metadata"><source src="${p.media.video}" type="video/mp4" /></video>`;
+    } else if (p.media && p.media.image) {
+      mediaHtml = `<img class="hero-media" src="${p.media.image}" alt="${p.title}">`;
+    } else {
+      mediaHtml = `<div class="hero-media"></div>`;
+    }
+
+    const chips = (p.techStack || []).map(t => `<span class="hero-chip">${t}</span>`).join('');
+
+    card.innerHTML = `
+      ${mediaHtml}
+      <a href="${p.demoLink}" class="hero-link" aria-label="Open ${p.title}"></a>
+      <div class="hero-content">
+        <h3 class="hero-title">${p.title}</h3>
+        <p class="hero-subtitle">${p.subtitle}</p>
+        <p class="hero-narrative">${p.narrative}</p>
+        <div class="hero-tech">${chips}</div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+populateHeroProjects(heroProjects, 'hero-projects');
+
+// Keep the gallery below for breadth, excluding hero projects where possible
+const heroTitles = new Set(heroProjects.map(p => p.title));
 const featured = getFeaturedProjects(projects);
-populateFeaturedProjects(featured, 'featured-projects');
-populateProjectsGallery(projects, featured, 'projects-gallery', 'show-more-projects');
+// repurpose: featured only used to exclude first few; gallery excludes hero titles
+populateProjectsGallery(
+  projects.filter(p => !heroTitles.has(p.title)),
+  featured,
+  'projects-gallery',
+  'show-more-projects'
+);
 
 // Skillset tiers
 function populateCorePillars(items, containerId) {
