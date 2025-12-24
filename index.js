@@ -640,68 +640,25 @@ populateProjectsGallery(
   'show-more-projects'
 );
 
-// Skillset tiers
-function populateCorePillars(items, containerId) {
+// Unified skills grid: merge core pillars and domain skills and open overlay on click
+function populateSkillsGrid(coreItems, domainItems, containerId) {
   const el = document.getElementById(containerId);
   if (!el) return;
-  el.innerHTML = '';
-  items.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'skill-pillar-card';
-    const mediaIsVideo = /\.(mp4|webm)$/i.test(item.media || '');
-    const mediaHtml = mediaIsVideo
-      ? `<video class="skill-pillar-media" autoplay muted loop playsinline preload="metadata"><source src="${item.media}" type="video/mp4" /></video>`
-      : `<img class="skill-pillar-media" src="${item.media}" alt="${item.title}">`;
-    card.innerHTML = `
-      ${mediaHtml}
-      <div class="skill-pillar-body">
-        <h3 class="skill-pillar-title">${item.title}</h3>
-        <p class="skill-pillar-text">${item.story}</p>
-        <div style="margin-top:8px;">
-          <button class="btn btn-primary btn-sm" ${item.overlayFile ? `data-file="${item.overlayFile}"` : ''}>Details</button>
-        </div>
-      </div>
-    `;
-    const btn = card.querySelector('button.btn');
-    if (btn && item.overlayFile) {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openSkillOverlay(item.overlayFile);
-      });
-    }
-    el.appendChild(card);
-  });
-}
-
-function populateDomainMatrix(items, containerId) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
+  const items = [...coreItems, ...domainItems];
   el.innerHTML = '';
   items.forEach(item => {
     const card = document.createElement('div');
     card.className = 'domain-card';
+    const subtitle = item.story || item.teaser || '';
     card.innerHTML = `
       <div class="domain-card-header">
         <h4 class="domain-card-title">${item.title}</h4>
-        <p class="domain-card-sub">${item.teaser}</p>
-      </div>
-      <div class="domain-card-body">
-        <p style="margin:0 0 8px 0; font-size:13px; color:#333;">${item.description}</p>
-        <div class="domain-card-tools">
-          ${item.tools.map(t => `<span class="tool-chip">${t}</span>`).join('')}
-        </div>
-        <div style="margin-top:10px;">
-          <button class="btn btn-default btn-sm" ${item.overlayFile ? `data-file="${item.overlayFile}"` : ''}>View Details</button>
-        </div>
+        ${subtitle ? `<p class="domain-card-sub">${subtitle}</p>` : ''}
       </div>
     `;
-    const btn = card.querySelector('button.btn');
-    if (btn && item.overlayFile) {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openSkillOverlay(item.overlayFile);
-      });
-    }
+    card.addEventListener('click', () => {
+      if (item.overlayFile) openSkillOverlay(item.overlayFile);
+    });
     el.appendChild(card);
   });
 }
@@ -718,7 +675,7 @@ function populateToolbox(items, containerId) {
   });
 }
 
-// Overlay logic for detailed skill pages
+// Overlay logic for skill pages: strip Links and add icons to tools
 function openSkillOverlay(filePath) {
   const overlay = document.getElementById('skill-overlay');
   const body = document.getElementById('skill-overlay-body');
@@ -743,8 +700,48 @@ function openSkillOverlay(filePath) {
       const description = descEl ? descEl.outerHTML : html;
 
       body.innerHTML = `${title}${image}${description}`;
-      // Remove irrelevant links if present
+      // Remove Links sections
       body.querySelectorAll('.project-links').forEach(el => el.remove());
+      body.querySelectorAll('h2').forEach(h => {
+        if (h.textContent.trim().toLowerCase() === 'links') h.remove();
+      });
+      body.querySelectorAll('a').forEach(a => a.remove());
+
+      // Add icons to tools list items
+      const iconMap = {
+        'linux': 'fa fa-linux',
+        'c++': 'fa fa-code',
+        'python': 'fa fa-code',
+        'ros': 'fa fa-cog',
+        'ros1': 'fa fa-cog',
+        'ros2': 'fa fa-cog',
+        'opencv': 'fa fa-eye',
+        'pcl': 'fa fa-cubes',
+        'docker': 'fa fa-cubes',
+        'solidworks': 'fa fa-cube',
+        'gazebo': 'fa fa-cubes',
+        'webots': 'fa fa-cubes',
+        'isaac sim': 'fa fa-rocket',
+        'camera': 'fa fa-camera',
+        'realsense': 'fa fa-eye',
+        'oak-d': 'fa fa-eye',
+        'yolo': 'fa fa-eye',
+        'vlm': 'fa fa-eye',
+        'urdf': 'fa fa-cube',
+        'pid': 'fa fa-sliders',
+        'mpc': 'fa fa-sliders',
+        'lqr': 'fa fa-sliders',
+        'ekf': 'fa fa-sliders',
+        'ukf': 'fa fa-sliders',
+        'can': 'fa fa-exchange'
+      };
+      const toolLis = body.querySelectorAll('.tech-stack li');
+      toolLis.forEach(li => {
+        const text = li.textContent.trim().toLowerCase();
+        const key = Object.keys(iconMap).find(k => text.includes(k));
+        const cls = key ? iconMap[key] : 'fa fa-cog';
+        li.innerHTML = `<i class="${cls}" style="margin-right:6px;"></i>${li.textContent.trim()}`;
+      });
     })
     .catch(err => {
       body.innerHTML = `<p style="color:#b00020;">Failed to load skill content: ${err}</p>`;
@@ -775,6 +772,8 @@ function closeSkillOverlay() {
   }
 })();
 
+/* Duplicate overlay block removed */
+
 console.log('About to populate experience:', experience);
 populateExp_Edu(experience, "experience");
 // populateTrekking(trekking);
@@ -784,6 +783,5 @@ populateExp_Edu(education, "education");
 populateLinks(footer, "footer");
 
 // Render skillset tiers after legacy list
-populateCorePillars(corePillars, 'skills-core');
-populateDomainMatrix(domainMatrix, 'skills-domain');
+populateSkillsGrid(corePillars, domainMatrix, 'skills-grid');
 populateToolbox(toolbox, 'skills-toolbox');
