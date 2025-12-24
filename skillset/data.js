@@ -2,17 +2,20 @@ export const corePillars = [
   {
     title: "Bosch L4 Autonomous Driving",
     media: "images/skills/bosch.gif",
-    story: "Optimized transport stack (ETH/UDP/RDMA), C++/CUDA unit tests, and system profiling for real-time autonomy."
+    story: "Optimized transport stack (ETH/UDP/RDMA), C++/CUDA unit tests, and system profiling for real-time autonomy.",
+    overlayFile: "skillset/high-performance-middleware.html"
   },
   {
     title: "UR3e Manipulation Framework",
     media: "images/skills/ur3e.gif",
-    story: "ROS2/Webots/MoveIt2 pipeline with custom drivers and gripper integration for robust pick-and-place."
+    story: "ROS2/Webots/MoveIt2 pipeline with custom drivers and gripper integration for robust pick-and-place.",
+    overlayFile: "skillset/robot-arm-motion-planning-framework.html"
   },
   {
     title: "AI Agents for Robotics",
     media: "images/skills/ai-agents.gif",
-    story: "Agentic workflows combining CV/NLP and control for task-level autonomy and HRI."
+    story: "Agentic workflows combining CV/NLP and control for task-level autonomy and HRI.",
+    overlayFile: "skillset/AI-ML-and-AI-agents.html"
   }
 ];
 
@@ -21,37 +24,43 @@ export const domainMatrix = [
     title: "Control Theory",
     teaser: "Nonlinear, MPC, trajectory optimization.",
     description: "Design and tuning of controllers for mobile bases and arms; stability, robustness, and real-time constraints.",
-    tools: ["MPC", "SMACH", "PID", "MoveIt2"]
+    tools: ["MPC", "SMACH", "PID", "MoveIt2"],
+    overlayFile: "skillset/advanced-control-and-optimization.html"
   },
   {
     title: "Perception & CV",
     teaser: "3D vision, SLAM, detection.",
     description: "Depth sensing, point clouds, AprilTags, RealSense; robust pipelines for manipulation/perception.",
-    tools: ["OpenCV", "PCL", "RealSense", "AprilTags"]
+    tools: ["OpenCV", "PCL", "RealSense", "AprilTags"],
+    overlayFile: "skillset/computer-vision.html"
   },
   {
     title: "Motion Planning",
     teaser: "Sampling, optimization, kinematics.",
     description: "Kinematic chains, collision checking, planners for constrained pick-and-place.",
-    tools: ["OMPL", "MoveIt2", "URDF", "SRDF"]
+    tools: ["OMPL", "MoveIt2", "URDF", "SRDF"],
+    overlayFile: "skillset/robot-arm-motion-planning-framework.html"
   },
   {
     title: "Simulation & Digital Twins",
     teaser: "Webots/Gazebo/Isaac.",
     description: "High-fidelity simulation for iterative development of controllers and perception.",
-    tools: ["Webots", "Gazebo", "Isaac Sim"]
+    tools: ["Webots", "Gazebo", "Isaac Sim"],
+    overlayFile: "skillset/sim-to-real-architecture.html"
   },
   {
     title: "Systems & DevOps",
     teaser: "Docker, CI, profiling.",
     description: "Containers, reproducible environments, performance analysis for embedded/desktop.",
-    tools: ["Docker", "GitHub Actions", "VTune", "perf"]
+    tools: ["Docker", "GitHub Actions", "VTune", "perf"],
+    overlayFile: "skillset/ros1-to-ros2-migration.html"
   },
   {
     title: "Mechanical Design",
     teaser: "CAD, prototyping.",
     description: "CAD integration for end-effectors and robot fixtures; rapid iteration.",
-    tools: ["SolidWorks", "URDF/Xacro", "OnRobot"]
+    tools: ["SolidWorks", "URDF/Xacro", "OnRobot"],
+    overlayFile: "skillset/mechanical-design.html"
   }
 ];
 

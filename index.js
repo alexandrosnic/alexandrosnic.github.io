@@ -586,7 +586,14 @@ fetchGitConnectedData(gitConnected);
 // Render Hero Projects (4 cards)
 function populateHeroProjects(items, containerId) {
   const container = document.getElementById(containerId);
-  if (!container || items.length === 0) return;
+  if (!container) {
+    console.warn('[HeroProjects] Container not found:', containerId);
+    return;
+  }
+  if (!items || items.length === 0) {
+    console.warn('[HeroProjects] No items to render');
+    return;
+  }
 
   container.innerHTML = '';
   items.forEach((p) => {
@@ -619,6 +626,7 @@ function populateHeroProjects(items, containerId) {
   });
 }
 
+console.log('[HeroProjects] Rendering', heroProjects?.length, 'items into #hero-projects');
 populateHeroProjects(heroProjects, 'hero-projects');
 
 // Keep the gallery below for breadth, excluding hero projects where possible
@@ -649,8 +657,18 @@ function populateCorePillars(items, containerId) {
       <div class="skill-pillar-body">
         <h3 class="skill-pillar-title">${item.title}</h3>
         <p class="skill-pillar-text">${item.story}</p>
+        <div style="margin-top:8px;">
+          <button class="btn btn-primary btn-sm" ${item.overlayFile ? `data-file="${item.overlayFile}"` : ''}>Details</button>
+        </div>
       </div>
     `;
+    const btn = card.querySelector('button.btn');
+    if (btn && item.overlayFile) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openSkillOverlay(item.overlayFile);
+      });
+    }
     el.appendChild(card);
   });
 }
@@ -672,11 +690,18 @@ function populateDomainMatrix(items, containerId) {
         <div class="domain-card-tools">
           ${item.tools.map(t => `<span class="tool-chip">${t}</span>`).join('')}
         </div>
+        <div style="margin-top:10px;">
+          <button class="btn btn-default btn-sm" ${item.overlayFile ? `data-file="${item.overlayFile}"` : ''}>View Details</button>
+        </div>
       </div>
     `;
-    card.addEventListener('click', () => {
-      card.classList.toggle('expanded');
-    });
+    const btn = card.querySelector('button.btn');
+    if (btn && item.overlayFile) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openSkillOverlay(item.overlayFile);
+      });
+    }
     el.appendChild(card);
   });
 }
@@ -692,6 +717,63 @@ function populateToolbox(items, containerId) {
     el.appendChild(chip);
   });
 }
+
+// Overlay logic for detailed skill pages
+function openSkillOverlay(filePath) {
+  const overlay = document.getElementById('skill-overlay');
+  const body = document.getElementById('skill-overlay-body');
+  if (!overlay || !body) return;
+
+  body.innerHTML = '<p style="margin:8px 0;color:#666;">Loading…</p>';
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+
+  fetch(filePath, { credentials: 'same-origin' })
+    .then(r => r.text())
+    .then(html => {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+
+      const titleEl = tmp.querySelector('.project-title');
+      const imageEl = tmp.querySelector('.project-image');
+      const descEl = tmp.querySelector('.project-description');
+
+      const title = titleEl ? titleEl.outerHTML : '';
+      const image = imageEl ? imageEl.outerHTML : '';
+      const description = descEl ? descEl.outerHTML : html;
+
+      body.innerHTML = `${title}${image}${description}`;
+      // Remove irrelevant links if present
+      body.querySelectorAll('.project-links').forEach(el => el.remove());
+    })
+    .catch(err => {
+      body.innerHTML = `<p style="color:#b00020;">Failed to load skill content: ${err}</p>`;
+    });
+}
+
+function closeSkillOverlay() {
+  const overlay = document.getElementById('skill-overlay');
+  const body = document.getElementById('skill-overlay-body');
+  if (!overlay || !body) return;
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+  body.innerHTML = '';
+}
+
+// Wire overlay close behavior
+(function initSkillOverlayControls() {
+  const overlay = document.getElementById('skill-overlay');
+  const closeBtn = document.getElementById('skill-overlay-close');
+  if (closeBtn) closeBtn.addEventListener('click', closeSkillOverlay);
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeSkillOverlay();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeSkillOverlay();
+    });
+  }
+})();
 
 console.log('About to populate experience:', experience);
 populateExp_Edu(experience, "experience");
