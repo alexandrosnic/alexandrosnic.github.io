@@ -784,4 +784,4 @@ populateLinks(footer, "footer");
 
 // Render skillset tiers after legacy list
 populateSkillsGrid(corePillars, domainMatrix, 'skills-grid');
-populateToolbox(toolbox, 'skills-toolbox');
+

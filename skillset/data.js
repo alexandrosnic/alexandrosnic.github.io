@@ -35,13 +35,6 @@ export const domainMatrix = [
     overlayFile: "skillset/computer-vision.html"
   },
   {
-    title: "Motion Planning",
-    teaser: "Sampling, optimization, kinematics.",
-    description: "Kinematic chains, collision checking, planners for constrained pick-and-place.",
-    tools: ["OMPL", "MoveIt2", "URDF", "SRDF"],
-    overlayFile: "skillset/robot-arm-motion-planning-framework.html"
-  },
-  {
     title: "Simulation & Digital Twins",
     teaser: "Webots/Gazebo/Isaac.",
     description: "High-fidelity simulation for iterative development of controllers and perception.",
@@ -61,6 +54,27 @@ export const domainMatrix = [
     description: "CAD integration for end-effectors and robot fixtures; rapid iteration.",
     tools: ["SolidWorks", "URDF/Xacro", "OnRobot"],
     overlayFile: "skillset/mechanical-design.html"
+  }
+  {
+    title: "Autonomous Navigation Stack Development",
+    teaser: "SLAM, planners, sensor fusion.",
+    description: "End-to-end navigation: multi-sensor acquisition, fusion (EKF/UKF), SLAM/odometry tuning, local/global path planning.",
+    tools: ["ROS2", "SLAM", "EKF/UKF", "Gazebo/Webots"],
+    overlayFile: "skillset/autonomous-navigation-stack-development.html"
+  },
+  {
+    title: "Hardware & Sensor Proficiency",
+    teaser: "Lidar, depth, IMUs, cameras.",
+    description: "Hands-on integration with Lidar, depth cameras (RealSense/OAK-D), IMUs, neuromorphic sensors; drivers, calibration, synchronization.",
+    tools: ["RealSense", "OAK-D", "Lidar", "IMU"],
+    overlayFile: "skillset/hardware-and-sensors.html"
+  },
+  {
+    title: "Robotics Deployment & Field Engineering",
+    teaser: "Bringup, debugging, reliability.",
+    description: "On-site deployment, system bringup, diagnostics and recovery; robust ops for industrial and research robots.",
+    tools: ["Linux", "Docker", "ROS2", "CAN"],
+    overlayFile: "skillset/robotics-deployment.html"
   }
 ];
 
