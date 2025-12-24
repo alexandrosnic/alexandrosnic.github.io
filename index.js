@@ -10,6 +10,7 @@ import {
 import { URLs } from "./user-data/urls.js";
 
 import { projects } from './user-data/projects.js';
+import { corePillars, domainMatrix, toolbox } from './skillset/data.js';
 
 const { medium, gitConnected, gitRepo } = URLs;
 
@@ -585,6 +586,67 @@ const featured = getFeaturedProjects(projects);
 populateFeaturedProjects(featured, 'featured-projects');
 populateProjectsGallery(projects, featured, 'projects-gallery', 'show-more-projects');
 
+// Skillset tiers
+function populateCorePillars(items, containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'skill-pillar-card';
+    const mediaIsVideo = /\.(mp4|webm)$/i.test(item.media || '');
+    const mediaHtml = mediaIsVideo
+      ? `<video class="skill-pillar-media" autoplay muted loop playsinline preload="metadata"><source src="${item.media}" type="video/mp4" /></video>`
+      : `<img class="skill-pillar-media" src="${item.media}" alt="${item.title}">`;
+    card.innerHTML = `
+      ${mediaHtml}
+      <div class="skill-pillar-body">
+        <h3 class="skill-pillar-title">${item.title}</h3>
+        <p class="skill-pillar-text">${item.story}</p>
+      </div>
+    `;
+    el.appendChild(card);
+  });
+}
+
+function populateDomainMatrix(items, containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'domain-card';
+    card.innerHTML = `
+      <div class="domain-card-header">
+        <h4 class="domain-card-title">${item.title}</h4>
+        <p class="domain-card-sub">${item.teaser}</p>
+      </div>
+      <div class="domain-card-body">
+        <p style="margin:0 0 8px 0; font-size:13px; color:#333;">${item.description}</p>
+        <div class="domain-card-tools">
+          ${item.tools.map(t => `<span class="tool-chip">${t}</span>`).join('')}
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+    el.appendChild(card);
+  });
+}
+
+function populateToolbox(items, containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  items.forEach(t => {
+    const chip = document.createElement('span');
+    chip.className = 'toolbox-chip';
+    chip.innerHTML = `<i class="${t.icon}"></i>${t.label}`;
+    el.appendChild(chip);
+  });
+}
+
 console.log('About to populate experience:', experience);
 populateExp_Edu(experience, "experience");
 // populateTrekking(trekking);
@@ -592,3 +654,8 @@ console.log('About to populate education:', education);
 populateExp_Edu(education, "education");
 
 populateLinks(footer, "footer");
+
+// Render skillset tiers after legacy list
+populateCorePillars(corePillars, 'skills-core');
+populateDomainMatrix(domainMatrix, 'skills-domain');
+populateToolbox(toolbox, 'skills-toolbox');

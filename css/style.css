@@ -2249,3 +2249,89 @@ hr {
 		color: #f9bf3f;
 	}
   }
+
+/* --- Skillset tiers --- */
+.skills-tier { margin-top: 20px; }
+.skills-subtitle { font-size: 18px; font-weight: 600; margin: 12px 0 8px 0; }
+
+/* Core Pillars: horizontal scroller */
+.skills-core-carousel {
+	display: flex;
+	gap: 16px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	padding-bottom: 8px;
+}
+.skills-core-carousel::-webkit-scrollbar { height: 6px; }
+.skills-core-carousel::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 6px; }
+
+.skill-pillar-card {
+	flex: 0 0 320px;
+	scroll-snap-align: start;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	overflow: hidden;
+}
+.skill-pillar-media {
+	width: 100%; height: 160px; object-fit: cover; background: #000;
+}
+.skill-pillar-body { padding: 12px; }
+.skill-pillar-title { margin: 0 0 6px 0; font-size: 16px; font-weight: 600; color: #333; }
+.skill-pillar-text { margin: 0; font-size: 13px; color: #555; }
+
+/* Domain Matrix: 3-column expandable cards */
+.skills-domain-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 12px;
+}
+@media screen and (max-width: 992px) { .skills-domain-grid { grid-template-columns: repeat(2, 1fr); } }
+@media screen and (max-width: 768px) { .skills-domain-grid { grid-template-columns: 1fr; } }
+
+.domain-card {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+	overflow: hidden;
+	cursor: pointer;
+	transition: transform .2s ease, box-shadow .2s ease;
+}
+.domain-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+.domain-card-header { padding: 12px; background: #f7f8fc; }
+.domain-card-title { margin: 0; font-size: 15px; font-weight: 600; color: #222; }
+.domain-card-sub { margin: 4px 0 0 0; font-size: 12px; color: #666; }
+
+.domain-card-body {
+	padding: 12px;
+	display: none;
+	border-top: 1px solid #eee;
+}
+.domain-card-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.tool-chip {
+	font-size: 12px; padding: 4px 8px; border-radius: 14px;
+	background: #eef2ff; color: #1e2641;
+}
+
+/* Expanded state */
+.domain-card.expanded .domain-card-body { display: block; }
+
+/* Toolbox: icon cloud with shimmer */
+.skills-toolbox-cloud {
+	display: flex; flex-wrap: wrap; gap: 8px;
+	padding: 8px 0;
+}
+.toolbox-chip {
+	display: inline-flex; align-items: center; gap: 6px;
+	font-size: 12px; padding: 6px 10px; border-radius: 16px;
+	background: linear-gradient(90deg, #f4f6ff 0%, #ffffff 50%, #f4f6ff 100%);
+	background-size: 200% 100%;
+	animation: shimmer 2.5s linear infinite;
+	border: 1px solid #e6e9f5;
+	color: #1e2641;
+}
+.toolbox-chip i { font-size: 13px; }
+@keyframes shimmer {
+	0% { background-position: -200% 0; }
+	100% { background-position: 200% 0; }
+}
