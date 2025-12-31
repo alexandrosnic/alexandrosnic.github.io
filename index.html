@@ -65,7 +65,7 @@
                 <li><a href="#" data-nav-section="about">About</a></li>
                 <li><a href="#" data-nav-section="skills">Skills</a></li>
                 <li>
-                  <a href="#" data-nav-section="repos">Top Repositories</a>
+                  <!-- Removed Top Repositories -->
                 </li>
                 <!-- <li><a href="#" data-nav-section="blogs">Blogs</a></li> -->
                 <li><a href="#" data-nav-section="projects">Projects</a></li>
@@ -76,6 +76,8 @@
                   <a href="#" data-nav-section="trekking">Trekking Adventures</a>
                 </li> -->
                 <li><a href="#" data-nav-section="education">Education</a></li>
+                <!-- Removed Specialized Training (Achievements) -->
+                <li><a href="#" id="cv-nav-link" class="external">CV</a></li>
                 <li><a href="#" data-nav-section="contact">Contact</a></li>
               </ul>
             </div>
@@ -102,10 +104,11 @@
                   <h1>Skills</h1>
                 </div>
               </div>
-              <div id="skills" class="row"></div>
               <!-- Unified skills grid (no subheadings for tiers) -->
               <div class="skills-tier">
                 <div id="skills-grid" class="skills-domain-grid"></div>
+                <h2 class="skills-subtitle">Toolbox</h2>
+                <div id="skills-toolbox" class="skills-toolbox-cloud"></div>
 
               </div>
             </div>
@@ -134,44 +137,7 @@
               </div>
             </div>
           </section>
-          <section class="colorlib-experience no-print" data-section="repos">
-            <div class="colorlib-narrow-content">
-              <div
-                class="row row-bottom-padded-sm animate-box"
-                data-animate-effect="fadeInLeft"
-              >
-                <div class="about-desc">
-                  <a
-                    href="https://github.com/alexandrosnic"
-                    target="_blank"
-                    style="color: inherit"
-                  >
-                    <h1>
-                      Top <span style="color: #f9bf3f">Repositories</span>
-                      <i
-                        class="fa fa-external-link"
-                        aria-hidden="true"
-                        style="font-size: 30px"
-                      ></i>
-                    </h1>
-                  </a>
-                </div>
-              </div>
-              <ul
-                id="accordion"
-                class="accordion animate-box"
-                data-animate-effect="fadeInLeft"
-              >
-                <li class="open">
-                  <ul
-                    id="repos"
-                    class=""
-                    style="display: block; padding: 10px"
-                  ></ul>
-                </li>
-              </ul>
-            </div>
-          </section>
+          <!-- Top Repositories section removed -->
           <!-- <section class="colorlib-blogs no-print" data-section="blogs">
             <div class="colorlib-narrow-content">
               <div
@@ -226,13 +192,6 @@
                 <!-- Hero Projects: 4 featured cards -->
                 <div id="hero-projects" class="hero-grid animate-box" data-animate-effect="fadeInLeft"></div>
 
-                <!-- Gallery: one row, three columns, expandable -->
-                <div class="row" id="projects-gallery"></div>
-                <div class="row" id="projects-gallery-actions">
-                  <div class="col-md-12" style="text-align:center; margin-top: 10px;">
-                    <button id="show-more-projects" class="btn btn-default">Show More</button>
-                  </div>
-                </div>
             </div>
           </section>
           <section class="colorlib-experience" data-section="experience">
@@ -277,6 +236,25 @@
               <div class="timeline-centered" id="education"></div>
             </div>
           </section>
+          <!-- CV overlay (opens on nav click) -->
+          <div id="cv-overlay" class="skills-overlay" aria-hidden="true">
+            <div class="skills-overlay-content">
+              <button id="cv-overlay-close" class="overlay-close" aria-label="Close">&times;</button>
+              <div id="cv-overlay-body">
+                <h2 style="margin-top:0;">Curriculum Vitae</h2>
+                <p>You can view the CV here, open in a new tab, or download it.</p>
+                <div style="display:flex;gap:12px;margin:8px 0 12px;">
+                  <a href="cv/Alexandros_Nikolaou_CV.pdf" target="_blank" rel="noopener" style="display:inline-block;padding:8px 12px;background:#f9bf3f;color:#222;border-radius:4px;text-decoration:none;">Open in new tab</a>
+                  <a href="cv/Alexandros_Nikolaou_CV.pdf" download style="display:inline-block;padding:8px 12px;background:#f9bf3f;color:#222;border-radius:4px;text-decoration:none;">Download PDF</a>
+                </div>
+                <object data="cv/Alexandros_Nikolaou_CV.pdf" type="application/pdf" style="width:100%;height:70vh;border:1px solid #ddd;border-radius:6px;">
+                  <iframe src="cv/Alexandros_Nikolaou_CV.pdf" style="width:100%;height:70vh;border:1px solid #ddd;border-radius:6px;"></iframe>
+                </object>
+                <p style="font-size:13px;margin-top:8px;">If the PDF doesn't display, please <a href="cv/Alexandros_Nikolaou_CV.pdf" target="_blank" rel="noopener">open it directly</a>.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Specialized Training (Achievements) section removed -->
           <section class="colorlib-contact" data-section="contact">
             <div class="colorlib-narrow-content">
               <div
@@ -312,66 +290,83 @@
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/main.js"></script>
 
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyBE5q2-5O6rlI_9VxjehT34ck6i5RqgYbo",
-        authDomain: "portfolio-698a4.firebaseapp.com",
-        projectId: "portfolio-698a4",
-        storageBucket: "portfolio-698a4.firebasestorage.app",
-        messagingSenderId: "138098427541",
-        appId: "1:138098427541:web:e440ff6ac326ba21097d9c",
-        measurementId: "G-6HD163BR61",
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-
-      import {
-        getFirestore,
-        doc,
-        getDoc,
-        setDoc,
-        updateDoc,
-      } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
-
-      // Initialize Firestore
-      const db = getFirestore(app);
-
-      // Reference to the visitor count document
-      const counterRef = doc(db, "visitors", "counter");
-
-      // Function to update visitor count
-      async function updateVisitorCount() {
-        try {
-          const docSnap = await getDoc(counterRef);
-
-          if (docSnap.exists()) {
-            let newCount = docSnap.data().count + 1;
-            await updateDoc(counterRef, { count: newCount });
-            document.getElementById(
-              "visitorCount"
-            ).innerText = `Visitor Count: ${newCount}`;
-          } else {
-            await setDoc(counterRef, { count: 1 });
-            document.getElementById("visitorCount").innerText =
-              "Visitor Count: 1";
-          }
-        } catch (error) {
-          console.error("Error updating visitor count:", error);
+    <!-- Fallback: if modules fail or site opened via file://, show a helpful message -->
+    <script>
+      (function () {
+        function showWarning() {
+          var main = document.getElementById('colorlib-main');
+          if (!main) return;
+          var banner = document.createElement('div');
+          banner.style.background = '#fff3cd';
+          banner.style.border = '1px solid #ffeeba';
+          banner.style.color = '#856404';
+          banner.style.padding = '10px 12px';
+          banner.style.margin = '10px 0 20px 0';
+          banner.style.borderRadius = '4px';
+          banner.textContent = 'Dynamic content not loaded. If viewing from disk (file://), please run a local server (e.g., python -m http.server) and reload.';
+          main.insertBefore(banner, main.firstChild);
         }
-      }
 
-      // Call function on page load
-      updateVisitorCount();
+        function checkRendered() {
+          var bio = document.getElementById('bio');
+          var skills = document.getElementById('skills');
+          var hero = document.getElementById('hero-projects');
+          var hasContent = (bio && bio.innerHTML && bio.innerHTML.trim().length > 0) ||
+                           (skills && skills.innerHTML && skills.innerHTML.trim().length > 0) ||
+                           (hero && hero.innerHTML && hero.innerHTML.trim().length > 0);
+          if (!hasContent) showWarning();
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+          // Delay slightly to allow module script to run if available
+          setTimeout(checkRendered, 500);
+        });
+      })();
+    </script>
+
+    <script type="module">
+      const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+      (async () => {
+        if (isLocal) return; // Skip Firebase locally
+
+        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js");
+        const { getAnalytics } = await import("https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js");
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyBE5q2-5O6rlI_9VxjehT34ck6i5RqgYbo",
+          authDomain: "portfolio-698a4.firebaseapp.com",
+          projectId: "portfolio-698a4",
+          storageBucket: "portfolio-698a4.firebasestorage.app",
+          messagingSenderId: "138098427541",
+          appId: "1:138098427541:web:e440ff6ac326ba21097d9c",
+          measurementId: "G-6HD163BR61",
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        const { getFirestore, doc, getDoc, setDoc, updateDoc } = await import("https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js");
+        const db = getFirestore(app);
+        const counterRef = doc(db, "visitors", "counter");
+
+        async function updateVisitorCount() {
+          try {
+            const docSnap = await getDoc(counterRef);
+            if (docSnap.exists()) {
+              let newCount = docSnap.data().count + 1;
+              await updateDoc(counterRef, { count: newCount });
+              document.getElementById("visitorCount").innerText = `Visitor Count: ${newCount}`;
+            } else {
+              await setDoc(counterRef, { count: 1 });
+              document.getElementById("visitorCount").innerText = "Visitor Count: 1";
+            }
+          } catch (error) {
+            console.error("Error updating visitor count:", error);
+          }
+        }
+
+        updateVisitorCount();
+      })();
     </script>
   </body>
 </html>

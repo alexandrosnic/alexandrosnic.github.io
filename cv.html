@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curriculum Vitae – Alexandros Nikolaou</title>
+  <link rel="stylesheet" href="css/animate.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .cv-container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    .cv-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+    .cv-header h1 { margin:0; font-size: 28px; }
+    .cv-actions { display:flex; gap:12px; }
+    .cv-frame { width: 100%; height: 80vh; border: 1px solid #ddd; border-radius: 6px; }
+    .cv-fallback { margin-top: 12px; font-size: 14px; }
+    .btn { display:inline-block; padding:8px 12px; background:#f9bf3f; color:#222; border-radius:4px; text-decoration:none; }
+    .btn:hover { filter: brightness(0.95); }
+  </style>
+</head>
+<body>
+  <div class="cv-container animate-box" data-animate-effect="fadeInLeft">
+    <div class="cv-header">
+      <h1>Curriculum Vitae</h1>
+      <div class="cv-actions">
+        <a class="btn" href="index.html">Back to Portfolio</a>
+        <a class="btn" href="cv/Alexandros_Nikolaou_CV.pdf" target="_blank" rel="noopener">Open in new tab</a>
+        <a class="btn" href="cv/Alexandros_Nikolaou_CV.pdf" download>Download PDF</a>
+      </div>
+    </div>
+
+    <!-- Embedded PDF viewer -->
+    <object class="cv-frame" data="cv/Alexandros_Nikolaou_CV.pdf" type="application/pdf">
+      <iframe class="cv-frame" src="cv/Alexandros_Nikolaou_CV.pdf"></iframe>
+    </object>
+    <div class="cv-fallback">
+      If the PDF doesn't display, please <a href="cv/Alexandros_Nikolaou_CV.pdf" target="_blank" rel="noopener">open it directly</a>.
+    </div>
+  </div>
+</body>
+</html>

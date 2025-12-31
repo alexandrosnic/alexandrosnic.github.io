@@ -1,8 +1,10 @@
 export const bio = [
   "Hello, I'm Alexandros Nikolaou!",
-  "<strong>Robotics & AI Engineer</strong> with a strong background in autonomous systems, industrial robotics, and AI-driven control.",
-  "Experienced in developing robotics applications using ROS2, motion planning, and reinforcement learning, with a focus on real-world implementation.",
-  "Passionate about sharing knowledge, developing technical education materials, and mentoring others in the field of AI and robotics.",
+  "<strong>Robotics & AI Engineer</strong> bridging the gap between innovative R&D thinking and high-speed, market-ready prototyping.",
+  "I master both the 'thinking' and the 'doing.' My unique competitive advantage lies in maintaining the 'blue-sky' mindset required for R&D while ruthlessly prioritizing the efficiency needed to slash time-to-market and move the needle on turnover.",
+  "Whether I’m debugging a Linux kernel at <strong>Bosch</strong> to squeeze out 10% more throughput or deploying autonomous fleets on-site in <strong>Singapore</strong>, my goal is to build technologically feasible products without the 'research drag.'",
+  "Specializing in <strong>Autonomous Navigation, Motion Planning, ROS1-to-ROS2 migration, and Embodied AI</strong>, I aim to leave a footprint in the smart systems sector that facilitates human well-being without costing the planet.",
+  "Based in Berlin. Driven by complex problems. Powered by C++, Python, and coffee."
 ];
 
 export const skills = [
@@ -15,52 +17,54 @@ export const skills = [
 
 export const experience = [
   {
-    title: "Bosch Autonomous Driving Division",
-    duration: "Previous Position",
-    subtitle: "Software Engineer",
+    title: "Field Deployment, AI & Robotics Engineer",
+    duration: "2025 (Deployment) & 2021 (R&D)",
+    subtitle: "Conbotics - Construction Robotics Startup",
     details: [
-      "Developed AI-driven perception and decision-making algorithms for autonomous vehicles.",
-      "Worked with sensor fusion, SLAM, and motion planning techniques to enhance vehicle autonomy.",
-      "Collaborated with cross-functional teams to integrate and optimize robotics software.",
+      "2025: Led international deployment in Singapore, acting as a bridge between the customer and the dev team to diagnose and resolve mission-critical Sim2Real discrepancies.",
+      "2025: Engineered diagnostic solutions using Rosbag analysis and telemetry to monitor robot health and performance in unstructured, real-world environments.",
+      "2021: Architected the full navigation stack from scratch, integrating SLAM, sensor fusion, and YOLO-based computer vision for autonomous painting operations.",
+      "2021: Optimized motion planning using custom PID controllers for wall-following and Finite State Machines for complex task logic."
     ],
-    tags: ["C++", "ROS", "Perception", "Motion Planning", "SLAM"],
-    icon: "car",
+    tags: ["ROS", "Gazebo", "Navigation Stack", "SLAM", "On-Site Deployment", "Computer Vision", "Diagnostics"],
+    icon: "cogs", 
   },
   {
-    title: "University of Potsdam",
-    duration: "Previous Position",
-    subtitle: "Lead Developer - Collaborative Robotics Project",
+    title: "Autonomous Driving Software Engineer",
+    duration: "03/2023 - 10/2024",
+    subtitle: "Bosch Autonomous Driving Division",
     details: [
-      "Designed and implemented control strategies for a robotic arm in an industrial setting.",
-      "Integrated ROS-based control architecture for real-time object manipulation.",
-      "Developed software to enable human-robot collaboration in manufacturing applications.",
+      "Optimized data throughput and latency for the autonomous vehicle stack by developing C++/CUDA shared memory solutions and researching RDMA/SMC-R protocols.",      "Worked with sensor fusion, SLAM, and motion planning techniques to enhance vehicle autonomy.",
+      "Identified and resolved low-level performance bottlenecks by debugging the Linux Kernel and performing deep-packet analysis using Wireshark and eBPF.",
+      "Architected the deployment environment by developing Dockerized setups for local and embedded middleware (ROS 1 & 2)."
     ],
-    tags: ["ROS", "Robotic Arms", "Industrial Automation", "Python"],
+    tags: ["C++", "ROS", "CUDA", "Linux Kernel", "RDMA", "Wireshark", "Docker"],
+    icon: "microchip",
+  },
+  {
+    title: "Robotics Research Engineer",
+    duration: "02/2022 - 11/2022",
+    subtitle: "University of Potsdam - COCOBOTs project",
+    details: [
+      "Architected a unified ROS2 framework to integrate NLP, Computer Vision, and Motion Planning (MoveIt2) into a user-friendly API for industrial pick-and-place tasks.",
+      "Established a high-fidelity Sim-to-Real pipeline using Webots, ROS2 and Docker, ensuring seamless transition between virtual simulations and physical UR3e hardware.",
+      "Migrated legacy ROS1 drivers for OnRobot VGC10 grippers to ROS2 and designed custom industrial CAD components in SolidWorks for performance testing.",
+    ],
+    tags: ["ROS2", "MoveIt2", "Docker", "SolidWorks", "Universal Robot", "Webots"],
     icon: "robot",
   },
   {
-    title: "Conbotics",
-    duration: "Previous Position",
-    subtitle: "AI & Robotics Engineer",
+    title: "Product and Mechanical Design Trainee",
+    duration: "12/2018 - 06/2019",
+    subtitle: "Airbond - R&D Sector",
     details: [
-      "Developed an autonomous robotic prototype for industrial applications.",
-      "Implemented perception and control algorithms for object detection and interaction.",
-      "Optimized system performance for real-time decision-making in dynamic environments.",
+      "Transformed high-level aerospace product concepts into functional prototypes for advanced composite material splicers entering a million-pound market.",
+      "Directed the end-to-end R&D cycle, utilizing SolidWorks for mechanical design and PLC integration for electronics.",
+      "Mastered industrial additive manufacturing using both FDM rapid prototyping and high-end powder-based systems, including the HP Jet Fusion 4200.",
+      "Contributed to designs that secured the Queen’s Award for Enterprise."
     ],
-    tags: ["AI", "Computer Vision", "ROS2", "Reinforcement Learning"],
-    icon: "cogs",
-  },
-  {
-    title: "AI Education Initiative",
-    duration: "Ongoing",
-    subtitle: "Creator & Educator",
-    details: [
-      "Developed an open-source AI curriculum on self-driving cars, hosted on GitHub.",
-      "Designed interactive tutorials covering deep learning, perception, and control.",
-      "Aimed to make advanced AI concepts accessible to learners worldwide.",
-    ],
-    tags: ["Deep Learning", "Self-Driving Cars", "Education"],
-    icon: "graduation-cap",
+    tags: ["SolidWorks", "R&D", "Industrial 3D Printing", "CAD", "Aerospace"],
+    icon: "tools", 
   },
 ];
 
@@ -73,30 +77,33 @@ export const hobbies = [
 
 export const education = [
   {
-    title: "MSc in Robotics & AI",
-    duration: "2022 - 2024",
-    subtitle: "University of Potsdam",
+    title: "EIT Digital's Joint MSc in Autonomous Systems",
+    duration: "08/2019 - 03/2022",
+    subtitle: "KTH Royal Institute of Technology / TU Berlin",
     details: [
-      "Specialized in Robot Learning and Computer Vision",
-      "Research focus on Reinforcement Learning and Motion Planning",
-      "Key projects in Industrial Robotics and Autonomous Systems"
+      "Graduated with a 1.7 (First-Class Honours equivalent) and a GPA of ~3.7/4.0, specialized in Robotics and Autonomous Systems.",
+      "Awarded the EIT Digital Excellence Full Scholarship and the Leventis Foundation Excellence Full Scholarship.",
+      "Acquired a minor in Innovation and Entrepreneurship, bridging technical robotics with product development and entrepreneurship.",
+      "Selected as a UN Sustainability Young Leader and EIT Climate-KIC Alumnus."
     ],
-    tags: ["Robotics", "AI", "Computer Vision", "Machine Learning"],
-    icon: "graduation-cap"
+    tags: ["Robotics", "AI", "Autonomous Systems", "Entrepreneurship"],
+    icon: "graduation-cap",
   },
   {
-    title: "BSc in Computer Science",
-    duration: "2018 - 2022",
-    subtitle: "Technical University of XXXX", // Replace with actual university
+    title: "Diploma in Mechanical Engineering (Integrated MEng)",
+    duration: "09/2013 - 09/2018",
+    subtitle: "National Technical University of Athens (NTUA)",
     details: [
-      "Focus on Software Engineering and AI fundamentals",
-      "Graduated with honors",
-      "Thesis on autonomous systems and robot control"
+      "Completed a 5-year rigorous program (300 ECTS) with a specialization in Mechanical Design, Robotics, and Control Systems.",
+      "Ranked in the top 10% of the class with a grade of 8.3/10 (GPA ~3.0/4.0).",
+      "My thesis was awarded the Cyprus Ministry of Education First Prize for Best Student Project, and NTUA's Second Prize for the Most Innovative Project.",
+      "Hult Prize Competition Greece Finalist (2017)."
     ],
-    tags: ["Computer Science", "Software Engineering", "AI"],
-    icon: "graduation-cap"
-  }
+    tags: ["Mechanical Design", "Control Systems", "Kinematics", "FEA"],
+    icon: "university",
+  },
 ];
+
 
 export const footer = [
   {

@@ -13,7 +13,7 @@ import { projects } from './user-data/projects.js';
 import { heroProjects } from './user-data/hero-projects.js';
 import { corePillars, domainMatrix, toolbox } from './skillset/data.js';
 
-const { medium, gitConnected, gitRepo } = URLs;
+const { medium, gitConnected } = URLs;
 
 // async function fetchBlogsFromMedium(url) {
 //   try {
@@ -27,15 +27,7 @@ const { medium, gitConnected, gitRepo } = URLs;
 //   }
 // }
 
-async function fetchReposFromGit(url) {
-  try {
-    const response = await fetch(url);
-    const items = await response.json();
-    populateRepo(items, "repos");
-  } catch (error) {
-    throw new Error(`Error in fetching the blogs from repos: ${error}`);
-  }
-}
+// Removed repos fetching
 
 async function fetchGitConnectedData(url) {
   try {
@@ -317,101 +309,7 @@ function populateProjectsGallery(items, featuredItems, galleryId, toggleBtnId) {
   });
 }
 
-function populateRepo(items, id) {
-  const projectdesign = document.getElementById(id);
-  const count = 4; // Adjust this count based on the number of repos you want to display
-
-  // Set up a wrapper div to hold repo cards in rows of 2
-  const rowWrapper = document.createElement("div");
-  rowWrapper.style =
-    "display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;";
-  projectdesign.appendChild(rowWrapper);
-
-  for (let i = 0; i < count; i++) {
-    // Create elements for each repo card
-    const repoCard = document.createElement("div");
-    repoCard.className = "repo-card";
-    repoCard.style = `
-          flex: 1 0 48%;  /* Two cards in one row */
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          border-radius: 12px;
-          padding: 16px;
-          font-size: 14px;
-          background: linear-gradient(135deg, #ffdd99, #f9bf3f);
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-          transition: transform 0.2s ease-in-out;
-          cursor: pointer;
-      `;
-
-    // Make the card clickable by wrapping the content inside an anchor tag
-    const repoLink = document.createElement("a");
-    repoLink.href = `https://github.com/${items[i].author}/${items[i].name}`;
-    repoLink.target = "_blank";
-    repoLink.style =
-      "text-decoration: none; color: black; display: block; height: 100%;";
-
-    repoCard.appendChild(repoLink);
-
-    // Repository name
-    const repoName = document.createElement("h4");
-    repoName.className = "repo-heading";
-    repoName.innerHTML = items[i].name;
-    repoName.style = "margin: 0; font-size: 18px; font-weight: bold;";
-    repoLink.appendChild(repoName);
-
-    // Repository description
-    const repoDescription = document.createElement("p");
-    repoDescription.className = "repo-description";
-    repoDescription.innerHTML = items[i].description;
-    repoDescription.style = "margin-top: 8px; font-size: 12px; color: #555;";
-    repoLink.appendChild(repoDescription);
-
-    // Stats row (Language, Stars, Forks)
-    const statsRow = document.createElement("div");
-    statsRow.style = `
-          display: flex; 
-          align-items: center; 
-          gap: 16px; 
-          margin-top: 12px; 
-          font-size: 12px; 
-          color: #666;
-      `;
-
-    // Language
-    const languageDiv = document.createElement("div");
-    languageDiv.style = "display: flex; align-items: center; gap: 4px;";
-    languageDiv.innerHTML = `
-          <span style="width: 8px; height: 8px; background-color: #666; border-radius: 50%; display: inline-block;"></span>
-          ${items[i].language}
-      `;
-    statsRow.appendChild(languageDiv);
-
-    // Stars
-    const starsDiv = document.createElement("div");
-    starsDiv.style = "display: flex; align-items: center; gap: 4px;";
-    starsDiv.innerHTML = `
-          <img src="https://img.icons8.com/ios-filled/16/666666/star--v1.png" alt="Stars">
-          ${items[i].stars}
-      `;
-    statsRow.appendChild(starsDiv);
-
-    // Forks
-    const forksDiv = document.createElement("div");
-    forksDiv.style = "display: flex; align-items: center; gap: 4px;";
-    forksDiv.innerHTML = `
-          <img src="https://img.icons8.com/ios-filled/16/666666/code-fork.png" alt="Forks">
-          ${items[i].forks}
-      `;
-    statsRow.appendChild(forksDiv);
-
-    repoLink.appendChild(statsRow);
-
-    // Add the repo card to the row wrapper
-    rowWrapper.appendChild(repoCard);
-  }
-}
+// Removed repos rendering function
 
 function populateExp_Edu(items, id) {
   let mainContainer = document.getElementById(id);
@@ -577,10 +475,10 @@ function getBlogDate(publishDate) {
 
 populateBio(bio, "bio");
 
-populateSkills(skills, "skills");
+// Legacy skills list removed in favor of unified skills grid
 
 // fetchBlogsFromMedium(medium);
-fetchReposFromGit(gitRepo);
+// Removed Top Repositories rendering
 fetchGitConnectedData(gitConnected);
 
 // Render Hero Projects (4 cards)
@@ -629,16 +527,7 @@ function populateHeroProjects(items, containerId) {
 console.log('[HeroProjects] Rendering', heroProjects?.length, 'items into #hero-projects');
 populateHeroProjects(heroProjects, 'hero-projects');
 
-// Keep the gallery below for breadth, excluding hero projects where possible
-const heroTitles = new Set(heroProjects.map(p => p.title));
-const featured = getFeaturedProjects(projects);
-// repurpose: featured only used to exclude first few; gallery excludes hero titles
-populateProjectsGallery(
-  projects.filter(p => !heroTitles.has(p.title)),
-  featured,
-  'projects-gallery',
-  'show-more-projects'
-);
+// Gallery removed: show only Hero Projects
 
 // Unified skills grid: merge core pillars and domain skills and open overlay on click
 function populateSkillsGrid(coreItems, domainItems, containerId) {
@@ -649,11 +538,9 @@ function populateSkillsGrid(coreItems, domainItems, containerId) {
   items.forEach(item => {
     const card = document.createElement('div');
     card.className = 'domain-card';
-    const subtitle = item.story || item.teaser || '';
     card.innerHTML = `
       <div class="domain-card-header">
         <h4 class="domain-card-title">${item.title}</h4>
-        ${subtitle ? `<p class="domain-card-sub">${subtitle}</p>` : ''}
       </div>
     `;
     card.addEventListener('click', () => {
@@ -706,6 +593,21 @@ function openSkillOverlay(filePath) {
         if (h.textContent.trim().toLowerCase() === 'links') h.remove();
       });
       body.querySelectorAll('a').forEach(a => a.remove());
+
+      // Remove empty elements (including NBSP) that can create extra whitespace
+      body.querySelectorAll('p, h1, h2, h3, div, section').forEach(el => {
+        const text = (el.textContent || '').replace(/\u00a0/g, '').trim();
+        const hasImg = el.querySelector('img');
+        const hasList = el.querySelector('ul, ol');
+        if (!text && !hasImg && !hasList) el.remove();
+      });
+
+      // Remove stray <br> tags that add vertical gaps
+      body.querySelectorAll('br').forEach(br => br.remove());
+
+      // Normalize trailing margins to avoid large white gaps
+      body.style.marginBottom = '0';
+      if (body.lastElementChild) body.lastElementChild.style.marginBottom = '0';
 
       // Add icons to tools list items
       const iconMap = {
@@ -771,6 +673,64 @@ function closeSkillOverlay() {
     });
   }
 })();
+// CV overlay controls
+function openCvOverlay() {
+  const overlay = document.getElementById('cv-overlay');
+  if (!overlay) return;
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+}
+
+function closeCvOverlay() {
+  const overlay = document.getElementById('cv-overlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+}
+
+(function initCvOverlayControls() {
+  const overlay = document.getElementById('cv-overlay');
+  const closeBtn = document.getElementById('cv-overlay-close');
+  const trigger = document.getElementById('cv-nav-link');
+  if (trigger) {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCvOverlay();
+    });
+  }
+  if (closeBtn) closeBtn.addEventListener('click', closeCvOverlay);
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeCvOverlay();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeCvOverlay();
+    });
+  }
+})();
+
+// Show a friendly banner when opened from disk to explain missing dynamic content
+(function initFileOriginBanner() {
+  try {
+    if (location && location.protocol === 'file:') {
+      const container = document.querySelector('.colorlib-about .colorlib-narrow-content')
+        || document.getElementById('colorlib-main');
+      if (container) {
+        const banner = document.createElement('div');
+        banner.style.background = '#fff3cd';
+        banner.style.border = '1px solid #ffeeba';
+        banner.style.color = '#856404';
+        banner.style.padding = '10px 12px';
+        banner.style.margin = '10px 0 20px 0';
+        banner.style.borderRadius = '4px';
+        banner.textContent = 'Viewing from disk (file://). Some content loads via fetch; for full experience, run a local server.';
+        container.insertBefore(banner, container.firstChild);
+      }
+    }
+  } catch (_) {
+    // no-op
+  }
+})();
 
 /* Duplicate overlay block removed */
 
@@ -780,8 +740,11 @@ populateExp_Edu(experience, "experience");
 console.log('About to populate education:', education);
 populateExp_Edu(education, "education");
 
+// Removed Achievements rendering
+
 populateLinks(footer, "footer");
 
 // Render skillset tiers after legacy list
 populateSkillsGrid(corePillars, domainMatrix, 'skills-grid');
+populateToolbox(toolbox, 'skills-toolbox');
 

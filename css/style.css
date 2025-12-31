@@ -672,7 +672,8 @@ body.offcanvas .colorlib-nav-toggle {
 	padding: 0;
 }
 
-<!-----projectcss------------ > #projects {
+/* projectcss */
+#projects {
 	padding: 50px 15px;
 	border-bottom: 1px solid #dcd9d9;
 	text-align: center;
@@ -1536,7 +1537,6 @@ body.offcanvas .colorlib-nav-toggle {
 	display: -moz-inline-stack;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;
 }
 .colorlib-social li a {
 	font-size: 22px;
@@ -1544,7 +1544,6 @@ body.offcanvas .colorlib-nav-toggle {
 	display: -moz-inline-stack;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
 	-ms-border-radius: 7px;
@@ -1798,7 +1797,6 @@ body.offcanvas .colorlib-nav-toggle {
 	display: -moz-inline-stack;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;
 	width: 30px;
 	height: 2px;
 	background-color: #000;
@@ -2280,7 +2278,7 @@ hr {
   }
 
 /* --- Skillset tiers --- */
-.skills-tier { margin-top: 20px; }
+.skills-tier { margin-top: 20px; margin-bottom: 0; padding-bottom: 0; }
 .skills-subtitle { font-size: 18px; font-weight: 600; margin: 12px 0 8px 0; }
 
 /* Core Pillars: horizontal scroller */
@@ -2315,6 +2313,8 @@ hr {
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 12px;
 }
+/* Avoid extra spacing beneath certain cards */
+.skills-domain-grid > .domain-card { margin-bottom: 0; }
 @media screen and (max-width: 992px) { .skills-domain-grid { grid-template-columns: repeat(2, 1fr); } }
 @media screen and (max-width: 768px) { .skills-domain-grid { grid-template-columns: 1fr; } }
 
@@ -2388,6 +2388,8 @@ hr {
 	position: relative;
 	padding: 18px 20px;
 }
+/* Collapse trailing space in overlay body */
+#skill-overlay-body > :last-child { margin-bottom: 0 !important; }
 .overlay-close {
 	position: absolute;
 	right: 10px;
@@ -2407,3 +2409,13 @@ hr {
 	margin: 8px 0 16px 0;
 }
 #skill-overlay-body .project-description h2 { margin-top: 12px; }
+#skill-overlay-body ul, #skill-overlay-body ol {
+	list-style: disc inside;
+	margin-left: 1.2em;
+	padding-left: 0.5em;
+}
+#skill-overlay-body .tech-stack {
+	list-style: none !important;
+	margin-left: 0;
+	padding-left: 0;
+}
