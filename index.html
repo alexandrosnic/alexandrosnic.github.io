@@ -84,6 +84,27 @@
           </nav>
         </aside>
         <div id="colorlib-main">
+          <!-- Hero intro section with background image and two-line intro -->
+          <section class="hero-intro">
+            <div class="hero-intro-overlay"></div>
+            <div class="hero-intro-content animate-box" data-animate-effect="fadeInUp">
+              <h1 class="hero-intro-title">Hi, I am Alexandros Nikolaou</h1>
+              <p class="hero-intro-line">I am a <span id="hero-rotating" class="hero-rotating"></span></p>
+              <p class="hero-intro-tagline">Robotics & AI Engineer — building autonomous, real-world systems</p>
+              <div class="hero-actions">
+                <a class="hero-btn" href="https://www.linkedin.com/in/alexandros-nicolaou31/" target="_blank" rel="noopener">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+                <a class="hero-btn" href="https://github.com/alexandrosnic" target="_blank" rel="noopener">
+                  <i class="fa fa-github"></i>
+                </a>
+                <a class="hero-btn hero-contact" href="#contact">
+                  Contact me
+                </a>
+              </div>
+            </div>
+            <div class="hero-intro-scroll-indicator" aria-hidden="true">▼</div>
+          </section>
           <section class="colorlib-about" data-section="about">
             <div class="colorlib-narrow-content">
               <div class="row animate-box" data-animate-effect="fadeInLeft">
@@ -92,6 +113,17 @@
                   <div id="bio"></div>
                 </div>
               </div>
+            </div>
+          </section>
+          <!-- Carousel Gallery right after About -->
+          <section class="colorlib-gallery">
+            <div class="colorlib-narrow-content">
+              <div class="row animate-box" data-animate-effect="fadeInLeft">
+                <div class="about-desc">
+                  <h1>Gallery</h1>
+                </div>
+              </div>
+              <div id="about-carousel" class="featured-container animate-box" data-animate-effect="fadeInLeft"></div>
             </div>
           </section>
           <section class="colorlib-skills" data-section="skills">
@@ -120,6 +152,14 @@
               <div id="skill-overlay-body"></div>
             </div>
           </div>
+          <!-- Overlay for project pages -->
+          <div id="project-overlay" class="skills-overlay" aria-hidden="true">
+            <div class="skills-overlay-content">
+              <button id="project-overlay-close" class="overlay-close" aria-label="Close">&times;</button>
+              <div id="project-overlay-body"></div>
+            </div>
+          </div>
+          <!--
           <section class="colorlib-profile" data-section="profile-card">
             <div class="colorlib-narrow-content">
               <div
@@ -127,9 +167,7 @@
                 data-animate-effect="fadeInLeft"
               >
                 <div class="profile-cards">
-                  <!-- <div class="col">
-                    <div class="stack-card" user-id="8461233"></div>
-                  </div> -->
+                  
                   <div class="col">
                     <div class="github-card" username="alexandrosnic"></div>
                   </div>
@@ -137,6 +175,7 @@
               </div>
             </div>
           </section>
+          -->
           <!-- Top Repositories section removed -->
           <!-- <section class="colorlib-blogs no-print" data-section="blogs">
             <div class="colorlib-narrow-content">
@@ -255,7 +294,7 @@
             </div>
           </div>
           <!-- Specialized Training (Achievements) section removed -->
-          <section class="colorlib-contact" data-section="contact">
+          <section class="colorlib-contact" data-section="contact" id="contact">
             <div class="colorlib-narrow-content">
               <div
                 class="row row-bottom-padded-sm animate-box"
@@ -265,19 +304,17 @@
                   <h1>Contact</h1>
                 </div>
                 <p>
-                  Feel free to email me at
-                  <strong>alexnic31@gmail.com</strong> for tech
-                  discussions, business opportunities, or just to say hello—I’d
-                  love to hear from you!
+                  Feel free to contact me for tech discussions, business opportunities, or just to say hello - I’d love to hear from you!<br/>
+                  <span class="contact-email">alexnic31@gmail.com</span>
                 </p>
               </div>
             </div>
           </section>
-          <section class="colorlib-footer no-print">
+          <!-- <section class="colorlib-footer no-print">
             <div class="colorlib-narrow-content">
               <p id="visitorCount">Visitor Count: Loading...</p>
             </div>
-          </section>
+          </section> -->
           <section class="colorlib-footer no-print" data-section="footer">
             <div class="colorlib-narrow-content">
               <footer class="footer" id="footer"></footer>

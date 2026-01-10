@@ -2312,6 +2312,7 @@ hr {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 12px;
+	margin-bottom: 24px; /* space before Toolbox */
 }
 /* Avoid extra spacing beneath certain cards */
 .skills-domain-grid > .domain-card { margin-bottom: 0; }
@@ -2365,6 +2366,199 @@ hr {
 	100% { background-position: 200% 0; }
 }
 
+/* --- Hero Intro Section --- */
+.hero-intro {
+	position: relative;
+	min-height: 95vh;
+	/* Fallback to logo if hero image is missing */
+	background-image: url('../images/hero.jpg'), url('../logo.png');
+	background-size: cover;
+	/* Shift the focal point up slightly to reduce perceived crop */
+	background-position: center 25%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.hero-intro-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(10,14,35,0.45) 0%, rgba(10,14,35,0.35) 40%, rgba(10,14,35,0.25) 100%);
+}
+
+.hero-intro-content {
+	position: relative;
+	z-index: 1;
+	text-align: center;
+	color: #fff;
+	padding: 0 16px;
+	padding-top: 40vh; /* place text a bit lower */
+}
+
+.hero-intro-title {
+	margin: 0 0 8px 0;
+	font-size: clamp(28px, 6vw, 46px);
+	font-weight: 700;
+	letter-spacing: 0.4px;
+}
+
+.hero-intro-line { 
+	margin: 6px 0 8px 0;
+	font-size: clamp(16px, 3vw, 24px);
+	font-weight: 600;
+}
+.hero-rotating { color: #f9bf3f; }
+.hero-intro-tagline {
+	margin: 0;
+	font-size: clamp(13px, 2.2vw, 18px);
+	opacity: 0.9;
+}
+
+/* Hero actions (buttons under tagline) */
+.hero-actions, .contact-actions {
+	margin-top: 14px;
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	justify-content: center;
+}
+.hero-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 14px;
+	background: #f9bf3f;
+	color: #1e2641;
+	border-radius: 6px;
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.hero-btn:hover { filter: brightness(0.95); color: #0f1530; }
+.hero-btn i { font-size: 16px; }
+.hero-btn.hero-contact { background: #f9bf3f; color: #1e2641; }
+.hero-btn.hero-contact:hover { filter: brightness(1.05); color: #fff; }
+
+/* Footer Links as buttons */
+#footer .col-list ul { display: flex; flex-wrap: wrap; gap: 12px; padding: 0; align-items: center; }
+#footer .col-list ul li { list-style: none; margin: 0; padding: 0; }
+#footer .col-list ul li a.footer-btn { font-size: 14px; }
+
+/* Contact email highlight */
+.colorlib-contact .contact-email {
+	color: #0f1530;
+	font-weight: 700;
+	font-size: clamp(16px, 2.4vw, 20px);
+}
+
+/* fade animation for rotating word */
+.hero-rotating.fade {
+	animation: hero-fade 500ms ease-in-out;
+}
+@keyframes hero-fade {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.hero-intro-subtitle {
+	margin: 0;
+	font-size: clamp(14px, 2.6vw, 20px);
+	font-weight: 500;
+	opacity: 0.95;
+}
+
+.hero-intro-scroll-indicator {
+	position: absolute;
+	left: 50%;
+	bottom: 14px;
+	transform: translateX(-50%);
+	color: rgba(255,255,255,0.85);
+	font-size: 20px;
+	animation: hero-bounce 1.8s ease-in-out infinite;
+	z-index: 1;
+}
+
+@keyframes hero-bounce {
+	0%, 100% { transform: translate(-50%, 0); }
+	50% { transform: translate(-50%, -6px); }
+}
+
+/* Mobile: avoid background-attachment fixed glitches */
+@media (max-width: 768px) {
+	.hero-intro { background-attachment: scroll; min-height: 70vh; background-size: contain; }
+}
+
+/* --- Carousel Gallery --- */
+.featured-container {
+	position: relative;
+	width: 100%;
+	height: 540px;
+	border-radius: 12px;
+	overflow: hidden;
+	background: #000;
+}
+.featured-slide {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	transition: opacity 600ms ease;
+}
+.featured-slide.active { opacity: 1; z-index: 1; }
+.featured-media {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.featured-nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 38px;
+	height: 38px;
+	border: none;
+	border-radius: 50%;
+	background: rgba(0,0,0,0.35);
+	color: #fff;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 2;
+}
+.featured-nav:hover { background: rgba(0,0,0,0.5); }
+.featured-prev { left: 12px; }
+.featured-next { right: 12px; }
+.featured-caption {
+	position: absolute;
+	left: 12px;
+	bottom: 46px; /* leave room for dots */
+	right: 12px;
+	color: #fff;
+	text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+.featured-caption h3 { margin: 0 0 4px 0; font-size: 18px; font-weight: 700; }
+.featured-caption p { margin: 0; font-size: 13px; opacity: 0.9; }
+
+.featured-dots {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 12px;
+	display: flex;
+	gap: 8px;
+	z-index: 2;
+}
+.featured-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: rgba(255,255,255,0.6);
+}
+.featured-dot.active { background: #f9bf3f; }
+
 /* --- Skills overlay --- */
 .skills-overlay {
 	position: fixed;
@@ -2379,7 +2573,7 @@ hr {
 .skills-overlay.open { display: flex; }
 
 .skills-overlay-content {
-	width: min(920px, 92vw);
+	width: min(1200px, 95vw);
 	max-height: 86vh;
 	overflow: auto;
 	background: #fff;
@@ -2407,6 +2601,42 @@ hr {
 	height: auto;
 	border-radius: 8px;
 	margin: 8px 0 16px 0;
+}
+#project-overlay-body .project-image,
+#project-overlay-body .project-overlay-image {
+	width: 100%;
+	height: auto;
+	border-radius: 8px;
+	margin: 8px 0 16px 0;
+	float: none; /* override legacy float */
+}
+#project-overlay-body video {
+	width: 100%;
+	height: auto;
+	max-height: 78vh;
+	object-fit: contain;
+	border-radius: 8px;
+	margin: 8px 0 16px 0;
+}
+
+/* Project overlay gallery grid */
+#project-overlay-body .project-gallery {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 12px;
+	margin: 8px 0 12px 0;
+}
+#project-overlay-body .project-gallery img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 8px;
+}
+#project-overlay-body .project-gallery video {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 8px;
 }
 #skill-overlay-body .project-description h2 { margin-top: 12px; }
 #skill-overlay-body ul, #skill-overlay-body ol {

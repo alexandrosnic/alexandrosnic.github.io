@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robotic Arm Manipulation - Alexandros Nikolaou</title>
+  <title>Unified ROS2 Manipulation Framework - Alexandros Nikolaou</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animate.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -12,27 +12,58 @@
   <div id="colorlib-page">
     <div class="container-wrap">
       <div class="project-content">
-        <h1 class="project-title">Robotic Arm Manipulation</h1>
+        <h1 class="project-title">Unified ROS2 Manipulation Framework</h1>
+        <h3 class="project-subtitle">Architecting a User-Friendly Hub for Human-Robot Collaboration (COCOBOTS)</h3>
+        
         <div class="project-details">
-          <img src="../images/projects/robotic-arm-manipulation.jpg" alt="Robotic Arm Manipulation" class="project-image">
+          <div class="project-gallery">
+              <video autoplay muted loop playsinline preload="auto" controls>
+                <source src="../images/projects/arm_manipulation_potsdam.mp4" type="video/mp4" />
+              </video>
+            </div>
           <div class="project-description">
-            <h2>Description</h2>
+            <h2>The Challenge</h2>
             <p>
-              The goal of this project was to develop a robotic arm framework for executing pick-and-place tasks. This framework integrated computer vision (CV) and natural language processing (NLP) modules into a ROS2-based environment. I used Webots for simulation, MoveIt2 for motion planning, and customized URDF/proto files for the OnRobot VGC10 gripper.
+              In the COCOBOTS project, the goal was to enable human-robot collaboration in industrial settings. This required a complex system where <strong>Natural Language Processing (NLP)</strong> for commands, <strong>Computer Vision (CV)</strong> for object detection, and <strong>Motion Planning</strong> for execution could all talk to each other. The challenge was the "Research Drag": integrating disparate research modules into a stable, real-time framework capable of running on physical industrial hardware (UR3e).
             </p>
+
+
+            <h2>My Contribution: The System Architect</h2>
+            <p>
+              I architected a <strong>unified, Dockerized ROS2 framework</strong> that served as the central nervous system for the project. By creating a robust API, I enabled the NLP and CV teams to plug their models directly into the robotic control pipeline without needing deep expertise in robotics middleware.
+            </p>
+            <p>
+              I pioneered the <strong>Sim-to-Real pipeline</strong> using Webots and MoveIt2. This allowed for high-fidelity testing in simulation that translated seamlessly to the physical UR3e arm. To bridge hardware gaps, I migrated legacy ROS1 drivers for the <strong>OnRobot VGC10 vacuum gripper</strong> to ROS2 and designed custom mechanical components in <strong>SolidWorks</strong> to optimize the gripper's performance for specific industrial pick-and-place tasks.
+            </p>
+
+            <img src="../images/projects/arm_manipulation_potsdam.gif" alt="UR3e Robotic Arm Manipulation" class="project-image">
+            
+
+            <h2>Key Engineering Achievements</h2>
+            <ul class="contribution-list">
+              <li><strong>ROS2 Migration:</strong> Led the transition from ROS1 to ROS2 Foxy, ensuring improved real-time performance and system stability.</li>
+              <li><strong>State Machine Logic:</strong> Implemented complex task logic using <strong>SMACH</strong> to handle error recovery and sequential pick-and-place workflows.</li>
+              <li><strong>Hardware-In-The-Loop:</strong> Established a seamless bridge between Webots simulations and physical UR3e hardware via custom proto/URDF files.</li>
+              <li><strong>Mechanical Design:</strong> Engineered and 3D-printed custom adapters and vacuum suction arrays in SolidWorks to handle non-uniform industrial objects.</li>
+            </ul>
+
+            
+
             <h2>Technologies Used</h2>
             <ul class="tech-stack">
-              <li>ROS2, SMACH</li>
-              <li>Webots</li>
+              <li>ROS2 (Foxy)</li>
               <li>MoveIt2</li>
+              <li>Webots (Simulation)</li>
               <li>Docker</li>
+              <li>SMACH (State Machines)</li>
               <li>SolidWorks (CAD)</li>
-              <li>Custom ROS2 drivers</li>
+              <li>Python & C++</li>
             </ul>
+
             <h2>Links</h2>
             <div class="project-links">
-              <a href="#" class="btn btn-primary">View Demo</a>
-              <a href="#" class="btn btn-secondary">Source Code</a>
+              <a href="https://github.com/alexandrosnic" class="btn btn-primary">View GitHub (Framework Core)</a>
+              <a href="https://www.icra2022.org/" class="btn btn-secondary">Read ICRA 2022 Publication</a>
             </div>
           </div>
         </div>

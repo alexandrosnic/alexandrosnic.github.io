@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Autonomous Driving - Alexandros Nikolaou</title>
+  <title>End-to-End Deep Learning for Autonomous Driving - Alexandros Nikolaou</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animate.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -12,24 +12,51 @@
   <div id="colorlib-page">
     <div class="container-wrap">
       <div class="project-content">
-        <h1 class="project-title">Autonomous Driving</h1>
+        <h1 class="project-title">End-to-End Deep Learning for Autonomous Driving</h1>
+        <h3 class="project-subtitle">Teaching vehicles human-like intuition through Behavioral Cloning and CNNs</h3>
+        
         <div class="project-details">
-          <img src="../images/projects/autonomous-driving.jpg" alt="Autonomous Driving" class="project-image">
+          <img src="../images/projects/behavioral-cloning.gif" alt="Autonomous Driving Neural Network Architecture" class="project-image">
+          
           <div class="project-description">
-            <h2>Description</h2>
+            <h2>The Challenge</h2>
             <p>
-              [Description needed] – Provide an overview of your contributions and the technologies used in the autonomous driving project. This may include aspects of software optimization, communication protocols, or other relevant work.
+              Classical robotics relies on hard-coded rules: <em>"If Lidar detects X, then steer Y."</em> However, real-world driving contains infinite edge cases that rules cannot cover. The goal of this project was to implement <strong>Behavioral Cloning</strong>—a technique where a vehicle learns to drive by mimicking human steering patterns directly from raw visual data.
             </p>
+
+            
+
+            <h2>My Contribution: From Perception to Control</h2>
+            <p>
+              I developed a multi-stage deep learning pipeline. First, I engineered a <strong>Convolutional Neural Network (CNN)</strong> for traffic sign recognition, achieving high accuracy in classifying stop signs, speed limits, and warnings under varying lighting conditions.
+            </p>
+            <p>
+              The core of the project involved training a deep neural network to map raw pixels from a front-facing camera directly to steering commands. By utilizing <strong>Data Augmentation</strong> (flipping images, adjusting brightness) and a customized <strong>NVIDIA-style CNN architecture</strong>, I trained the model to predict the steering angle with micro-precision. The result was an agent that could navigate complex, winding tracks in simulation entirely through "intuition" learned from human driving logs.
+            </p>
+
+            <h2>Technical Deep Dive</h2>
+            <ul class="contribution-list">
+              <li><strong>Architecture:</strong> Implemented a deep CNN using <strong>Keras/TensorFlow</strong> with dropout layers to prevent overfitting and ensure generalization to new tracks.</li>
+              <li><strong>Perception:</strong> Leveraged <strong>OpenCV</strong> for image preprocessing, including YUV color space conversion and normalization to stabilize gradient descent.</li>
+              <li><strong>Behavioral Cloning:</strong> Integrated human-driven training datasets to teach the model recovery maneuvers (how to steer back to the center if it drifts).</li>
+              <li><strong>Transfer Learning:</strong> Explored the application of pre-trained models for feature extraction in unstructured driving environments.</li>
+            </ul>
+
+            
+
             <h2>Technologies Used</h2>
             <ul class="tech-stack">
-              <li>[Technology 1]</li>
-              <li>[Technology 2]</li>
-              <!-- Add more as needed -->
+              <li>Python</li>
+              <li>PyTorch / Keras / TensorFlow</li>
+              <li>OpenCV</li>
+              <li>Numpy & Pandas</li>
+              <li>Udacity Self-Driving Simulator</li>
             </ul>
-            <h2>Links</h2>
+
+            <h2>Project Outcomes</h2>
             <div class="project-links">
-              <a href="#" class="btn btn-primary">View Demo</a>
-              <a href="#" class="btn btn-secondary">Source Code</a>
+              <a href="https://github.com/alexandrosnic" class="btn btn-primary">View GitHub Repository</a>
+              <a href="https://linkedin.com/in/alexandros-nicolaou31" class="btn btn-secondary">Request Model Metrics</a>
             </div>
           </div>
         </div>

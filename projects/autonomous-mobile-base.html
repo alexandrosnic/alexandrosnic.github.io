@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Autonomous Mobile Base - Alexandros Nikolaou</title>
+  <title>Full-Stack Autonomous Navigation & Deployment - Alexandros Nikolaou</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animate.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -12,24 +12,57 @@
   <div id="colorlib-page">
     <div class="container-wrap">
       <div class="project-content">
-        <h1 class="project-title">Autonomous Mobile Base</h1>
+        <h1 class="project-title">Full-Stack Autonomous Navigation & Robotic Deployment</h1>
+        <h3 class="project-subtitle">From solo R&D to international field deployment in Singapore</h3>
+        
         <div class="project-details">
-          <img src="../images/projects/autonomous-mobile-base.jpg" alt="Autonomous Mobile Base" class="project-image">
+          <img src="../images/projects/autonomous-mobile-base.jpeg" alt="Conbotics Autonomous Painting Robot" class="project-image">
+          
           <div class="project-description">
-            <h2>Description</h2>
+            <h2>The Challenge</h2>
             <p>
-              [Description needed] – Insert details about the autonomous mobile base project here. Include objectives, your role, and the impact of the project.
+              Construction sites are among the most difficult environments for robotics: they are dynamic, unstructured, dusty, and constantly changing. As the first employee at <strong>Conbotics</strong>, I was tasked with taking a concept for an autonomous wall-painting robot and turning it into a market-ready mobile platform capable of precise navigation in these harsh conditions.
             </p>
+
+            
+
+            <h2>The Build: Solo Navigation Stack</h2>
+            <p>
+              I took 100% ownership of the software architecture for the mobile base. This involved implementing a robust <strong>Navigation Stack</strong> from the ground up using ROS. I integrated <strong>SLAM</strong> (Simultaneous Localization and Mapping) for environment discovery and utilized <strong>EKF-based Sensor Fusion</strong> to merge data from Lidar, IMU, and encoders for pinpoint localization. To handle site-specific obstacles, I engineered a perception layer using <strong>YOLOv4</strong> and Realsense depth cameras for real-time semantic mapping.
+            </p>
+
+            <h2>The Test: Singapore Field Deployment</h2>
+            <p>
+              In 2025, I transitioned from R&D to <strong>Lead Field Deployment Engineer</strong> for a mission-critical pilot in <strong>Singapore</strong>. This was where I bridged the "Sim-to-Real" gap. On-site, I identified discrepancies between our Gazebo simulations and the physical constraints of the construction site. 
+            </p>
+            <p>
+              By performing deep <strong>Rosbag and telemetry analysis</strong> in the field, I optimized the path-planning parameters and PID controllers to handle varying floor frictions and lighting conditions. This direct intervention helped the company reach market readiness <strong>6 months earlier than projected</strong>.
+            </p>
+
+            <h2>Technical Deep Dive</h2>
+            <ul class="contribution-list">
+              <li><strong>Navigation:</strong> Developed custom global and local planners for precise wall-following and obstacle avoidance.</li>
+              <li><strong>Sim-to-Real:</strong> Synchronized simulation environments with real-world sensor noise and physical constraints.</li>
+              <li><strong>Hardware-in-the-loop:</strong> Optimized CAN Bus communication and motor driver feedback loops for smooth motion.</li>
+              <li><strong>Field Engineering:</strong> Conducted stress-tests and on-site debugging in unstructured environments, ensuring 99% mission uptime.</li>
+            </ul>
+
+            
+
             <h2>Technologies Used</h2>
             <ul class="tech-stack">
-              <li>[Technology 1]</li>
-              <li>[Technology 2]</li>
-              <!-- Add more as needed -->
+              <li>ROS1 / ROS2</li>
+              <li>SLAM (Gmapping/Cartographer)</li>
+              <li>YOLOv4 & Computer Vision</li>
+              <li>Sensor Fusion (EKF)</li>
+              <li>Python & C++</li>
+              <li>Lidar & Realsense Integration</li>
             </ul>
-            <h2>Links</h2>
+
+            <h2>Project Outcomes</h2>
             <div class="project-links">
-              <a href="#" class="btn btn-primary">View Demo</a>
-              <a href="#" class="btn btn-secondary">Source Code</a>
+              <a href="https://linkedin.com/in/alexandros-nicolaou31" class="btn btn-primary">Request Deployment Case Study</a>
+              <a href="https://alexandrosnikolaou.weebly.com/" class="btn btn-secondary">Visit Conbotics Portfolio</a>
             </div>
           </div>
         </div>

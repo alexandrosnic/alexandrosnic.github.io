@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bosch Autonomous Vehicle - Alexandros Nikolaou</title>
+  <title>Optimization of Sensory Data Exchange - Alexandros Nikolaou</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animate.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -12,26 +12,52 @@
   <div id="colorlib-page">
     <div class="container-wrap">
       <div class="project-content">
-        <h1 class="project-title">Bosch Autonomous Vehicle</h1>
+        <h1 class="project-title">Optimization of Sensory Data Exchange</h1>
+        <h3 class="project-subtitle">Squeezing microsecond latency out of a production-grade autonomous vehicle system</h3>
+        
         <div class="project-details">
-          <img src="../images/projects/bosch-autonomous-vehicle.jpg" alt="Bosch Autonomous Vehicle" class="project-image">
+          <img src="../images/projects/bosch-autonomous-vehicle.jpg" alt="Bosch Autonomous Vehicle Stack" class="project-image">
+          
           <div class="project-description">
-            <h2>Description</h2>
+            <h2>The Challenge</h2>
             <p>
-              During my career at Bosch, I worked on the Level 4 autonomous driving project aimed at delivering safe self-driving cars on public roads. My responsibilities included developing unit tests in C++ and CUDA, researching and optimizing transport protocols (ETH, UDP, RDMA), and contributing to container setups (Docker, ROS 1&2) for both local and embedded devices.
+              In high-level autonomous driving (Level 4), the bottleneck is often not just the AI algorithm, but the <strong>middleware's ability to transport massive sensor data</strong> (Lidar, Radar, Cameras) to the CPU/GPU with zero packet loss and minimal latency. Working within Bosch’s Autonomous Driving division, I was tasked with optimizing a stack that was already considered highly efficient.
             </p>
+
+            
+
+            <h2>My Contribution & Impact</h2>
+            <p>
+              I moved beyond standard application-level development to perform <strong>low-level systems engineering</strong>. My work focused on identifying micro-bottlenecks that classical profilers often miss. By diving into the <strong>Linux Kernel network stack</strong> and utilizing tools like <strong>Wireshark and eBPF</strong>, I pinpointed latency spikes in standard UDP/ETH communication.
+            </p>
+            <p>
+              I researched and implemented <strong>RDMA (Remote Direct Memory Access)</strong> and shared memory transport protocols, successfully increasing sensory data throughput and reducing latency by <strong>10%</strong>. This optimization ensured that the perception layer received high-frequency data under strict real-time constraints, directly improving the vehicle's reaction time.
+            </p>
+
+            <h2>Technical Deep Dive</h2>
+            <ul class="contribution-list">
+              <li><strong>Protocol Optimization:</strong> Benchmarked and implemented RDMA (SMC-R) to bypass kernel overhead for high-speed data transfer.</li>
+              <li><strong>Kernel Debugging:</strong> Analyzed network interface bottlenecks and tuned kernel parameters for optimized interrupt handling.</li>
+              <li><strong>Hybrid Middleware:</strong> Developed robust containerized environments (Docker) supporting both ROS 1 and ROS 2 communication for local and embedded targets.</li>
+              <li><strong>High-Performance Profiling:</strong> Utilized Intel VTune and perf to optimize C++/CUDA code at the instruction level.</li>
+            </ul>
+
             <h2>Technologies Used</h2>
             <ul class="tech-stack">
-              <li>C++ & CUDA</li>
-              <li>Docker</li>
-              <li>ROS 1&2</li>
-              <li>RDMA, ETH, UDP</li>
-              <li>Wireshark, VTune, perf</li>
+              <li>C++17 & CUDA</li>
+              <li>Linux Kernel Debugging</li>
+              <li>RDMA, SMC-R, UDP/ETH</li>
+              <li>Wireshark & eBPF</li>
+              <li>ROS 1 & 2</li>
+              <li>Docker & Embedded Systems</li>
             </ul>
-            <h2>Links</h2>
+
+            
+
+            <h2>Project Outcomes</h2>
             <div class="project-links">
-              <a href="#" class="btn btn-primary">View Demo</a>
-              <a href="#" class="btn btn-secondary">Source Code</a>
+              <span class="btn btn-disabled" title="Proprietary Code">Internal Bosch Project</span>
+              <a href="https://linkedin.com/in/alexandros-nicolaou31" class="btn btn-secondary">Discuss Technical Details</a>
             </div>
           </div>
         </div>

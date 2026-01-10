@@ -11,6 +11,7 @@ import { URLs } from "./user-data/urls.js";
 
 import { projects } from './user-data/projects.js';
 import { heroProjects } from './user-data/hero-projects.js';
+import { carouselMedia } from './user-data/carousel.js';
 import { corePillars, domainMatrix, toolbox } from './skillset/data.js';
 
 const { medium, gitConnected } = URLs;
@@ -204,6 +205,10 @@ function populateProjects(items, id) {
       </div>
     `;
     container.appendChild(projectCard);
+    const viewBtn = projectCard.querySelector('.btn.btn-primary');
+    if (viewBtn && project.demoLink) {
+      viewBtn.addEventListener('click', (e) => { e.preventDefault(); openProjectOverlay(project.demoLink); });
+    }
   });
 }
 
@@ -235,12 +240,14 @@ function populateFeaturedProjects(items, containerId) {
         </video>
       `;
     } else {
-      mediaHtml = `<img class="featured-media" src="images/projects/${project.image}" alt="${project.title}">`;
+      const imgSrc = project.imageFullPath
+        ? project.imageFullPath
+        : `images/projects/${project.image}`;
+      mediaHtml = `<img class="featured-media" src="${imgSrc}" alt="${project.title}">`;
     }
 
     slide.innerHTML = `
       ${mediaHtml}
-      <a href="${project.demoLink}" class="featured-link" aria-label="Open ${project.title}"></a>
       <div class="featured-caption">
         <h3>${project.title}</h3>
         <p>${project.description}</p>
@@ -250,16 +257,61 @@ function populateFeaturedProjects(items, containerId) {
     container.appendChild(slide);
   });
 
-  // Auto-rotate
+  // Navigation controls (prev/next)
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'featured-nav featured-prev';
+  prevBtn.setAttribute('aria-label', 'Previous');
+  prevBtn.innerHTML = '<i class="fa fa-chevron-left"></i>';
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'featured-nav featured-next';
+  nextBtn.setAttribute('aria-label', 'Next');
+  nextBtn.innerHTML = '<i class="fa fa-chevron-right"></i>';
+  container.appendChild(prevBtn);
+  container.appendChild(nextBtn);
+
+  // Dot indicators
+  const dots = document.createElement('div');
+  dots.className = 'featured-dots';
+  const slides = container.querySelectorAll('.featured-slide');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = `featured-dot${i === 0 ? ' active' : ''}`;
+    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    dots.appendChild(dot);
+  });
+  container.appendChild(dots);
+
+  // State + helpers
   let current = 0;
-  const changeSlide = () => {
-    const slides = container.querySelectorAll('.featured-slide');
-    if (slides.length === 0) return;
-    slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
-    slides[current].classList.add('active');
-  };
-  setInterval(changeSlide, 5000);
+  function renderActive() {
+    slides.forEach((s, i) => {
+      if (i === current) s.classList.add('active');
+      else s.classList.remove('active');
+    });
+    const dotEls = dots.querySelectorAll('.featured-dot');
+    dotEls.forEach((d, i) => {
+      if (i === current) d.classList.add('active');
+      else d.classList.remove('active');
+    });
+  }
+
+  function goto(index) {
+    const total = slides.length;
+    current = ((index % total) + total) % total; // normalize
+    renderActive();
+  }
+
+  // Wire controls
+  prevBtn.addEventListener('click', () => goto(current - 1));
+  nextBtn.addEventListener('click', () => goto(current + 1));
+  dots.querySelectorAll('.featured-dot').forEach((dot, i) => {
+    dot.addEventListener('click', () => goto(i));
+  });
+
+  // Auto-rotate
+  const changeSlide = () => goto(current + 1);
+  const intervalMs = Number(container?.dataset?.interval) || 10000; // allow override via data-interval
+  setInterval(changeSlide, intervalMs);
 }
 
 // New: Gallery with show-more
@@ -291,6 +343,10 @@ function populateProjectsGallery(items, featuredItems, galleryId, toggleBtnId) {
       </div>
     `;
     gallery.appendChild(col);
+    const viewBtn = col.querySelector('.btn.btn-primary');
+    if (viewBtn && project.demoLink) {
+      viewBtn.addEventListener('click', (e) => { e.preventDefault(); openProjectOverlay(project.demoLink); });
+    }
   });
 
   // Toggle behavior
@@ -414,6 +470,11 @@ function populateLinks(items, id) {
         }
         a.innerHTML = data.text;
 
+        // Style Links entries as buttons for better visibility
+        if (item.label && item.label.toLowerCase() === "links") {
+          a.className = "hero-btn footer-btn";
+        }
+
         li.append(a);
         ul.append(li);
       });
@@ -521,6 +582,10 @@ function populateHeroProjects(items, containerId) {
       </div>
     `;
     container.appendChild(card);
+    const heroLink = card.querySelector('.hero-link');
+    if (heroLink && p.demoLink) {
+      heroLink.addEventListener('click', (e) => { e.preventDefault(); openProjectOverlay(p.demoLink); });
+    }
   });
 }
 
@@ -528,6 +593,16 @@ console.log('[HeroProjects] Rendering', heroProjects?.length, 'items into #hero-
 populateHeroProjects(heroProjects, 'hero-projects');
 
 // Gallery removed: show only Hero Projects
+// New: About carousel gallery
+try {
+  const forCarousel = (carouselMedia || []).map(item => ({
+    ...item,
+    imageFullPath: item.image ? `images/carousel/${item.image}` : undefined
+  }));
+  populateFeaturedProjects(forCarousel, 'about-carousel');
+} catch (e) {
+  console.warn('[AboutCarousel] Failed to initialize carousel:', e);
+}
 
 // Unified skills grid: merge core pillars and domain skills and open overlay on click
 function populateSkillsGrid(coreItems, domainItems, containerId) {
@@ -579,7 +654,7 @@ function openSkillOverlay(filePath) {
       tmp.innerHTML = html;
 
       const titleEl = tmp.querySelector('.project-title');
-      const imageEl = tmp.querySelector('.project-image');
+      const imageEl = tmp.querySelector('.project-overlay-image') || tmp.querySelector('.project-image');
       const descEl = tmp.querySelector('.project-description');
 
       const title = titleEl ? titleEl.outerHTML : '';
@@ -709,6 +784,123 @@ function closeCvOverlay() {
   }
 })();
 
+// Overlay logic for project pages (keeps project links)
+function openProjectOverlay(filePath) {
+  const overlay = document.getElementById('project-overlay');
+  const body = document.getElementById('project-overlay-body');
+  if (!overlay || !body) return;
+
+  body.innerHTML = '<p style="margin:8px 0;color:#666;">Loading…</p>';
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+
+  fetch(filePath, { credentials: 'same-origin' })
+    .then(r => r.text())
+    .then(html => {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+
+      // Render the full project details as-is to allow custom placement
+      const detailsEl = tmp.querySelector('.project-details');
+      const contentHtml = detailsEl ? detailsEl.innerHTML : html;
+      body.innerHTML = contentHtml;
+
+      // Normalize relative src/href paths to work from index.html
+      try {
+        const baseDir = (filePath.includes('/') ? filePath.split('/').slice(0, -1).join('/') : '') + '/';
+        const isAbsolute = (u) => /^(?:[a-z]+:)?\/\//i.test(u) || u.startsWith('/') || u.startsWith('#') || u.startsWith('mailto:') || u.startsWith('tel:');
+        const normalize = (u) => {
+          if (!u) return u;
+          if (isAbsolute(u)) return u;
+          if (u.startsWith('../')) return u.replace(/^\.\.\//, '');
+          if (u.startsWith('./')) return (baseDir + u.replace(/^\.\//, ''));
+          // plain relative (e.g., "autonomous-driving.html") should be under the same folder as the project file
+          return baseDir + u;
+        };
+        body.querySelectorAll('img[src], video[src], source[src], a[href]').forEach(el => {
+          const attr = el.hasAttribute('src') ? 'src' : 'href';
+          const val = el.getAttribute(attr);
+          const newVal = normalize(val);
+          if (newVal !== val) el.setAttribute(attr, newVal);
+        });
+      } catch (_) { /* no-op */ }
+
+      // Clean up empty elements and stray <br>, but preserve media blocks
+      body.querySelectorAll('p, h1, h2, h3, div, section').forEach(el => {
+        const text = (el.textContent || '').replace(/\u00a0/g, '').trim();
+        const hasImg = el.querySelector('img');
+        const hasVideo = el.querySelector('video');
+        const hasList = el.querySelector('ul, ol');
+        if (!text && !hasImg && !hasVideo && !hasList) el.remove();
+      });
+      body.querySelectorAll('br').forEach(br => br.remove());
+      body.style.marginBottom = '0';
+      if (body.lastElementChild) body.lastElementChild.style.marginBottom = '0';
+
+      // Add icons to tools list items if present
+      const iconMap = {
+        'linux': 'fa fa-linux',
+        'c++': 'fa fa-code',
+        'python': 'fa fa-code',
+        'ros': 'fa fa-cog',
+        'ros1': 'fa fa-cog',
+        'ros2': 'fa fa-cog',
+        'opencv': 'fa fa-eye',
+        'pcl': 'fa fa-cubes',
+        'docker': 'fa fa-cubes',
+        'solidworks': 'fa fa-cube',
+        'gazebo': 'fa fa-cubes',
+        'webots': 'fa fa-cubes',
+        'isaac sim': 'fa fa-rocket',
+        'camera': 'fa fa-camera',
+        'realsense': 'fa fa-eye',
+        'oak-d': 'fa fa-eye',
+        'yolo': 'fa fa-eye',
+        'vlm': 'fa fa-eye',
+        'urdf': 'fa fa-cube',
+        'pid': 'fa fa-sliders',
+        'mpc': 'fa fa-sliders',
+        'lqr': 'fa fa-sliders',
+        'ekf': 'fa fa-sliders',
+        'ukf': 'fa fa-sliders',
+        'can': 'fa fa-exchange'
+      };
+      const toolLis = body.querySelectorAll('.tech-stack li');
+      toolLis.forEach(li => {
+        const text = li.textContent.trim().toLowerCase();
+        const key = Object.keys(iconMap).find(k => text.includes(k));
+        const cls = key ? iconMap[key] : 'fa fa-cog';
+        li.innerHTML = `<i class="${cls}" style="margin-right:6px;"></i>${li.textContent.trim()}`;
+      });
+    })
+    .catch(err => {
+      body.innerHTML = `<p style="color:#b00020;">Failed to load project content: ${err}</p>`;
+    });
+}
+
+function closeProjectOverlay() {
+  const overlay = document.getElementById('project-overlay');
+  const body = document.getElementById('project-overlay-body');
+  if (!overlay || !body) return;
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+  body.innerHTML = '';
+}
+
+(function initProjectOverlayControls() {
+  const overlay = document.getElementById('project-overlay');
+  const closeBtn = document.getElementById('project-overlay-close');
+  if (closeBtn) closeBtn.addEventListener('click', closeProjectOverlay);
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeProjectOverlay();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeProjectOverlay();
+    });
+  }
+})();
+
 // Show a friendly banner when opened from disk to explain missing dynamic content
 (function initFileOriginBanner() {
   try {
@@ -747,4 +939,51 @@ populateLinks(footer, "footer");
 // Render skillset tiers after legacy list
 populateSkillsGrid(corePillars, domainMatrix, 'skills-grid');
 populateToolbox(toolbox, 'skills-toolbox');
+
+// Rotating hero roles
+(function initHeroRotator() {
+  const target = document.getElementById('hero-rotating');
+  if (!target) return;
+  const roles = [
+    'Robotics Engineer',
+    'Simulation Developer',
+    'Mechanical Engineer',
+    'Mechanical Designer',
+    'Music Artist'
+  ];
+
+  let wordIndex = 0;
+  let charIndex = 0;
+  const typeDelay = 80;   // ms per character
+  const eraseDelay = 40;  // ms per character when erasing
+
+  function type() {
+    const word = roles[wordIndex];
+    if (charIndex < word.length) {
+      target.textContent = word.slice(0, charIndex + 1) + '_';
+      charIndex++;
+      setTimeout(type, typeDelay);
+    } else {
+      // Pause for 1s before starting to erase
+      setTimeout(erase, 1000);
+    }
+  }
+
+  function erase() {
+    const word = roles[wordIndex];
+    if (charIndex > 0) {
+      target.textContent = word.slice(0, charIndex - 1) + '_';
+      charIndex--;
+      setTimeout(erase, eraseDelay);
+    } else {
+      // Move to next word and begin typing immediately
+      wordIndex = (wordIndex + 1) % roles.length;
+      setTimeout(type, typeDelay);
+    }
+  }
+
+  // Initialize with cursor underscore
+  target.textContent = '_';
+  setTimeout(type, typeDelay);
+})();
 

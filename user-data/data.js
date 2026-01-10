@@ -1,10 +1,9 @@
 export const bio = [
-  "Hello, I'm Alexandros Nikolaou!",
-  "<strong>Robotics & AI Engineer</strong> bridging the gap between innovative R&D thinking and high-speed, market-ready prototyping.",
-  "I master both the 'thinking' and the 'doing.' My unique competitive advantage lies in maintaining the 'blue-sky' mindset required for R&D while ruthlessly prioritizing the efficiency needed to slash time-to-market and move the needle on turnover.",
+  "I am a <strong>Robotics & AI Engineer</strong> that bridges the gap between innovative R&D thinking and high-speed, market-ready prototyping that moves the needle on turnover.",
+  "I master both the 'thinking' and the 'doing' of robotics and AI.",
   "Whether I’m debugging a Linux kernel at <strong>Bosch</strong> to squeeze out 10% more throughput or deploying autonomous fleets on-site in <strong>Singapore</strong>, my goal is to build technologically feasible products without the 'research drag.'",
   "Specializing in <strong>Autonomous Navigation, Motion Planning, ROS1-to-ROS2 migration, and Embodied AI</strong>, I aim to leave a footprint in the smart systems sector that facilitates human well-being without costing the planet.",
-  "Based in Berlin. Driven by complex problems. Powered by C++, Python, and coffee."
+  "Based in Berlin. Driven by complex problems. Powered by C++, Python, and coffee (ginger tea after 14:00)."
 ];
 
 export const skills = [
@@ -109,14 +108,11 @@ export const footer = [
   {
     label: "Links",
     data: [
-      {
-        text: "GitHub",
-        link: "https://github.com/alexandrosnic",
-      },
-      {
-        text: "Tampa Tumpu Music",
-        link: "https://soundcloud.com/tampatumpu",
-      },
+      { text: "<i class='fa fa-envelope'></i>", link: "mailto:alexnic31@gmail.com" },
+      { text: "<i class='fa fa-github'></i>", link: "https://github.com/alexandrosnic" },
+      { text: "<i class='fa fa-linkedin'></i>", link: "https://www.linkedin.com/in/alexandros-nicolaou31/" },
+      { text: "<i class='fa fa-soundcloud'></i>", link: "https://soundcloud.com/tampatumpu" },
+      { text: "<i class='fa fa-youtube-play'></i>", link: "https://www.youtube.com/@tampatumpu" },
     ],
   },
   {
