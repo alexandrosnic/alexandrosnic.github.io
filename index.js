@@ -311,7 +311,12 @@ function populateFeaturedProjects(items, containerId) {
   // Auto-rotate
   const changeSlide = () => goto(current + 1);
   const intervalMs = Number(container?.dataset?.interval) || 10000; // allow override via data-interval
-  setInterval(changeSlide, intervalMs);
+  const disableAuto = (containerId === 'about-carousel') ||
+                      (container?.dataset?.autoplay === 'false') ||
+                      (container?.dataset?.rotate === 'false');
+  if (!disableAuto && intervalMs > 0) {
+    setInterval(changeSlide, intervalMs);
+  }
 }
 
 // New: Gallery with show-more

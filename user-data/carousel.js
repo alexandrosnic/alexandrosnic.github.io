@@ -7,11 +7,12 @@
 export const carouselMedia = [
   // Populate with your files from images/carousel
   { image: 'bosch_autonomous_car.jpg', title: 'Optimization of sensors-processors data exchange throughput/latency for Bosch autonomous car', description: 'Bosch' },
-  { video: 'images/carousel/arm_manipulation_potsdam.mp4', title: 'Universal robot motion planning development', description: 'COCOBOTs project' },
-  { video: 'images/carousel/behavioral_cloning.mp4', title: 'Development of an autonomous vehicle in simulation using deep learning (CNN + behavioral cloning)', description: '' },
+  { video: 'images/projects/arm_manipulation_potsdam.mp4', title: 'Universal Robot arm motion planning development', description: 'COCOBOTs project' },
+  { video: 'images/carousel/behavioral_cloning.mp4', title: 'Deep learning (CNN + behavioral cloning) development of an autonomous vehicle in CARLA simulation', description: '' },
   { video: 'images/carousel/conbotics_prototyping_3.mp4', title: 'Development of autonomous mobile base for a painting robot', description: 'Conbotics' },
-  { video: 'images/carousel/autonomous_driving.mp4', title: 'Object detection for autonomous driving (Morse simulator)', description: '' },
+  { video: 'images/carousel/autonomous_driving.mp4', title: 'Object detection for autonomous driving in Morse simulator', description: '' },
   { image: 'ai_agent.jpg', title: 'LLM Agents for - and not only - robotics', description: 'huggingFace, llamaindex, langchain' },
   { video: 'images/carousel/drones.mp4', title: 'Development of a predefined drone trajectory in Python', description: '' },
   { video: 'images/carousel/mosaic.mp4', title: 'Simultaneous mosaicing and tracking with an event-based camera', description: 'Computer vision' },
+  { image: 'cad_gif.gif', title: 'CAD/FEA mechanical design projects', description: '' },
 ];

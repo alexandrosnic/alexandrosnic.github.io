@@ -2,7 +2,7 @@ export const bio = [
   "I am a <strong>Robotics & AI Engineer</strong> that bridges the gap between innovative R&D thinking and high-speed, market-ready prototyping that moves the needle on turnover.",
   "I master both the 'thinking' and the 'doing' of robotics and AI.",
   "Whether I’m debugging a Linux kernel at <strong>Bosch</strong> to squeeze out 10% more throughput or deploying autonomous fleets on-site in <strong>Singapore</strong>, my goal is to build technologically feasible products without the 'research drag.'",
-  "Specializing in <strong>Autonomous Navigation, Motion Planning, ROS1-to-ROS2 migration, and Embodied AI</strong>, I aim to leave a footprint in the smart systems sector that facilitates human well-being without costing the planet.",
+  "Specializing in <strong>Autonomous Navigation, Motion Planning, ROS1-to-ROS2 migration, and Embodied AI</strong>, I aim to help companies leave a positive footprint in the smart systems sector that facilitates human well-being without costing the planet.",
   "Based in Berlin. Driven by complex problems. Powered by C++, Python, and coffee (ginger tea after 14:00)."
 ];
 

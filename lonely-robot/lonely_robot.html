@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robot Run</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #c {
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>'use strict';
+
+const W   = 800;
+const H   = 280;
+const GND = 215;
+const S   = 2;
+const SPD = 5;
+const INK = '#acacac';
+const SKY = '#000';
+
+const canvas = document.getElementById('c');
+canvas.width = W;
+canvas.height = H;
+const ctx = canvas.getContext('2d');
+ctx.imageSmoothingEnabled = false;
+
+function drawRobot(cx, feet, tick, isJumping) {
+  const pose = isJumping ? 2 : Math.floor(tick / 7) % 2;
+  const r = (rx, ry, rw, rh, col) => {
+    ctx.fillStyle = col || INK;
+    ctx.fillRect(cx + rx * S, feet + ry * S, rw * S, rh * S);
+  };
+
+  if (pose === 2) {
+    r(2, -11, 4, 8);
+    r(2, -3, 4, 3);
+    r(9, -11, 4, 8);
+    r(9, -3, 4, 3);
+  } else if (pose === 0) {
+    r(2, -11, 4, 8);
+    r(0, -3, 7, 3);
+    r(8, -9, 4, 6);
+    r(8, -3, 4, 3);
+  } else {
+    r(2, -9, 4, 6);
+    r(2, -3, 4, 3);
+    r(8, -11, 4, 8);
+    r(6, -3, 7, 3);
+  }
+
+  r(0, -23, 14, 12);
+  r(2, -21, 10, 1, SKY);
+  r(2, -18, 10, 1, SKY);
+  r(2, -15, 10, 1, SKY);
+
+  r(-4, -22, 5, 4);
+  r(13, -22, 5, 4);
+  r(-5, -18, 3, 3);
+  r(16, -18, 3, 3);
+
+  r(5, -25, 4, 2);
+
+  r(1, -35, 12, 10);
+  r(2, -33, 4, 4, SKY);
+  r(7, -33, 4, 4, SKY);
+  r(3, -32, 2, 2);
+  r(8, -32, 2, 2);
+  r(4, -27, 6, 1, SKY);
+
+  r(6, -39, 2, 4);
+  r(5, -41, 4, 2);
+  r(6, -43, 2, 2);
+}
+
+function drawBug(x) {
+  const r = (rx, ry, rw, rh, col) => { ctx.fillStyle = col || INK; ctx.fillRect(x + rx * S, GND + ry * S, rw * S, rh * S); };
+  r(3, -22, 2, 7);
+  r(11, -22, 2, 7);
+  r(1, -24, 4, 2);
+  r(11, -24, 4, 2);
+  r(1, -17, 12, 7);
+  r(2, -16, 3, 3, SKY);
+  r(8, -16, 3, 3, SKY);
+  r(0, -10, 14, 10);
+  r(6, -10, 2, 10, SKY);
+  r(2, -8, 2, 2, SKY);
+  r(10, -8, 2, 2, SKY);
+  r(-3, -8, 3, 2); r(14, -8, 3, 2);
+  r(-3, -5, 3, 2); r(14, -5, 3, 2);
+  r(-3, -2, 3, 2); r(14, -2, 3, 2);
+}
+
+function drawBSOD(x) {
+  const r = (rx, ry, rw, rh, col) => { ctx.fillStyle = col || INK; ctx.fillRect(x + rx * S, GND + ry * S, rw * S, rh * S); };
+  r(0, -40, 14, 40, '#989898');
+  r(0, -40, 14, 1, '#727272');
+  r(2, -32, 3, 3, '#000');
+  r(9, -32, 3, 3, '#000');
+  r(4, -26, 6, 2, '#000');
+  r(2, -25, 2, 2, '#000');
+  r(10, -25, 2, 2, '#000');
+  r(1, -18, 12, 1, '#000');
+  r(1, -16, 8, 1, '#000');
+  r(1, -14, 12, 1, '#000');
+  r(1, -12, 4, 1, '#000');
+}
+
+function draw404(x) {
+  const r = (rx, ry, rw, rh, col) => { ctx.fillStyle = col || INK; ctx.fillRect(x + rx * S, GND + ry * S, rw * S, rh * S); };
+  r(9, -30, 3, 30);
+  r(0, -44, 21, 15);
+  r(1, -43, 19, 13, '#757575');
+  r(2, -41, 1, 3, '#000'); r(4, -41, 1, 5, '#000'); r(2, -39, 3, 1, '#000');
+  r(8, -41, 4, 1, '#000'); r(8, -36, 4, 1, '#000');
+  r(8, -40, 1, 4, '#000'); r(11, -40, 1, 4, '#000');
+  r(14, -41, 1, 3, '#000'); r(16, -41, 1, 5, '#000'); r(14, -39, 3, 1, '#000');
+}
+
+function drawLatency(x, frame) {
+  const r = (rx, ry, rw, rh, col) => { ctx.fillStyle = col || INK; ctx.fillRect(x + rx * S, GND + ry * S, rw * S, rh * S); };
+  r(0, -16, 6, 8);
+  r(2, -18, 2, 2);
+  r(3, -20, 1, 1);
+
+  r(42, -20, 10, 10);
+  r(44, -18, 6, 6, SKY);
+  r(46, -20, 2, 1);
+  r(46, -10, 2, 1);
+  r(41, -16, 1, 2);
+  r(52, -16, 1, 2);
+
+  r(8, -14, 1, 1);
+  r(18, -14, 1, 1);
+  r(28, -14, 1, 1);
+  r(38, -14, 1, 1);
+  r(48, -14, 1, 1);
+
+  const packetLane = [7, 19, 31, 43, 51];
+  const phase = Math.floor(frame / 12) % packetLane.length;
+  r(packetLane[(phase + 0) % packetLane.length], -13, 2, 2, '#808080');
+  r(packetLane[(phase + 2) % packetLane.length], -13, 2, 2, '#808080');
+  r(packetLane[(phase + 4) % packetLane.length], -13, 2, 2, '#808080');
+
+  r(28, -24, 4, 4, '#000');
+  r(29, -23, 1, 2, INK);
+  r(29, -22, 2, 1, INK);
+}
+
+function drawMemoryLeak(x) {
+  const r = (rx, ry, rw, rh, col) => { ctx.fillStyle = col || INK; ctx.fillRect(x + rx * S, GND + ry * S, rw * S, rh * S); };
+  r(2, -22, 10, 22);
+  r(0, -20, 14, 2);
+  r(0, -12, 14, 2);
+  r(0, -4, 14, 2);
+  r(4, -22, 6, 2, SKY);
+  r(14, -15, 3, 6, '#808080');
+  r(14, -8, 2, 4, '#808080');
+  r(-3, -10, 3, 5, '#808080');
+}
+
+const OBSTACLE_LABELS = [
+  'Software Bug',
+  'Blue Screen of Death',
+  '404 Not Found',
+  'Latency',
+  'Memory Leak',
+];
+const OBSTACLE_W = [28, 28, 42, 112, 28];
+
+function drawObstacle(x, v, frame) {
+  if (v === 0) drawBug(x);
+  else if (v === 1) drawBSOD(x);
+  else if (v === 2) draw404(x);
+  else if (v === 3) drawLatency(x, frame);
+  else drawMemoryLeak(x);
+}
+
+function drawLabel(x, v) {
+  ctx.save();
+  ctx.font = "18px 'Courier New', monospace";
+  ctx.textAlign = 'left';
+  ctx.fillStyle = '#666';
+  ctx.fillText(OBSTACLE_LABELS[v], x, GND + 34);
+  ctx.restore();
+}
+
+function drawCloud(cx, cy) {
+  ctx.fillStyle = '#2f2f2f';
+  const r = (rx, ry, rw, rh) => ctx.fillRect(cx + rx * S, cy + ry * S, rw * S, rh * S);
+  r(4, 0, 10, 2);
+  r(2, 2, 14, 4);
+  r(0, 4, 18, 4);
+  r(2, 8, 14, 2);
+}
+
+let gndOff = 0;
+function drawGround() {
+  ctx.fillStyle = INK;
+  ctx.fillRect(0, GND, W, 2);
+  const period = 22;
+  const off = gndOff % period;
+  ctx.fillStyle = INK;
+  for (let i = -period; i < W / S + period; i += period) {
+    const bx = (i - off) * S;
+    ctx.fillRect(bx, GND + 4, 10 * S, S);
+    ctx.fillRect(bx + 13 * S, GND + 9, 6 * S, S);
+    ctx.fillRect(bx + 4 * S, GND + 15, 8 * S, S);
+    ctx.fillRect(bx + 16 * S, GND + 20, 4 * S, S);
+  }
+}
+
+const HI = 1247;
+function drawHUD(score) {
+  ctx.font = "bold 16px 'Courier New', monospace";
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#474747';
+  ctx.fillText('HI ' + String(HI).padStart(5, '0'), W - 78, 24);
+  ctx.fillStyle = '#8f8f8f';
+  ctx.fillText(String(Math.floor(score)).padStart(5, '0'), W - 10, 24);
+}
+
+const GRAVITY = 0.55;
+const JUMP_VY = -13;
+const ROBOT_RX = 104;
+const JUMP_LEAD = 70;
+
+let robotY = GND;
+let robotVY = 0;
+function jump() {
+  if (robotY === GND) robotVY = JUMP_VY;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.code === 'Space' || e.code === 'ArrowUp') {
+    e.preventDefault();
+    jump();
+  }
+});
+canvas.addEventListener('pointerdown', () => jump());
+
+let tick = 0;
+let score = 0;
+
+const clouds = [
+  { x: 110, y: 58 },
+  { x: 370, y: 42 },
+  { x: 610, y: 68 },
+];
+
+let obstacles = [
+  { x: 560, v: 0 },
+  { x: 810, v: 1 },
+  { x: 1070, v: 2 },
+];
+let obstacleCount = 3;
+
+function spawnIfNeeded() {
+  const last = obstacles[obstacles.length - 1];
+  if (last.x < W + 100) {
+    obstacles.push({
+      x: last.x + 280 + Math.floor(Math.random() * 200),
+      v: obstacleCount % 5,
+    });
+    obstacleCount++;
+  }
+}
+
+function loop() {
+  tick++;
+  score += 0.09;
+  gndOff += SPD / S;
+
+  obstacles.forEach(o => (o.x -= SPD));
+  obstacles = obstacles.filter(o => o.x > -220);
+  spawnIfNeeded();
+
+  if (robotY < GND || robotVY < 0) {
+    robotVY += GRAVITY;
+    robotY = Math.min(GND, robotY + robotVY);
+  }
+  if (robotY >= GND) {
+    robotY = GND;
+    robotVY = 0;
+  }
+
+  const nearest = obstacles
+    .filter(o => o.x + OBSTACLE_W[o.v] > 76)
+    .sort((a, b) => a.x - b.x)[0];
+  if (nearest && nearest.x > ROBOT_RX && nearest.x - ROBOT_RX < JUMP_LEAD) jump();
+
+  clouds.forEach(c => {
+    c.x -= SPD * 0.13;
+    if (c.x < -60) {
+      c.x = W + 30 + Math.random() * 80;
+      c.y = 40 + Math.random() * 50;
+    }
+  });
+
+  ctx.fillStyle = SKY;
+  ctx.fillRect(0, 0, W, H);
+
+  clouds.forEach(c => drawCloud(c.x, c.y));
+  drawGround();
+  obstacles.forEach(o => {
+    drawObstacle(o.x, o.v, tick);
+    drawLabel(o.x, o.v);
+  });
+  drawRobot(76, robotY, tick, robotY < GND);
+  drawHUD(score);
+
+  ctx.font = "12px 'Courier New', monospace";
+  ctx.textAlign = 'left';
+  ctx.fillStyle = '#474747';
+  ctx.fillText('SPACE / TAP to jump', 8, H - 8);
+
+  requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+</body>
+</html>

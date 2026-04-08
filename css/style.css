@@ -20,6 +20,17 @@ body {
 	font-size: 15px;
 	line-height: 1.8 !important;
 	color: black;
+	background: #1b1b1b;
+	margin: 0;
+}
+
+html {
+	background: #1b1b1b;
+}
+
+#colorlib-page,
+.container-wrap {
+	background: #1b1b1b;
 }
 @media screen and (max-width: 992px) {
 	body {
@@ -120,7 +131,7 @@ figure figcaption {
 	padding-top: 3em;
 	padding-bottom: 1px;
 	float: left;
-	width: 300px;
+	width: 240px;
 	position: fixed;
 	z-index: 1001;
 	background: linear-gradient(135deg, rgb(255, 221, 153), rgb(249, 191, 63));
@@ -334,7 +345,7 @@ figure figcaption {
 }
 
 #colorlib-main {
-	width: calc(100% - 340px);
+	width: calc(100% - 300px);
 	float: right;
 	-webkit-transition: 0.5s;
 	-o-transition: 0.5s;
@@ -2203,6 +2214,15 @@ span {
     border-radius: 10px;
 }
 
+/* Red badge tags must always have white text */
+.badge,
+#colorlib-main .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label span.badge,
+#colorlib-main .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label span.badge *,
+#colorlib-main .panel-body span.badge,
+#colorlib-main .panel-body span.badge * {
+	color: #ffffff !important;
+}
+
 hr {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -2370,51 +2390,246 @@ hr {
 .hero-intro {
 	position: relative;
 	min-height: 95vh;
-	/* Fallback to logo if hero image is missing */
-	background-image: url('../images/hero.jpg'), url('../logo.png');
-	background-size: cover;
-	/* Shift the focal point up slightly to reduce perceived crop */
-	background-position: center 25%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+	background: #f7f7f7;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
 }
 
+.hero-intro-scene {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	overflow: hidden;
+}
+
+.hero-intro-scene iframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	pointer-events: none;
+	transform: scale(1.20) translateY(12%);
+	transform-origin: center center;
+	filter: brightness(1.16) contrast(0.96);
+}
+
 .hero-intro-overlay {
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(180deg, rgba(10,14,35,0.45) 0%, rgba(10,14,35,0.35) 40%, rgba(10,14,35,0.25) 100%);
+	background: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.06) 100%);
+}
+
+/* Unified dark section backgrounds */
+#colorlib-main > section {
+	background: #1b1b1b;
+	color: #f1f1f1;
+	border-bottom: 1px solid rgba(249, 191, 63, 0.45);
+}
+
+#colorlib-main > section:last-of-type {
+	border-bottom: none;
+}
+
+#colorlib-main > section h1,
+#colorlib-main > section h2,
+#colorlib-main > section h3,
+#colorlib-main > section h4,
+#colorlib-main > section p,
+#colorlib-main > section li {
+	color: #f1f1f1;
+}
+
+/* Skills section readability */
+.colorlib-skills .tool-chip,
+.colorlib-skills .toolbox-chip,
+.colorlib-skills .domain-card-title,
+.colorlib-skills .domain-card-sub,
+.colorlib-skills .skill-pillar-title,
+.colorlib-skills .skill-pillar-text {
+	color: #111111 !important;
+}
+
+/* Skills + Tools: orange-ish cards/chips */
+.colorlib-skills .skill-pillar-card,
+.colorlib-skills .domain-card {
+	background: linear-gradient(135deg, rgba(255, 221, 153, 0.98), rgba(249, 191, 63, 0.96));
+	border: 1px solid rgba(249, 191, 63, 0.45);
+}
+
+.colorlib-skills .domain-card-header {
+	background: rgba(255, 255, 255, 0.35);
+}
+
+.colorlib-skills .domain-card-body {
+	border-top: 1px solid rgba(27, 27, 27, 0.18);
+}
+
+.colorlib-skills .tool-chip,
+.colorlib-skills .toolbox-chip {
+	background: linear-gradient(135deg, rgba(255, 221, 153, 0.95), rgba(249, 191, 63, 0.9));
+	border: 1px solid rgba(166, 99, 0, 0.35);
+	color: #111111 !important;
+}
+
+/* Projects section: orange boxes */
+.colorlib-projects .hero-card {
+	background: linear-gradient(135deg, rgb(255, 221, 153), rgb(249, 191, 63));
+	color: #1b1b1b;
+}
+
+.colorlib-projects .hero-card:hover {
+	box-shadow: 0 16px 36px rgba(249, 191, 63, 0.35);
+}
+
+.colorlib-projects .hero-title,
+.colorlib-projects .hero-subtitle,
+.colorlib-projects .hero-narrative {
+	color: #1b1b1b;
+}
+
+.colorlib-projects .project-card,
+.colorlib-projects .project-card h3,
+.colorlib-projects .project-card p,
+.colorlib-projects .hero-content,
+.colorlib-projects .hero-title,
+.colorlib-projects .hero-subtitle,
+.colorlib-projects .hero-narrative,
+.colorlib-projects .hero-chip,
+.colorlib-projects .hero-chip i {
+	color: #111111 !important;
+}
+
+.colorlib-projects .hero-chip {
+	background: rgba(255, 255, 255, 0.35);
+	border: 1px solid rgba(27, 27, 27, 0.22);
+	color: #1b1b1b;
+}
+
+/* Experience / Education / Footer cards: dark text on light boxes */
+#colorlib-main .colorlib-experience .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label,
+#colorlib-main .colorlib-experience .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2,
+#colorlib-main .colorlib-experience .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label .timeline-sublabel,
+#colorlib-main .colorlib-experience .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label .timeline-text,
+#colorlib-main .colorlib-experience .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label span:not(.badge),
+#colorlib-main .colorlib-experience .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label p,
+#colorlib-main .colorlib-education .panel-heading a,
+#colorlib-main .colorlib-education .panel-heading a.collapsed,
+#colorlib-main .colorlib-education .panel-body,
+#colorlib-main .colorlib-education .panel-body h2,
+#colorlib-main .colorlib-education .panel-body h3,
+#colorlib-main .colorlib-education .panel-body p,
+#colorlib-main .colorlib-education .panel-body li,
+#colorlib-main .colorlib-footer,
+#colorlib-main .colorlib-footer h1,
+#colorlib-main .colorlib-footer h2,
+#colorlib-main .colorlib-footer h3,
+#colorlib-main .colorlib-footer p,
+#colorlib-main .colorlib-footer li,
+#colorlib-main .colorlib-footer a,
+#colorlib-main .colorlib-footer span {
+	color: #1b1b1b !important;
+}
+
+/* Red oval tags: keep white text in experience + education */
+#colorlib-main .colorlib-experience .badge,
+#colorlib-main .colorlib-education .badge {
+	color: #ffffff !important;
+}
+
+/* Education box content should stay dark */
+#colorlib-main .colorlib-education .panel-heading a,
+#colorlib-main .colorlib-education .panel-heading a.collapsed,
+#colorlib-main .colorlib-education .panel-body,
+#colorlib-main .colorlib-education .panel-body h2,
+#colorlib-main .colorlib-education .panel-body h3,
+#colorlib-main .colorlib-education .panel-body p,
+#colorlib-main .colorlib-education .panel-body li,
+#colorlib-main .colorlib-education .panel-body span {
+	color: #111111 !important;
+}
+
+/* Requested final overrides */
+#experience .badge,
+#experience .badge * {
+	color: #ffffff !important;
+}
+
+#education .timeline-label,
+#education .timeline-label h2,
+#education .timeline-label h2 span,
+#education .timeline-label .timeline-sublabel,
+#education .timeline-label .timeline-text,
+#education .timeline-label p,
+#education .timeline-label li,
+#education .timeline-label span:not(.badge) {
+	color: #111111 !important;
+}
+
+.about-layout {
+	display: flex;
+	align-items: center;
+	flex-direction: row-reverse;
+}
+
+.about-photo-col {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 18px;
+}
+
+.about-photo-wrap {
+	width: min(280px, 75vw);
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 6px solid #f9bf3f;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+	background: #fff;
+}
+
+.about-profile-photo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 18%;
+	display: block;
 }
 
 .hero-intro-content {
 	position: relative;
+	top: -20vh;
 	z-index: 1;
 	text-align: center;
-	color: #fff;
+	color: #ffffff;
 	padding: 0 16px;
-	padding-top: 40vh; /* place text a bit lower */
+	padding-top: 0vh;
 }
 
 .hero-intro-title {
 	margin: 0 0 8px 0;
-	font-size: clamp(28px, 6vw, 46px);
-	font-weight: 700;
-	letter-spacing: 0.4px;
+	font-size: clamp(16px, 3.2vw, 36px);
+	font-weight: 400;
+	letter-spacing: 0.6px;
+	line-height: 1.35;
+	font-family: "Press Start 2P", monospace;
+	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
 }
 
 .hero-intro-line { 
 	margin: 6px 0 8px 0;
 	font-size: clamp(16px, 3vw, 24px);
 	font-weight: 600;
+	font-family: "Share Tech Mono", monospace;
+	letter-spacing: 0.8px;
 }
-.hero-rotating { color: #f9bf3f; }
+.hero-rotating { color: #ffffff; }
 .hero-intro-tagline {
 	margin: 0;
 	font-size: clamp(13px, 2.2vw, 18px);
 	opacity: 0.9;
+	font-family: "Share Tech Mono", monospace;
+	letter-spacing: 0.5px;
 }
 
 /* Hero actions (buttons under tagline) */
@@ -2449,7 +2664,7 @@ hr {
 
 /* Contact email highlight */
 .colorlib-contact .contact-email {
-	color: #0f1530;
+	color: #ffffff;
 	font-weight: 700;
 	font-size: clamp(16px, 2.4vw, 20px);
 }
@@ -2475,7 +2690,7 @@ hr {
 	left: 50%;
 	bottom: 14px;
 	transform: translateX(-50%);
-	color: rgba(255,255,255,0.85);
+	color: #ffffff;
 	font-size: 20px;
 	animation: hero-bounce 1.8s ease-in-out infinite;
 	z-index: 1;
@@ -2488,10 +2703,17 @@ hr {
 
 /* Mobile: avoid background-attachment fixed glitches */
 @media (max-width: 768px) {
-	.hero-intro { background-attachment: scroll; min-height: 70vh; background-size: contain; }
+	.hero-intro { min-height: 70vh; }
+	.hero-intro-scene iframe { transform: scale(1.08) translateY(12%); }
+	.about-layout { display: block; }
+	.about-photo-wrap { width: min(240px, 68vw); }
 }
 
 /* --- Carousel Gallery --- */
+.colorlib-gallery {
+	padding-bottom: 2.5em;
+}
+
 .featured-container {
 	position: relative;
 	width: 100%;

@@ -20,6 +20,14 @@
       href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Raleway&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link
@@ -50,7 +58,7 @@
         >
           <div class="text-center">
             <div class="author-img">
-              <img alt="profile-img" src="./logo.png" />
+              <img alt="robot-icon" src="images/icons/robot-icon-png-37.png" />
             </div>
             <h1 id="colorlib-logo"><a href="./index.html">Alexandros Nikolaou</a></h1>
           </div>
@@ -86,9 +94,17 @@
         <div id="colorlib-main">
           <!-- Hero intro section with background image and two-line intro -->
           <section class="hero-intro">
+            <div class="hero-intro-scene" aria-hidden="true">
+              <iframe
+                src="lonely-robot/lonely_robot.html"
+                title="Lonely robot animation"
+                loading="lazy"
+                tabindex="-1"
+              ></iframe>
+            </div>
             <div class="hero-intro-overlay"></div>
             <div class="hero-intro-content animate-box" data-animate-effect="fadeInUp">
-              <h1 class="hero-intro-title">Hi, I am Alexandros Nikolaou</h1>
+              <h1 class="hero-intro-title">HEY, I'M ALEX,</h1>
               <p class="hero-intro-line">I am a <span id="hero-rotating" class="hero-rotating"></span></p>
               <p class="hero-intro-tagline">Robotics & AI Engineer — building autonomous, real-world systems</p>
               <div class="hero-actions">
@@ -107,10 +123,17 @@
           </section>
           <section class="colorlib-about" data-section="about">
             <div class="colorlib-narrow-content">
-              <div class="row animate-box" data-animate-effect="fadeInLeft">
-                <div class="about-desc">
+              <div class="row animate-box about-layout" data-animate-effect="fadeInLeft">
+                <div class="col-md-4 col-sm-5 about-photo-col">
+                  <div class="about-photo-wrap">
+                    <img src="images/hero.jpg" alt="Alexandros Nikolaou" class="about-profile-photo" />
+                  </div>
+                </div>
+                <div class="col-md-8 col-sm-7 about-text-col">
+                  <div class="about-desc">
                   <h1>About</h1>
                   <div id="bio"></div>
+                </div>
                 </div>
               </div>
             </div>
