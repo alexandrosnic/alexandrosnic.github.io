@@ -33,7 +33,16 @@
               I architected a <strong>unified, Dockerized ROS2 framework</strong> that served as the central nervous system for the project. By creating a robust API, I enabled the NLP and CV teams to plug their models directly into the robotic control pipeline without needing deep expertise in robotics middleware.
             </p>
             <p>
+              A key systems-engineering layer was translating high-level intent (for example, <em>pick object_ID</em>) into deterministic motion plans and safe trajectory execution on the UR3e. To support this, I structured orchestration logic with both <strong>finite state machines</strong> and <strong>behavior-tree-ready interfaces</strong> so the framework could scale from scripted tasks to more adaptive task policies.
+            </p>
+            <p>
               I pioneered the <strong>Sim-to-Real pipeline</strong> using Webots and MoveIt2. This allowed for high-fidelity testing in simulation that translated seamlessly to the physical UR3e arm. To bridge hardware gaps, I migrated legacy ROS1 drivers for the <strong>OnRobot VGC10 vacuum gripper</strong> to ROS2 and designed custom mechanical components in <strong>SolidWorks</strong> to optimize the gripper's performance for specific industrial pick-and-place tasks.
+            </p>
+            <p>
+              The migration work also included refactoring ROS package interfaces and URDF/control integration for ROS2-native execution, ensuring stable communication and maintainable behavior under modern multi-threaded runtime conditions.
+            </p>
+            <p>
+              On the hardware layer, I worked directly with <strong>UR3e-class manipulators</strong>, suction end-effectors, and RGB-D sensing pipelines to align perception latency, grasp timing, and motion execution in real cells rather than simulation-only settings.
             </p>
 
             <img src="../images/projects/arm_manipulation_potsdam.gif" alt="UR3e Robotic Arm Manipulation" class="project-image">
@@ -43,6 +52,7 @@
             <ul class="contribution-list">
               <li><strong>ROS2 Migration:</strong> Led the transition from ROS1 to ROS2 Foxy, ensuring improved real-time performance and system stability.</li>
               <li><strong>State Machine Logic:</strong> Implemented complex task logic using <strong>SMACH</strong> to handle error recovery and sequential pick-and-place workflows.</li>
+              <li><strong>Behavior-Oriented Execution:</strong> Designed interfaces compatible with <strong>BehaviorTree.CPP/FlexBE-style</strong> execution to complement FSM-based workflows and improve composability of manipulation skills.</li>
               <li><strong>Hardware-In-The-Loop:</strong> Established a seamless bridge between Webots simulations and physical UR3e hardware via custom proto/URDF files.</li>
               <li><strong>Mechanical Design:</strong> Engineered and 3D-printed custom adapters and vacuum suction arrays in SolidWorks to handle non-uniform industrial objects.</li>
             </ul>
@@ -55,15 +65,16 @@
               <li>MoveIt2</li>
               <li>Webots (Simulation)</li>
               <li>Docker</li>
-              <li>SMACH (State Machines)</li>
+              <li>UR3e / OnRobot VGC10 hardware integration</li>
+              <li>Intel RealSense / OAK-D camera integration</li>
+              <li>SMACH / FlexBE / BehaviorTree.CPP</li>
               <li>SolidWorks (CAD)</li>
               <li>Python & C++</li>
             </ul>
 
             <h2>Links</h2>
             <div class="project-links">
-              <a href="https://github.com/alexandrosnic" class="btn btn-primary">View GitHub (Framework Core)</a>
-              <a href="https://www.icra2022.org/" class="btn btn-secondary">Read ICRA 2022 Publication</a>
+              <a href="https://clp.ling.uni-potsdam.de/publications/Paetzel-2022.pdf" class="btn btn-secondary">Read ICRA 2022 Publication</a>
             </div>
           </div>
         </div>

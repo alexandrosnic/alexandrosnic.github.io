@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Low-level systems communication - Alexandros Nikolaou</title>
+  <title>Real-time, safety-critical systems design - Alexandros Nikolaou</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animate.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -12,29 +12,12 @@
   <div id="colorlib-page">
     <div class="container-wrap">
       <div class="project-content">
-        <h1 class="project-title">Low-level systems communication</h1>
+        <h1 class="project-title">Real-time, safety-critical systems design</h1>
         <div class="project-details">
-          <img src="../images/projects/ai-projects.jpg" alt="Low-level systems communication" class="project-image">
-          <div class="project-description">
-            <h2>Description</h2>
-            <p>
-              Robotics is often a battle against latency. At Bosch, I went deep into the 'plumbing' of autonomous stacks to ensure sensors could talk to CPUs/GPUs without the overhead that usually kills real-time performance. I co-developed and unit-tested shared memory solutions for CUDA (C++) to maximize throughput and minimize latency. One of the biggest wins was identifying and fixing a bug within the Linux kernel itself while working with the SMC-R library for RDMA communication. It’s one thing to write code; it’s another to fix the OS it runs on.
-            </p>
-            <h2>Key Achievement</h2>
-            <p>
-              Analyzed multi-PC communication bottlenecks using Wireshark and eBPF; researched RDMA vs. Zenoh for next-gen ROS2 architectures.
-            </p>
-            <h2>Tools</h2>
-            <ul class="tech-stack">
-              <li>C++</li>
-              <li>CUDA</li>
-              <li>RDMA</li>
-              <li>Linux Kernel</li>
-              <li>eBPF</li>
-              <li>Wireshark</li>
-              <li>Zenoh</li>
-            </ul>
-            <!-- Links removed for overlay view -->
+          <div class="project-description compact-skill-popup">
+            <p>I optimize low-latency data transport between sensors and compute by working directly at kernel and middleware boundaries.</p>
+            <p>I design and validate high-throughput communication paths using shared memory and RDMA-class protocols for real-time robotics.</p>
+            <p>I diagnose deep performance bottlenecks with network/kernel tooling and translate findings into production-ready transport architecture decisions.</p>
           </div>
         </div>
       </div>

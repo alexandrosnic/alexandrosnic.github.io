@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Optimization of Sensory Data Exchange - Alexandros Nikolaou</title>
+  <title>Optimization of Bosch Autonomous Cars' Sensors-Processors Data Throughput/Latency - Alexandros Nikolaou</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animate.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -12,7 +12,7 @@
   <div id="colorlib-page">
     <div class="container-wrap">
       <div class="project-content">
-        <h1 class="project-title">Optimization of Sensory Data Exchange</h1>
+        <h1 class="project-title">Optimization of Bosch autonomous cars' sensors-processors data throughput/latency</h1>
         <h3 class="project-subtitle">Squeezing microsecond latency out of a production-grade autonomous vehicle system</h3>
         
         <div class="project-details">
@@ -33,11 +33,15 @@
             <p>
               I researched and implemented <strong>RDMA (Remote Direct Memory Access)</strong> and shared memory transport protocols, successfully increasing sensory data throughput and reducing latency by <strong>10%</strong>. This optimization ensured that the perception layer received high-frequency data under strict real-time constraints, directly improving the vehicle's reaction time.
             </p>
+            <p>
+              In parallel, I co-developed and unit-tested CUDA-aware shared-memory communication components to minimize copy overhead across compute boundaries. One of the most impactful outcomes was tracing a transport instability down to the OS layer and contributing to a <strong>Linux-kernel-level fix</strong> while working with <strong>SMC-R</strong> in an RDMA communication path.
+            </p>
 
             <h2>Technical Deep Dive</h2>
             <ul class="contribution-list">
               <li><strong>Protocol Optimization:</strong> Benchmarked and implemented RDMA (SMC-R) to bypass kernel overhead for high-speed data transfer.</li>
               <li><strong>Kernel Debugging:</strong> Analyzed network interface bottlenecks and tuned kernel parameters for optimized interrupt handling.</li>
+              <li><strong>Transport Evaluation:</strong> Compared low-latency transport options (including RDMA-focused paths and Zenoh-oriented architectures) for future ROS2 communication stacks.</li>
               <li><strong>Hybrid Middleware:</strong> Developed robust containerized environments (Docker) supporting both ROS 1 and ROS 2 communication for local and embedded targets.</li>
               <li><strong>High-Performance Profiling:</strong> Utilized Intel VTune and perf to optimize C++/CUDA code at the instruction level.</li>
             </ul>
@@ -45,9 +49,11 @@
             <h2>Technologies Used</h2>
             <ul class="tech-stack">
               <li>C++17 & CUDA</li>
+              <li>Shared Memory IPC (unit-tested)</li>
               <li>Linux Kernel Debugging</li>
               <li>RDMA, SMC-R, UDP/ETH</li>
               <li>Wireshark & eBPF</li>
+              <li>Zenoh (architecture evaluation)</li>
               <li>ROS 1 & 2</li>
               <li>Docker & Embedded Systems</li>
             </ul>
@@ -56,7 +62,6 @@
 
             <h2>Project Outcomes</h2>
             <div class="project-links">
-              <span class="btn btn-disabled" title="Proprietary Code">Internal Bosch Project</span>
               <a href="https://linkedin.com/in/alexandros-nicolaou31" class="btn btn-secondary">Discuss Technical Details</a>
             </div>
           </div>

@@ -28,7 +28,7 @@ const W   = 800;
 const H   = 280;
 const GND = 215;
 const S   = 2;
-const SPD = 5;
+const SPD = 3.5;
 const INK = '#acacac';
 const SKY = '#000';
 
@@ -233,10 +233,10 @@ function drawHUD(score) {
   ctx.fillText(String(Math.floor(score)).padStart(5, '0'), W - 10, 24);
 }
 
-const GRAVITY = 0.55;
-const JUMP_VY = -13;
+const GRAVITY = 0.40;
+const JUMP_VY = -11;
 const ROBOT_RX = 104;
-const JUMP_LEAD = 70;
+const JUMP_LEAD = 60;
 
 let robotY = GND;
 let robotVY = 0;

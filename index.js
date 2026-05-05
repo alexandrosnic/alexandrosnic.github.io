@@ -254,6 +254,21 @@ function populateFeaturedProjects(items, containerId) {
       </div>
     `;
 
+    if (project.demoLink) {
+      const openLinkedProject = () => openProjectOverlay(project.demoLink);
+      slide.classList.add('featured-slide-clickable');
+      slide.tabIndex = 0;
+      slide.setAttribute('role', 'button');
+      slide.setAttribute('aria-label', `Open project: ${project.title || 'details'}`);
+      slide.addEventListener('click', openLinkedProject);
+      slide.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLinkedProject();
+        }
+      });
+    }
+
     container.appendChild(slide);
   });
 
@@ -281,6 +296,35 @@ function populateFeaturedProjects(items, containerId) {
   });
   container.appendChild(dots);
 
+  // Thumbnail strip
+  const thumbsEl = container.dataset.thumbs
+    ? document.getElementById(container.dataset.thumbs)
+    : null;
+  if (thumbsEl) {
+    thumbsEl.innerHTML = '';
+    items.forEach((item, i) => {
+      const thumb = document.createElement('div');
+      thumb.className = `carousel-thumb${i === 0 ? ' active' : ''}`;
+      if (item.video) {
+        const v = document.createElement('video');
+        v.src = item.video;
+        v.muted = true;
+        v.preload = 'metadata';
+        v.className = 'carousel-thumb-media';
+        thumb.appendChild(v);
+      } else {
+        const src = item.imageFullPath ? item.imageFullPath : `images/carousel/${item.image}`;
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = item.title || '';
+        img.className = 'carousel-thumb-media';
+        thumb.appendChild(img);
+      }
+      thumb.addEventListener('click', () => goto(i));
+      thumbsEl.appendChild(thumb);
+    });
+  }
+
   // State + helpers
   let current = 0;
   function renderActive() {
@@ -293,6 +337,11 @@ function populateFeaturedProjects(items, containerId) {
       if (i === current) d.classList.add('active');
       else d.classList.remove('active');
     });
+    if (thumbsEl) {
+      thumbsEl.querySelectorAll('.carousel-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === current);
+      });
+    }
   }
 
   function goto(index) {
@@ -646,7 +695,10 @@ function populateToolbox(items, containerId) {
 function openSkillOverlay(filePath) {
   const overlay = document.getElementById('skill-overlay');
   const body = document.getElementById('skill-overlay-body');
+  const overlayContent = overlay ? overlay.querySelector('.skills-overlay-content') : null;
   if (!overlay || !body) return;
+
+  if (overlayContent) overlayContent.classList.remove('compact-skill-popup');
 
   body.innerHTML = '<p style="margin:8px 0;color:#666;">Loading…</p>';
   overlay.classList.add('open');
@@ -661,12 +713,14 @@ function openSkillOverlay(filePath) {
       const titleEl = tmp.querySelector('.project-title');
       const imageEl = tmp.querySelector('.project-overlay-image') || tmp.querySelector('.project-image');
       const descEl = tmp.querySelector('.project-description');
+      const isCompactSkill = !!(descEl && descEl.classList.contains('compact-skill-popup'));
 
       const title = titleEl ? titleEl.outerHTML : '';
       const image = imageEl ? imageEl.outerHTML : '';
       const description = descEl ? descEl.outerHTML : html;
 
       body.innerHTML = `${title}${image}${description}`;
+      if (overlayContent && isCompactSkill) overlayContent.classList.add('compact-skill-popup');
       // Remove Links sections
       body.querySelectorAll('.project-links').forEach(el => el.remove());
       body.querySelectorAll('h2').forEach(h => {
@@ -733,9 +787,11 @@ function openSkillOverlay(filePath) {
 function closeSkillOverlay() {
   const overlay = document.getElementById('skill-overlay');
   const body = document.getElementById('skill-overlay-body');
+  const overlayContent = overlay ? overlay.querySelector('.skills-overlay-content') : null;
   if (!overlay || !body) return;
   overlay.classList.remove('open');
   overlay.setAttribute('aria-hidden', 'true');
+  if (overlayContent) overlayContent.classList.remove('compact-skill-popup');
   body.innerHTML = '';
 }
 
@@ -806,9 +862,13 @@ function openProjectOverlay(filePath) {
       tmp.innerHTML = html;
 
       // Render the full project details as-is to allow custom placement
+      const titleEl = tmp.querySelector('.project-title');
+      const subtitleEl = tmp.querySelector('.project-subtitle');
       const detailsEl = tmp.querySelector('.project-details');
+      const titleHtml = titleEl ? titleEl.outerHTML : '';
+      const subtitleHtml = subtitleEl ? subtitleEl.outerHTML : '';
       const contentHtml = detailsEl ? detailsEl.innerHTML : html;
-      body.innerHTML = contentHtml;
+      body.innerHTML = `${titleHtml}${subtitleHtml}${contentHtml}`;
 
       // Normalize relative src/href paths to work from index.html
       try {
@@ -952,8 +1012,8 @@ populateToolbox(toolbox, 'skills-toolbox');
   const roles = [
     'Robotics Engineer',
     'Simulation Developer',
-    'Mechanical Engineer',
-    'Mechanical Designer',
+    'AI Engineer',
+    'Mechanical Engineer/Designer',
     'Music Artist'
   ];
 

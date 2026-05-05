@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulation Framework Development - Alexandros Nikolaou</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="colorlib-page">
+    <div class="container-wrap">
+      <div class="project-content">
+        <h1 class="project-title">Simulation Framework Development & Digital Twins</h1>
+        <h3 class="project-subtitle">Containerized Sim2Real pipelines with reproducible ROS environments</h3>
+
+        <div class="project-details">
+          <img src="../images/projects/ai-projects.jpg" alt="Simulation framework development" class="project-image">
+
+          <div class="project-description">
+            <h2>Description</h2>
+            <p>
+              I developed a simulation framework around a Dockerized ROS Noetic environment to standardize development, testing, and deployment workflows for robotics teams. The framework was designed so engineers could spin up consistent simulation stacks quickly, reduce environment drift, and iterate on digital twins with predictable behavior.
+            </p>
+            <p>
+              This work was implemented around the Conbotics <strong>system setup</strong>, where I maintained a simulation stack with containerized ROS, Gazebo, and GzWeb services, deterministic network/runtime variables (ROS master, Gazebo master, bridge ports), and reproducible workspace bootstrapping.
+            </p>
+            <p>
+              At runtime, the framework provisions virtual display resources, synchronizes simulation sources, builds catkin workspaces, and anchors launch aliases so teams can transition between local development and deployment-style simulation with minimal setup overhead. Sensitive internal infrastructure details are intentionally omitted.
+            </p>
+
+            <h2>Capabilities Demonstrated</h2>
+            <ul class="contribution-list">
+              <li><strong>Containerized Robotics Stack:</strong> Built reproducible ROS/Gazebo-style environments for team-wide consistency.</li>
+              <li><strong>Digital Twin Workflow:</strong> Structured assets, launch logic, and runtime configs to keep simulation and hardware behavior aligned.</li>
+              <li><strong>Deployment Efficiency:</strong> Implemented one-command startup patterns and workspace auto-setup to reduce setup friction and speed up validation cycles.</li>
+            </ul>
+
+            <h2>Technologies Used</h2>
+            <ul class="tech-stack">
+              <li>Docker</li>
+              <li>ROS Noetic (ROS 1)</li>
+              <li>Gazebo + GzWeb simulation workflows</li>
+              <li>Bash-based launch orchestration</li>
+              <li>Catkin build automation / robot-folders workflows</li>
+              <li>URDF / STL / CAD-integrated digital twins</li>
+            </ul>
+
+            <h2>Links</h2>
+            <div class="project-links">
+              <a href="https://www.linkedin.com/in/alexandros-nicolaou31/" class="btn btn-primary">Discuss Sim2Real Stack</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

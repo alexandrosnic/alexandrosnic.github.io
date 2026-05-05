@@ -6,13 +6,10 @@
 
 export const carouselMedia = [
   // Populate with your files from images/carousel
-  { image: 'bosch_autonomous_car.jpg', title: 'Optimization of sensors-processors data exchange throughput/latency for Bosch autonomous car', description: 'Bosch' },
-  { video: 'images/projects/arm_manipulation_potsdam.mp4', title: 'Universal Robot arm motion planning development', description: 'COCOBOTs project' },
-  { video: 'images/carousel/behavioral_cloning.mp4', title: 'Deep learning (CNN + behavioral cloning) development of an autonomous vehicle in CARLA simulation', description: '' },
-  { video: 'images/carousel/conbotics_prototyping_3.mp4', title: 'Development of autonomous mobile base for a painting robot', description: 'Conbotics' },
-  { video: 'images/carousel/autonomous_driving.mp4', title: 'Object detection for autonomous driving in Morse simulator', description: '' },
-  { image: 'ai_agent.jpg', title: 'LLM Agents for - and not only - robotics', description: 'huggingFace, llamaindex, langchain' },
-  { video: 'images/carousel/drones.mp4', title: 'Development of a predefined drone trajectory in Python', description: '' },
-  { video: 'images/carousel/mosaic.mp4', title: 'Simultaneous mosaicing and tracking with an event-based camera', description: 'Computer vision' },
-  { image: 'cad_gif.gif', title: 'CAD/FEA mechanical design projects', description: '' },
+  { video: 'images/carousel/conbotics_prototyping_3.mp4', title: 'Simulation framework development and digital twins workflow', description: 'Conbotics Sim2Real stack', demoLink: '/projects/simulation-framework-development.html' },
+  { video: 'images/carousel/autonomous_driving.mp4', title: 'Object detection for autonomous driving in Morse simulator', description: '', demoLink: '/projects/morse-autonomous-driving-perception.html' },
+  { video: 'images/carousel/drones.mp4', title: 'Development of a predefined drone trajectory in Python', description: '', demoLink: '/projects/drone-trajectory-python.html' },
+  { video: 'images/carousel/mosaic.mp4', title: 'Simultaneous mosaicing and tracking with an event-based camera', description: 'Computer vision', demoLink: '/projects/event-based-mosaicing-tracking.html' },
+  { image: 'cad_gif.gif', title: 'CAD/FEA mechanical design projects', description: '', demoLink: '/projects/cad-fea-design-workflow.html' },
+  { video: 'images/carousel/behavioral_cloning.mp4', title: 'End-to-end deep learning autonomous driving', description: 'CNN behavioral cloning with CARLA validation', demoLink: '/projects/autonomous-driving.html' },
 ];

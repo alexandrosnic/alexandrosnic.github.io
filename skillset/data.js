@@ -5,12 +5,12 @@ export const corePillars = [
     overlayFile: "skillset/robot-arm-motion-planning-framework.html"
   },
   {
-    title: "Autonomous Navigation",
+    title: "Autonomous Navigation Stack Development",
     media: "images/skills/ur3e.gif",
     overlayFile: "skillset/autonomous-navigation-stack-development.html"
   },
   {
-    title: "AI, ML and AI Agents",
+    title: "Embodied AI, AI Agents & ML",
     media: "images/skills/ai-agents.gif",
     overlayFile: "skillset/AI-ML-and-AI-agents.html"
   }
@@ -18,7 +18,7 @@ export const corePillars = [
 
 export const domainMatrix = [
   {
-    title: "Simulation & Digital Twins",
+    title: "Sim2Real & Digital Twins",
     teaser: "Webots/Gazebo/Isaac.",
     description: "High-fidelity simulation for iterative development of controllers and perception.",
     tools: ["Webots", "Gazebo", "Isaac Sim"],
@@ -39,7 +39,7 @@ export const domainMatrix = [
     overlayFile: "skillset/computer-vision.html"
   },
   {
-    title: "Low-level systems communication",
+    title: "Real-time, safety-critical systems design",
     teaser: "Linux kernel, RDMA, networking.",
     description: "Optimizing data transport for real-time systems; kernel modules, RDMA protocols, low-latency networking stacks.",
     tools: ["Linux Kernel", "RDMA", "Wireshark"],
@@ -53,7 +53,7 @@ export const domainMatrix = [
     overlayFile: "skillset/robotics-deployment.html"
   },  
   {
-    title: "CAD Mechanical Design & 3D Printing",
+    title: "CAD Mechanical Design, FEA & 3D Printing",
     teaser: "CAD, prototyping.",
     description: "CAD integration for end-effectors and robot fixtures; rapid iteration.",
     tools: ["SolidWorks", "URDF/Xacro", "OnRobot"],
@@ -77,14 +77,15 @@ export const domainMatrix = [
 ];
 
 export const toolbox = [
-  { label: "Linux", icon: "fa fa-linux" },
+  { label: "ROS1/ROS2", icon: "fa fa-cog" },
+  { label: "Gazebo/Webots/Isaac Sim", icon: "fa fa-cubes" },
+  { label: "AI agents/LLMs", icon: "fa fa-robot" },
   { label: "C/C++", icon: "fa fa-code" },
   { label: "CUDA", icon: "fa fa-code" },
   { label: "Python", icon: "fa fa-code" },
+  { label: "Linux", icon: "fa fa-linux" },
   { label: "Matlab/Simulink", icon: "fa fa-code" },
-  { label: "ROS/ROS2", icon: "fa fa-cog" },
   { label: "OpenCV/Tensorflow/PyTorch/Keras", icon: "fa fa-eye" },
   { label: "Docker", icon: "fa fa-cubes" },
   { label: "SolidWorks/Blender", icon: "fa fa-cube" },
-  { label: "Gazebo/Webots/Isaac Sim", icon: "fa fa-cubes" },
 ];

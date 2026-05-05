@@ -24,6 +24,14 @@ export const projects = [
         sourceLink: "https://github.com/alexandrosnic/autonomous-mobile-base"
     },
     {
+        title: "Simulation Framework Development",
+        image: "autonomous-mobile-base.jpg",
+        description: "Containerized ROS/Gazebo digital twin workflows for reproducible Sim2Real development.",
+        technologies: ["Docker", "ROS Noetic", "Gazebo", "Bash", "Catkin"],
+        demoLink: "./projects/simulation-framework-development.html",
+        sourceLink: "https://github.com/alexandrosnic"
+    },
+    {
         title: "Autonomous Driving",
         image: "autonomous-driving.jpg",
         description: "autonomous dri",

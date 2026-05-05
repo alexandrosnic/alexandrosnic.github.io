@@ -16,7 +16,9 @@
         <h3 class="project-subtitle">From solo R&D to international field deployment in Singapore</h3>
         
         <div class="project-details">
-          <img src="../images/projects/autonomous-mobile-base.jpeg" alt="Conbotics Autonomous Painting Robot" class="project-image">
+          <video class="project-image" autoplay muted loop playsinline>
+            <source src="../images/carousel/conbotics_prototyping_3.mp4" type="video/mp4">
+          </video>
           
           <div class="project-description">
             <h2>The Challenge</h2>
@@ -30,6 +32,12 @@
             <p>
               I took 100% ownership of the software architecture for the mobile base. This involved implementing a robust <strong>Navigation Stack</strong> from the ground up using ROS. I integrated <strong>SLAM</strong> (Simultaneous Localization and Mapping) for environment discovery and utilized <strong>EKF-based Sensor Fusion</strong> to merge data from Lidar, IMU, and encoders for pinpoint localization. To handle site-specific obstacles, I engineered a perception layer using <strong>YOLOv4</strong> and Realsense depth cameras for real-time semantic mapping.
             </p>
+            <p>
+              Beyond first-pass integration, I tuned the full autonomy chain end-to-end: multi-sensor data acquisition, feature extraction, odometry filtering, and local/global planning behavior under real construction-site uncertainty. I evaluated both <strong>EKF and UKF fusion strategies</strong> and iterated planner/odometry parameters to improve corner detection, stable wall-following, and reliable wall-changing maneuvers.
+            </p>
+            <p>
+              This required hands-on hardware integration of LiDAR, depth cameras, IMUs, and embedded compute interfaces, including field tuning of sensor synchronization and communication paths so perception and control stayed stable under dust, vibration, and varying illumination.
+            </p>
 
             <h2>The Test: Singapore Field Deployment</h2>
             <p>
@@ -42,6 +50,7 @@
             <h2>Technical Deep Dive</h2>
             <ul class="contribution-list">
               <li><strong>Navigation:</strong> Developed custom global and local planners for precise wall-following and obstacle avoidance.</li>
+              <li><strong>Localization & Fusion:</strong> Tuned odometry and sensor-fusion pipelines (EKF/UKF candidates) for drift-robust localization in dusty, dynamic scenes.</li>
               <li><strong>Sim-to-Real:</strong> Synchronized simulation environments with real-world sensor noise and physical constraints.</li>
               <li><strong>Hardware-in-the-loop:</strong> Optimized CAN Bus communication and motor driver feedback loops for smooth motion.</li>
               <li><strong>Field Engineering:</strong> Conducted stress-tests and on-site debugging in unstructured environments, ensuring 99% mission uptime.</li>
@@ -52,18 +61,17 @@
             <h2>Technologies Used</h2>
             <ul class="tech-stack">
               <li>ROS1 / ROS2</li>
-              <li>SLAM (Gmapping/Cartographer)</li>
+              <li>SLAM (Gmapping / Hector / RTAB-Map / Cartographer)</li>
+              <li>Navigation Stack (move_base / Navigation2)</li>
               <li>YOLOv4 & Computer Vision</li>
-              <li>Sensor Fusion (EKF)</li>
+              <li>Sensor Fusion (EKF / UKF)</li>
               <li>Python & C++</li>
-              <li>Lidar & Realsense Integration</li>
+              <li>SICK/RPLiDAR + IMU + RealSense/OAK-D integration</li>
+              <li>NVIDIA Jetson/GPU deployment workflows</li>
+              <li>CAN Bus Integration</li>
             </ul>
 
-            <h2>Project Outcomes</h2>
-            <div class="project-links">
-              <a href="https://linkedin.com/in/alexandros-nicolaou31" class="btn btn-primary">Request Deployment Case Study</a>
-              <a href="https://alexandrosnikolaou.weebly.com/" class="btn btn-secondary">Visit Conbotics Portfolio</a>
-            </div>
+
           </div>
         </div>
       </div>

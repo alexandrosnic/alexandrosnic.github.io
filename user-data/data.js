@@ -1,9 +1,10 @@
 export const bio = [
-  "I am a <strong>Robotics & AI Engineer</strong> that bridges the gap between innovative R&D thinking and high-speed, market-ready prototyping that moves the needle on turnover.",
-  "I master both the 'thinking' and the 'doing' of robotics and AI.",
-  "Whether I’m debugging a Linux kernel at <strong>Bosch</strong> to squeeze out 10% more throughput or deploying autonomous fleets on-site in <strong>Singapore</strong>, my goal is to build technologically feasible products without the 'research drag.'",
-  "Specializing in <strong>Autonomous Navigation, Motion Planning, ROS1-to-ROS2 migration, and Embodied AI</strong>, I aim to help companies leave a positive footprint in the smart systems sector that facilitates human well-being without costing the planet.",
-  "Based in Berlin. Driven by complex problems. Powered by C++, Python, and coffee (ginger tea after 14:00)."
+  "I am an <strong>AI, Robotics and Systems Engineer</strong> with both innovative R&D thinking and high-speed, market-ready prototyping, that moves the needle on turnover.",
+  "Having experience in both the 'thinking' and the 'doing' of robotics and AI, whether I’m debugging a Linux kernel at <strong>Bosch</strong> to squeeze out 10% more throughput or deploying a startup's first robots on-site in <strong>Singapore</strong>, my goal is to build technologically feasible products without the 'research drag.'",
+  "Specializing in <strong>Autonomous Navigation, Motion Planning, ROS1-to-ROS2 migration, Embodied AI and Simulation</strong>, I aim to help companies leave a positive footprint in the smart systems sector that facilitates human well-being without costing the planet.",
+  "Based in Berlin.",
+  "Driven by complex problems.", 
+  "Powered by C++, Python, and coffee (ginger tea after 14:00)."
 ];
 
 export const skills = [
@@ -15,6 +16,18 @@ export const skills = [
 ];
 
 export const experience = [
+  {
+    title: "AI, Robotics and Systems Engineer",
+    duration: "October 2025 - Present",
+    subtitle: "Freelancer",
+    details: [
+      "Delivering specialized engineering solutions in robotics, autonomous systems, and AI-driven applications.",
+      "Consulting on ROS/ROS2 architecture, Sim-to-Real pipelines, and system integration for startups and enterprises.",
+      "Architecting and prototyping end-to-end robotics solutions spanning perception, planning, and control.",
+    ],
+    tags: ["Freelance", "Robotics", "ROS", "AI", "System Architecture"],
+    icon: "rocket",
+  },
   {
     title: "Field Deployment, AI & Robotics Engineer",
     duration: "2025 (Deployment) & 2021 (R&D)",
