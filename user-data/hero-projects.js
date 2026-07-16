@@ -34,8 +34,8 @@ export const heroProjects = [
     title: "LLM-powered AI Agents for Robotic systems",
     subtitle: "Building intelligent conversational agents that understand robotics context and ground answers in verified documentation.",
     narrative:
-      "I architected a Retrieval-Augmented Generation (RAG) system that powers intelligent troubleshooting assistants for robotics teams. The system harnesses local LLM inference via Ollama, combines hybrid BM25 keyword + vector-embedding retrieval through ChromaDB, and classifies user queries into five categories for targeted responses. A Streamlit frontend allows non-technical users to ask complex robotics questions and receive grounded, cited answers—avoiding hallucinations by enforcing strict retrieval-based foundations.",
-    techStack: ["Ollama", "ChromaDB", "RAG Architecture", "LangChain/LlamaIndex", "Streamlit", "Vector Search"],
+      "I architected a Retrieval-Augmented Generation (RAG) system deployed directly on an NVIDIA Jetson onboard edge device to power intelligent troubleshooting assistants for robotics teams. The system harnesses local LLM inference via Ollama, combines hybrid BM25 keyword + vector-embedding retrieval through ChromaDB, and classifies user queries into five categories for targeted responses. A Streamlit frontend allows non-technical users to ask complex robotics questions and receive grounded, cited answers—avoiding hallucinations by enforcing strict retrieval-based foundations.",
+    techStack: ["NVIDIA Jetson", "Ollama", "ChromaDB", "RAG Architecture", "Streamlit", "Vector Search"],
     media: { image: "images/projects/ai_agent_chat_plain.jpg" },
     demoLink: "/projects/ai-agents-llm-systems.html"
   }
