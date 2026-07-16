@@ -19,25 +19,26 @@
           <div class="project-description">
             <h2>Description</h2>
             <p>
-              I designed and implemented the <strong>AI agent</strong> project as an LLM-agent orchestration layer for engineering and robotics workflows at Conbotics. The system was built to move beyond single-shot prompting into structured, multi-step execution with tool use, context management, and deterministic task decomposition.
+              I designed and implemented the <strong>AI agent</strong> stack as an LLM-based troubleshooting and diagnostics layer for Conbotics painting robots. Rather than using simple prompts, the system utilizes a multi-agent orchestration architecture to plan, clarify, search, and troubleshoot complex operational issues.
             </p>
             <p>
-              Based on the local implementation, I built a fully local RAG assistant stack with Ollama-hosted models, ChromaDB persistence, hybrid retrieval (BM25 + vector similarity), and Streamlit UX for technician-facing troubleshooting. To keep sensitive infrastructure protected, this page describes architecture only at a high level and excludes private operational content.
+              The system features a **Router Agent** to classify incoming queries and detect intents, a **Clarification Agent** to resolve diagnostic gaps, and a **Troubleshooting Agent** executing local RAG. If RAG is insufficient, the system uses a general query classifier to route queries either to web scraping tools or Conbotics support. Additionally, a background crystallization process runs asynchronously in a daemon thread to distill session outcomes into semantic wiki facts without blocking the interface.
             </p>
-            <h2>Capabilities Demonstrated</h2>
+            <h2>Key Architecture Implemented</h2>
             <ul class="contribution-list">
-              <li><strong>Agent Architecture:</strong> Built modular planning/execution loops for reliable multi-step task completion.</li>
-              <li><strong>Context and Retrieval:</strong> Implemented structured context injection, source citations, and domain-specific troubleshooting retrieval.</li>
-              <li><strong>Quality and Safety:</strong> Added strict grounding, unknown-admission behavior, and input-hardening for safer operational use.</li>
+              <li><strong>Multi-Agent Orchestration:</strong> Implemented a pipeline dividing queries between Router, Clarification, and Troubleshooting agents to handle vague diagnostic details deterministically.</li>
+              <li><strong>Asynchronous Session Crystallization:</strong> Engineered a daemon-thread based knowledge synthesis pipeline that processes chat sessions to automatically promote high-confidence facts to the semantic wiki database.</li>
+              <li><strong>Semantic Query Expansion & RAG:</strong> Tuned hybrid search weighting (BM25 + Cosine similarity embeddings via nomic-embed-text) and structured semantic query expansion to eliminate follow-up query context drift.</li>
+              <li><strong>Deterministic Loop Guarding:</strong> Added strict state tracking to detect and prevent repeating agent clarification patterns when operators report that diagnostic indicators are unavailable.</li>
             </ul>
             <h2>Technologies Used</h2>
             <ul class="tech-stack">
-              <li>Ollama-hosted LLMs (local)</li>
-              <li>Agent orchestration patterns</li>
-              <li>LangChain / LlamaIndex / smolagents</li>
-              <li>ChromaDB + hybrid BM25/vector retrieval</li>
-              <li>Streamlit</li>
-              <li>Prompt engineering and evaluation loops</li>
+              <li>Ollama (Local LLM & Embedding Inference)</li>
+              <li>Qwen2.5-7B & Nomic-Embed-Text</li>
+              <li>ChromaDB Vector Store + BM25 Hybrid Search</li>
+              <li>Asynchronous Multi-threading (Python Daemon Threads)</li>
+              <li>Streamlit Frontend UI</li>
+              <li>Docker / Docker Compose (NVIDIA GPU Container Runtime)</li>
               <li>Python</li>
             </ul>
             <h2>Links</h2>
