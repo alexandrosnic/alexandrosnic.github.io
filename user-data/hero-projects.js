@@ -36,7 +36,7 @@ export const heroProjects = [
     narrative:
       "I architected a Retrieval-Augmented Generation (RAG) system that powers intelligent troubleshooting assistants for robotics teams. The system harnesses local LLM inference via Ollama, combines hybrid BM25 keyword + vector-embedding retrieval through ChromaDB, and classifies user queries into five categories for targeted responses. A Streamlit frontend allows non-technical users to ask complex robotics questions and receive grounded, cited answers—avoiding hallucinations by enforcing strict retrieval-based foundations.",
     techStack: ["Ollama", "ChromaDB", "RAG Architecture", "LangChain/LlamaIndex", "Streamlit", "Vector Search"],
-    media: { image: "images/carousel/ai_agent.jpg" },
+    media: { image: "images/projects/ai_agent_chat_plain.jpg" },
     demoLink: "/projects/ai-agents-llm-systems.html"
   }
 ];
