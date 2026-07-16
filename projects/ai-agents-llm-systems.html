@@ -16,21 +16,31 @@
         <h3 class="project-subtitle">Lead developer of a robotic startup's AI agent stack</h3>
         <div class="project-details">
           <img src="../images/carousel/ai_agent.jpg" alt="AI agents and LLM systems" class="project-image">
-          <div class="project-description">
+            <h2>Architecture Diagram</h2>
+            <img src="../images/projects/ai_agent_architecture.png" alt="AI Agent Architecture Infographic" class="project-image" style="border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; margin-bottom: 2rem;">
+
             <h2>Description</h2>
             <p>
-              I designed and implemented the <strong>AI agent</strong> stack as an LLM-based troubleshooting and diagnostics layer for Conbotics painting robots. Rather than using simple prompts, the system utilizes a multi-agent orchestration architecture to plan, clarify, search, and troubleshoot complex operational issues.
+              I designed and implemented a production-grade <strong>AI Agent stack</strong> for Conbotics to answer troubleshooting questions for complex painting robots. The system was designed to move far beyond a basic chatbot, turning into a persistent, compound knowledge system that operates locally on the edge.
             </p>
-            <p>
-              The system features a **Router Agent** to classify incoming queries and detect intents, a **Clarification Agent** to resolve diagnostic gaps, and a **Troubleshooting Agent** executing local RAG. If RAG is insufficient, the system uses a general query classifier to route queries either to web scraping tools or Conbotics support. Additionally, a background crystallization process runs asynchronously in a daemon thread to distill session outcomes into semantic wiki facts without blocking the interface.
-            </p>
-            <h2>Key Architecture Implemented</h2>
-            <ul class="contribution-list">
-              <li><strong>Multi-Agent Orchestration:</strong> Implemented a pipeline dividing queries between Router, Clarification, and Troubleshooting agents to handle vague diagnostic details deterministically.</li>
-              <li><strong>Asynchronous Session Crystallization:</strong> Engineered a daemon-thread based knowledge synthesis pipeline that processes chat sessions to automatically promote high-confidence facts to the semantic wiki database.</li>
-              <li><strong>Semantic Query Expansion & RAG:</strong> Tuned hybrid search weighting (BM25 + Cosine similarity embeddings via nomic-embed-text) and structured semantic query expansion to eliminate follow-up query context drift.</li>
-              <li><strong>Deterministic Loop Guarding:</strong> Added strict state tracking to detect and prevent repeating agent clarification patterns when operators report that diagnostic indicators are unavailable.</li>
+
+            <h2>Key Engineering Capabilities</h2>
+            <ul class="contribution-list" style="margin-bottom: 2rem;">
+              <li><strong>1. Confidences-Sorted RAG:</strong> Diagnostic recommendations are retrieved directly from technical manuals, dynamically sorted by success probability.</li>
+              <li><strong>2. Hybrid Search:</strong> Combines semantic vector matching (nomic-embed-text) with precise alphanumeric BM25 keyword matching to accurately capture exact industrial error codes.</li>
+              <li><strong>3. Context-Aware Grounding:</strong> Grounded in a global system profile explaining the robot's physical layout (Mobile Base, Spray Arm, Paint Pump, Lidar, Cameras).</li>
+              <li><strong>4. Customer Chat Ingestion:</strong> Ingested historic customer chat transcripts to extract 140+ tribal knowledge facts and diagnostic heuristics.</li>
+              <li><strong>5. Layered Troubleshooting Hierarchy:</strong> Resolves issues across different abstraction layers, ranging from high-level tablet instructions down to electronic, mechanical, and low-level software failures.</li>
+              <li><strong>6. LLM Wiki (OKF):</strong> Implemented Karpathy's LLM Wiki structure (now called OKF) to compile raw files once into a clean symptom-to-solution structure, enabling fast, low-cost local LLM execution.</li>
+              <li><strong>7. 3-Tier Memory Architecture:</strong> Features <em>Working memory</em> (active chat session context), <em>Episodic memory</em> (summarized log of past sessions), and <em>Semantic memory</em> (permanent universal wiki).</li>
+              <li><strong>8. Dynamic Feedback Loop:</strong> Automatically processes user-submitted fixes and reinforces or downgrades solution confidence scores based on operator feedback.</li>
+              <li><strong>9. Clarification Interaction:</strong> Mitigates hallucination by prompting the user for details or admitting ignorance when confidence thresholds are not met.</li>
+              <li><strong>10. Software-Hardware Linkage:</strong> Pre-loaded with ROS, C++, Python, and kernel best practices. The agent analyzes robot source code directly to map physical hardware symptoms (e.g., painting stops) to underlying software bugs (e.g., Lidar scan queue overflow).</li>
             </ul>
+
+            <p style="background-color: rgba(255, 198, 0, 0.05); padding: 15px; border-left: 4px solid #ffc600; border-radius: 4px;">
+              <strong>Note on Software-Hardware Linkage:</strong> This codebase-to-hardware mapping is extremely powerful, and I am currently working on isolating it to offer it as a standalone diagnostic tool for robotic operations.
+            </p>
             <h2>Technologies Used</h2>
             <ul class="tech-stack">
               <li>Ollama (Local LLM & Embedding Inference)</li>
