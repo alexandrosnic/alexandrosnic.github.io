@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-to-sim replay - Alexandros Nikolaou</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="colorlib-page">
+    <div class="container-wrap">
+      <div class="project-content">
+        <h1 class="project-title">Real-to-sim: replaying recorded human tasks on a robot arm</h1>
+        <h3 class="project-subtitle">Checking, grasp by grasp, whether a robot could do what the worker did</h3>
+
+        <div class="project-details">
+          <video class="project-image" src="../images/projects/real_to_sim_replay.mp4" autoplay muted loop playsinline></video>
+
+          <div class="project-description">
+            <h2>Description</h2>
+            <p>
+              Egocentric recordings of people at work are valuable training data for robots only if a robot could actually reproduce what the person did. This pipeline answers that question per grasp, in simulation, before any hardware is involved.
+            </p>
+            <p>
+              Visual SLAM on the head-mounted camera recovers the room and where the worker stood, and hand tracking turns each grasp into a grasp pose and a release pose. A <strong>Franka Panda</strong> is placed at the worker's stance, inside a model of the recorded room, and replays every grasp the way a real arm is run: <strong>MoveIt 2</strong> plans each leg (Cartesian paths for straight moves, OMPL for the carry) and <strong>ros2_control</strong> executes it on a <strong>MuJoCo</strong> scene.
+            </p>
+
+            <h2>Capabilities Demonstrated</h2>
+            <ul class="contribution-list">
+              <li><strong>Real-to-sim from egocentric data:</strong> room geometry, stances and grasp poses all come from the recording, with no manual scene building.</li>
+              <li><strong>Production-style control stack:</strong> the same ROS 2 / MoveIt 2 / ros2_control path a physical arm would use, driving the simulator over a hardware interface.</li>
+              <li><strong>Strict, explainable verdict:</strong> a grasp is usable only if every pose is reached within 2 cm and 10°, nothing collides with the room and the box is not dropped; otherwise the first failure is named (unreachable, collision, path blocked, dropped).</li>
+              <li><strong>Measured result:</strong> 32 of 44 recorded grasps usable; the same task also runs on a UR5e and a WidowX arm.</li>
+            </ul>
+
+            <h2>Technologies Used</h2>
+            <ul class="tech-stack">
+              <li>MuJoCo</li>
+              <li>ROS 2, MoveIt 2 (OMPL), ros2_control</li>
+              <li>Visual SLAM on egocentric video</li>
+              <li>Docker</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

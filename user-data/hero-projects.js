@@ -10,14 +10,14 @@ export const heroProjects = [
     demoLink: "/projects/autonomous-mobile-base.html"
   },
   {
-    key: "mujoco-agent",
-    title: "Closed-loop Physical AI agent in MuJoCo",
-    subtitle: "A VLM watches the robot fail, an LLM fixes the physics, and the simulator tries again.",
+    key: "real-to-sim",
+    title: "Real-to-sim: replaying recorded human tasks on a robot arm",
+    subtitle: "Can a robot do what the worker did? Every recorded grasp gets a usable / not-usable verdict.",
     narrative:
-      "A closed-loop grasping agent around a MuJoCo gripper-and-box scene, built to explore how foundation models can correct robot behaviour without hand-written rules. A vision-language model (Qwen2-VL) inspects the rendered frame and explains why the grasp failed; an LLM planner (Qwen2.5) turns that critique, plus an optional human command, into corrected simulator parameters as structured JSON. The second trial runs with those values and the VLM verifies the result, all on a local GPU behind a Gradio dashboard.",
-    techStack: ["MuJoCo", "VLM", "LLM Planning", "PyTorch", "Closed-loop Control"],
-    media: { image: "images/projects/mujoco_closed_loop_agent.jpg" },
-    demoLink: "/projects/mujoco-closed-loop-agent.html"
+      "Starting from egocentric recordings of people at work, visual SLAM recovers the room and where the worker stood, and each grasp becomes a grasp and release pose. A simulated Franka Panda is placed at the worker's stance in a model of the recorded room and replays every grasp through ROS 2, MoveIt 2 and ros2_control on MuJoCo: approach, grasp, lift, carry, place and release. A strict verdict (pose within 2 cm and 10°, no collisions, box not dropped) marks each grasp usable or names the failure; 32 of 44 recorded grasps came out usable.",
+    techStack: ["MuJoCo", "ROS 2", "MoveIt 2", "ros2_control", "Egocentric SLAM", "Real-to-Sim"],
+    media: { video: "images/projects/real_to_sim_replay.mp4" },
+    demoLink: "/projects/real-to-sim-replay.html"
   },
   {
     key: "llm-agents",
