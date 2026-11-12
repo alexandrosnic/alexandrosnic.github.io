@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Closed-loop Physical AI agent in MuJoCo - Alexandros Nikolaou</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="colorlib-page">
+    <div class="container-wrap">
+      <div class="project-content">
+        <h1 class="project-title">Closed-loop Physical AI agent in MuJoCo</h1>
+        <h3 class="project-subtitle">A VLM critic and an LLM planner that correct a failing grasp in simulation</h3>
+
+        <div class="project-details">
+          <img src="../images/projects/mujoco_closed_loop_agent.jpg" alt="MuJoCo gripper and box scene" class="project-image">
+
+          <div class="project-description">
+            <h2>Description</h2>
+            <p>
+              This project explores how foundation models can close the loop around a physics simulator. The scene is a parallel gripper and a box in <strong>MuJoCo</strong>. The gripper runs a fixed sequence (align, descend, grasp, lift); whether the lift succeeds depends on physical parameters such as grip force and box friction.
+            </p>
+            <p>
+              The first trial starts with a deliberately weak grip and very low friction, so the box slips. A <strong>vision-language model</strong> (Qwen2-VL-2B) looks at the rendered frame and explains what went wrong. An <strong>LLM planner</strong> (Qwen2.5-1.5B) turns that critique, plus an optional command from a human supervisor, into corrected parameters as structured JSON. The simulator applies them on the fly, runs a second trial, and the VLM checks the result.
+            </p>
+
+            <h2>Capabilities Demonstrated</h2>
+            <ul class="contribution-list">
+              <li><strong>Perception-to-correction loop:</strong> visual failure detection drives parameter updates without hand-written rules.</li>
+              <li><strong>Structured LLM output:</strong> the planner returns machine-readable JSON that is applied directly to the simulator.</li>
+              <li><strong>Human in the loop:</strong> a supervisor command can steer the planner alongside the VLM critique.</li>
+              <li><strong>Local inference:</strong> both models run on a local GPU; a Gradio dashboard streams each step, frame and correction.</li>
+            </ul>
+
+            <h2>Technologies Used</h2>
+            <ul class="tech-stack">
+              <li>MuJoCo (offscreen EGL rendering)</li>
+              <li>Qwen2-VL-2B-Instruct (VLM critic)</li>
+              <li>Qwen2.5-1.5B-Instruct (LLM planner)</li>
+              <li>PyTorch / Hugging Face Transformers</li>
+              <li>Gradio</li>
+              <li>OpenCV</li>
+            </ul>
+
+            <h2>Links</h2>
+            <div class="project-links">
+              <a href="https://www.linkedin.com/in/alexandros-nicolaou31/" class="btn btn-primary">Discuss Physical AI</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autosim: text-to-simulation - Alexandros Nikolaou</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="colorlib-page">
+    <div class="container-wrap">
+      <div class="project-content">
+        <h1 class="project-title">Autosim: text-to-simulation with LLM agents</h1>
+        <h3 class="project-subtitle">From one sentence to a runnable robot simulation</h3>
+
+        <div class="project-details">
+          <img src="../images/projects/autosim_text_to_sim.jpg" alt="Autosim pipeline output" class="project-image">
+
+          <div class="project-description">
+            <h2>Description</h2>
+            <p>
+              Setting up a robot simulation usually means hand-writing world files, robot descriptions, launch files and a controller before any testing can start. <strong>Autosim</strong> generates all of them from a natural-language task, for example <em>"a mobile robot navigating to a green box avoiding a red cylinder"</em>.
+            </p>
+            <p>
+              An LLM parses the prompt into a typed <strong>simulation specification</strong> (objects and poses, robot model and degrees of freedom, success criteria), validated with Pydantic. An orchestrator then hands the spec to two agents: a <strong>scene agent</strong> that writes the Gazebo world, URDF and ROS 2 launch file (or an Isaac Sim script), and a <strong>control agent</strong> that writes the ROS 2 controller node. Before launch, a verification step checks the world XML and compiles every generated script. When no LLM is available, rule-based fallbacks keep the pipeline running.
+            </p>
+
+            <h2>Capabilities Demonstrated</h2>
+            <ul class="contribution-list">
+              <li><strong>Prompt to typed spec:</strong> free text becomes a schema-checked scene description with explicit success criteria.</li>
+              <li><strong>Multi-agent code generation:</strong> separate agents for the environment and the robot controller, coordinated by an orchestrator.</li>
+              <li><strong>Engine targets:</strong> Gazebo (world, URDF, launch) and NVIDIA Isaac Sim, with templates for additional engines.</li>
+              <li><strong>Verify before run:</strong> XML validation and compile checks catch broken output before the simulator starts.</li>
+              <li><strong>Reproducible runtime:</strong> runs on the host or inside Docker.</li>
+            </ul>
+
+            <h2>Technologies Used</h2>
+            <ul class="tech-stack">
+              <li>Python, Pydantic</li>
+              <li>LLM APIs (OpenAI / Gemini) with rule-based fallback</li>
+              <li>ROS 2</li>
+              <li>Gazebo (SDF world, URDF, launch files)</li>
+              <li>NVIDIA Isaac Sim</li>
+              <li>Docker / Docker Compose</li>
+            </ul>
+
+            <h2>Links</h2>
+            <div class="project-links">
+              <a href="https://www.linkedin.com/in/alexandros-nicolaou31/" class="btn btn-primary">Discuss Generative Simulation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

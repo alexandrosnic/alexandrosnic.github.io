@@ -19,9 +19,9 @@ export const corePillars = [
 export const domainMatrix = [
   {
     title: "Sim2Real & Digital Twins",
-    teaser: "Webots/Gazebo/Isaac.",
+    teaser: "Isaac/MuJoCo/Gazebo.",
     description: "High-fidelity simulation for iterative development of controllers and perception.",
-    tools: ["Webots", "Gazebo", "Isaac Sim"],
+    tools: ["Isaac Sim", "Isaac Lab", "MuJoCo", "Gazebo", "Webots"],
     overlayFile: "skillset/sim-to-real-architecture.html"
   },
   {
@@ -78,8 +78,9 @@ export const domainMatrix = [
 
 export const toolbox = [
   { label: "ROS1/ROS2", icon: "fa fa-cog" },
-  { label: "Gazebo/Webots/Isaac Sim", icon: "fa fa-cubes" },
-  { label: "AI agents/LLMs", icon: "fa fa-robot" },
+  { label: "Isaac Sim/Isaac Lab/MuJoCo/Gazebo", icon: "fa fa-cubes" },
+  { label: "AI agents/LLMs/RAG", icon: "fa fa-robot" },
+  { label: "VLA/VLM/World Models", icon: "fa fa-robot" },
   { label: "C/C++", icon: "fa fa-code" },
   { label: "CUDA", icon: "fa fa-code" },
   { label: "Python", icon: "fa fa-code" },

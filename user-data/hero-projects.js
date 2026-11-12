@@ -38,5 +38,25 @@ export const heroProjects = [
     techStack: ["NVIDIA Jetson", "Ollama", "ChromaDB", "RAG Architecture", "Streamlit", "Vector Search"],
     media: { image: "images/projects/ai_agent_chat_plain.jpg" },
     demoLink: "/projects/ai-agents-llm-systems.html"
+  },
+  {
+    key: "mujoco-agent",
+    title: "Closed-loop Physical AI agent in MuJoCo",
+    subtitle: "A VLM watches the robot fail, an LLM fixes the physics, and the simulator tries again.",
+    narrative:
+      "I built a closed-loop grasping agent around a MuJoCo gripper-and-box scene. A first trial runs with deliberately weak grip and low friction; a vision-language model (Qwen2-VL-2B) inspects the rendered frame and explains why the grasp failed; an LLM planner (Qwen2.5-1.5B) turns that critique, plus an optional human command, into corrected simulator parameters as structured JSON; the second trial runs with those values and the VLM verifies the result. Everything runs locally on the GPU behind a Gradio dashboard.",
+    techStack: ["MuJoCo", "Qwen2-VL", "Qwen2.5", "PyTorch", "Gradio", "Closed-loop Control"],
+    media: { image: "images/projects/mujoco_closed_loop_agent.jpg" },
+    demoLink: "/projects/mujoco-closed-loop-agent.html"
+  },
+  {
+    key: "autosim",
+    title: "Autosim: text-to-simulation with LLM agents",
+    subtitle: "From one sentence to a Gazebo or Isaac Sim world, a robot and a ROS 2 controller.",
+    narrative:
+      "Autosim takes a natural-language task such as \"a mobile robot navigating to a green box avoiding a red cylinder\" and compiles it into a working simulation. An LLM parses the prompt into a typed scene specification (objects, robot, success criteria); a scene agent generates the Gazebo world, URDF and launch file, or an Isaac Sim script; a control agent writes the ROS 2 controller node; and a verification step checks the XML and compiles every generated script before launch. It runs locally or in Docker.",
+    techStack: ["LLM Agents", "ROS 2", "Gazebo", "Isaac Sim", "URDF", "Docker"],
+    media: { image: "images/projects/autosim_text_to_sim.jpg" },
+    demoLink: "/projects/autosim-text-to-simulation.html"
   }
 ];

@@ -13,23 +13,37 @@
     <div class="container-wrap">
       <div class="project-content">
         <h1 class="project-title">Bachelor Thesis Project</h1>
+        <h3 class="project-subtitle">Modelling and simulating interactions between human drivers and autonomous vehicles (NTUA, 2018)</h3>
         <div class="project-details">
-          <img src="../images/projects/bachelor-thesis-project.jpg" alt="Bachelor Thesis Project" class="project-image">
+          <img src="../images/projects/bachelor-thesis-project.jpg" alt="Driver gaze tracks recorded with eye-tracking glasses" class="project-image">
           <div class="project-description">
             <h2>Description</h2>
             <p>
-              [Description needed] – Provide an overview of your bachelor thesis, including research questions, methodologies, and findings.
+              Autonomous vehicles will share city streets with human drivers for years, so they need to anticipate how people negotiate right of way. This thesis modelled those interactions from real driving data and tested the model in traffic simulation.
             </p>
+            <ul class="contribution-list">
+              <li><strong>Field observation:</strong> experienced drivers drove a predefined urban route wearing Tobii eye-tracking glasses.</li>
+              <li><strong>Data analysis:</strong> about 800 minutes of gaze data, scene video and the drivers' retrospective commentary were analysed.</li>
+              <li><strong>Modelling:</strong> an interaction model based on game theory, with a utility function estimating each driver's cost of yielding, implemented in MATLAB.</li>
+              <li><strong>Simulation:</strong> urban traffic simulated in VISSIM coupled with MATLAB to test the model's credibility.</li>
+              <li><strong>Validation:</strong> metrics extracted from the simulation were compared with the field-study results.</li>
+            </ul>
+            <img src="../images/projects/bachelor-thesis-simulation.jpg" alt="Intersection interactions in the traffic simulation" class="project-image">
+
+            <h2>Awards</h2>
+            <ul class="contribution-list">
+              <li>Thesis grade: 10/10.</li>
+              <li>Cyprus Ministry of Education first prize for best student project.</li>
+              <li>NTUA second prize for the school's most innovative project (2018).</li>
+            </ul>
+
             <h2>Technologies Used</h2>
             <ul class="tech-stack">
-              <li>[Technology 1]</li>
-              <li>[Technology 2]</li>
+              <li>MATLAB</li>
+              <li>VISSIM / SUMO traffic simulation</li>
+              <li>Tobii eye-tracking glasses and software</li>
+              <li>Game theory / utility modelling</li>
             </ul>
-            <h2>Links</h2>
-            <div class="project-links">
-              <a href="#" class="btn btn-primary">View Demo</a>
-              <a href="#" class="btn btn-secondary">Source Code</a>
-            </div>
           </div>
         </div>
       </div>

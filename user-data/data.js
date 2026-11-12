@@ -9,13 +9,26 @@ export const bio = [
 
 export const skills = [
   "C++, Python, ROS, ROS2, MoveIt, OpenCV, PCL",
-  "Reinforcement Learning, Motion Planning, Trajectory Optimization",
-  "Intel RealSense, AprilTags, NVIDIA Isaac Sim, Gazebo, RViz",
+  "AI Agents, RAG, VLA/VLM, World Models, Reinforcement Learning",
+  "Motion Planning, Trajectory Optimization",
+  "NVIDIA Isaac Sim, Isaac Lab, MuJoCo, Gazebo, RViz, Intel RealSense, AprilTags",
   "Point Cloud Processing, SLAM, Sensor Fusion, Computer Vision",
   "Software Development, System Integration, Algorithm Design",
 ];
 
 export const experience = [
+  {
+    title: "Founding Robotics Engineer",
+    duration: "October 2026 - Present",
+    subtitle: "vfrog",
+    details: [
+      "Leading the robotics track as a founding team member, owning robot-facing data decisions.",
+      "Building egocentric data processing for robot learning: visual SLAM, hand tracking in world coordinates and gripper-ready actions.",
+      "Building a one-command simulation bench (ROS 2, Gazebo, MuJoCo, Isaac Sim) for real-to-sim validation and robot diagnostics.",
+    ],
+    tags: ["Embodied AI", "SLAM", "ROS 2", "MuJoCo", "Isaac Sim", "Real-to-Sim"],
+    icon: "rocket",
+  },
   {
     title: "AI, Robotics and Systems Engineer",
     duration: "October 2025 - Present",
@@ -30,11 +43,13 @@ export const experience = [
   },
   {
     title: "Field Deployment, AI & Robotics Engineer",
-    duration: "2025 (Deployment) & 2021 (R&D)",
+    duration: "04/2025 - Present (Deployment) & 04/2021 - 02/2022 (R&D)",
     subtitle: "Conbotics - Construction Robotics Startup",
     details: [
-      "2025: Led international deployment in Singapore, acting as a bridge between the customer and the dev team to diagnose and resolve mission-critical Sim2Real discrepancies.",
+      "2025: Led international deployment in Singapore, acting as a bridge between the customer and the dev team to diagnose and resolve mission-critical Sim2Real discrepancies, securing a €1M+ lead investor conversion.",
       "2025: Engineered diagnostic solutions using Rosbag analysis and telemetry to monitor robot health and performance in unstructured, real-world environments.",
+      "2025: Built a containerized deployment framework for CI/CD unit testing that spawns full robotic environments automatically.",
+      "2025: Led technical demonstrations for the Minister of Innovation and CEOs of multi-billion dollar enterprises.",
       "2021: Architected the full navigation stack from scratch, integrating SLAM, sensor fusion, and YOLO-based computer vision for autonomous painting operations.",
       "2021: Optimized motion planning using custom PID controllers for wall-following and Finite State Machines for complex task logic."
     ],
@@ -93,7 +108,7 @@ export const education = [
     duration: "08/2019 - 03/2022",
     subtitle: "KTH Royal Institute of Technology / TU Berlin",
     details: [
-      "Graduated with a 1.7 (First-Class Honours equivalent) and a GPA of ~3.7/4.0, specialized in Robotics and Autonomous Systems.",
+      "Graduated with an overall grade of 1.7 / 'gut' on the German scale (GPA ~3.3/4.0), specialized in Robotics and Autonomous Systems.",
       "Awarded the EIT Digital Excellence Full Scholarship and the Leventis Foundation Excellence Full Scholarship.",
       "Acquired a minor in Innovation and Entrepreneurship, bridging technical robotics with product development and entrepreneurship.",
       "Selected as a UN Sustainability Young Leader and EIT Climate-KIC Alumnus."
@@ -107,7 +122,7 @@ export const education = [
     subtitle: "National Technical University of Athens (NTUA)",
     details: [
       "Completed a 5-year rigorous program (300 ECTS) with a specialization in Mechanical Design, Robotics, and Control Systems.",
-      "Ranked in the top 10% of the class with a grade of 8.3/10 (GPA ~3.0/4.0).",
+      "Graduated with a grade of 8.28/10 / 'Very Good' (GPA ~3.0/4.0), ranked 29th of 178 graduates.",
       "My thesis was awarded the Cyprus Ministry of Education First Prize for Best Student Project, and NTUA's Second Prize for the Most Innovative Project.",
       "Hult Prize Competition Greece Finalist (2017)."
     ],
