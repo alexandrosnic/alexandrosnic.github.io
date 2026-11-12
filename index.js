@@ -973,6 +973,7 @@ populateToolbox(toolbox, 'skills-toolbox');
     'Simulation Developer',
     'AI Engineer',
     'Embodied AI Engineer',
+    'Mechanical Engineer/Designer',
     'Music Artist'
   ];
 
