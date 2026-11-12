@@ -6,6 +6,8 @@
 
 export const carouselMedia = [
   // Populate with your files from images/carousel
+  { video: 'images/carousel/egoslam_map.mp4', title: 'Visual SLAM from egocentric video', description: 'Dense 3D map and head trajectory recovered from a head-mounted camera' },
+  { video: 'images/carousel/real_to_sim_replay.mp4', title: 'Real-to-sim: replaying a recorded human task on a simulated arm', description: 'Egocentric recording (left) and MoveIt replay in simulation (right)' },
   { video: 'images/carousel/conbotics_prototyping_3.mp4', title: 'Simulation framework development and digital twins workflow', description: 'Conbotics Sim2Real stack', demoLink: '/projects/simulation-framework-development.html' },
   { video: 'images/carousel/autonomous_driving.mp4', title: 'Object detection for autonomous driving in Morse simulator', description: '', demoLink: '/projects/morse-autonomous-driving-perception.html' },
   { video: 'images/carousel/drones.mp4', title: 'Development of a predefined drone trajectory in Python', description: '', demoLink: '/projects/drone-trajectory-python.html' },

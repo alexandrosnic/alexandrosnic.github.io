@@ -1,7 +1,7 @@
 export const bio = [
-  "I am an <strong>AI, Robotics and Systems Engineer</strong> with both innovative R&D thinking and high-speed, market-ready prototyping, that moves the needle on turnover.",
+  "I am an <strong>AI, Robotics and Systems Engineer</strong> who combines R&D thinking with fast, market-ready prototyping.",
   "Having experience in both the 'thinking' and the 'doing' of robotics and AI, whether I’m debugging a Linux kernel at <strong>Bosch</strong> to squeeze out 10% more throughput or deploying a startup's first robots on-site in <strong>Singapore</strong>, my goal is to build technologically feasible products without the 'research drag.'",
-  "Specializing in <strong>Autonomous Navigation, Motion Planning, ROS1-to-ROS2 migration, Embodied AI and Simulation</strong>, I aim to help companies leave a positive footprint in the smart systems sector that facilitates human well-being without costing the planet.",
+  "Specializing in <strong>Embodied AI, Sim-to-Real and Real-to-Sim, Autonomous Navigation and Manipulation, and robot learning from egocentric data</strong>.",
   "Based in Berlin.",
   "Driven by complex problems.", 
   "Powered by C++, Python, and coffee (ginger tea after 14:00)."
@@ -136,7 +136,7 @@ export const footer = [
   {
     label: "Links",
     data: [
-      { text: "<i class='fa fa-envelope'></i>", link: "mailto:alexnic31@gmail.com" },
+      { text: "<i class='fa fa-envelope'></i>", link: "mailto:alexandros_nic@hotmail.com" },
       { text: "<i class='fa fa-github'></i>", link: "https://github.com/alexandrosnic" },
       { text: "<i class='fa fa-linkedin'></i>", link: "https://www.linkedin.com/in/alexandros-nicolaou31/" },
       { text: "<i class='fa fa-soundcloud'></i>", link: "https://soundcloud.com/tampatumpu" },

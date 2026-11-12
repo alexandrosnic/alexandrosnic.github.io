@@ -14,7 +14,7 @@ import { heroProjects } from './user-data/hero-projects.js';
 import { carouselMedia } from './user-data/carousel.js';
 import { corePillars, domainMatrix, toolbox } from './skillset/data.js';
 
-const { medium, gitConnected } = URLs;
+const { medium } = URLs;
 
 // async function fetchBlogsFromMedium(url) {
 //   try {
@@ -29,46 +29,6 @@ const { medium, gitConnected } = URLs;
 // }
 
 // Removed repos fetching
-
-async function fetchGitConnectedData(url) {
-  try {
-    const response = await fetch(url);
-    console.log(response);
-    const { basics } = await response.json();
-    // populateBlogs(items, "blogs");
-    mapBasicResponse(basics);
-  } catch (error) {
-    throw new Error(`Error in fetching the blogs from git connected: ${error}`);
-  }
-}
-
-function mapBasicResponse(basics) {
-  const {
-    name,
-    label,
-    image,
-    email,
-    phone,
-    url,
-    summary,
-    profiles,
-    headline,
-    blog,
-    yearsOfExperience,
-    username,
-    locationAsString,
-    region,
-    karma,
-    id,
-    followers,
-    following,
-    picture,
-    website,
-  } = basics;
-
-  // added title of page
-  window.parent.document.title = name;
-}
 
 function populateBio(items, id) {
   const bioTag = document.getElementById(id);
@@ -594,7 +554,6 @@ populateBio(bio, "bio");
 
 // fetchBlogsFromMedium(medium);
 // Removed Top Repositories rendering
-fetchGitConnectedData(gitConnected);
 
 // Render Hero Projects (4 cards)
 function populateHeroProjects(items, containerId) {
@@ -1013,7 +972,7 @@ populateToolbox(toolbox, 'skills-toolbox');
     'Robotics Engineer',
     'Simulation Developer',
     'AI Engineer',
-    'Mechanical Engineer/Designer',
+    'Embodied AI Engineer',
     'Music Artist'
   ];
 
