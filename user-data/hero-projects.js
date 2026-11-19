@@ -20,6 +20,16 @@ export const heroProjects = [
     demoLink: "/projects/real-to-sim-replay.html"
   },
   {
+    key: "robotic-seeding",
+    title: "Robotic arm seeding cell for a vertical farm (NVIDIA Isaac Sim)",
+    subtitle: "Designing a robot cell that seeds grow trays, from site visit to simulated cycle in days.",
+    narrative:
+      "After visiting a vertical farm's seeding line, I designed the robotic cell that automates it in NVIDIA Isaac Sim, as a scripted USD stage built from Python. A UR5e dips a 171-hole vacuum plate into the seed bin and releases the seeds over the foam substrate in the tray; in the two-arm concept a second arm adds the transparent and blackout covers by suction and sets the tray on a roller conveyor, about 64 s per tray. A second, human-robot concept has a worker load each tray into a locating nest, an overhead camera measure its position, and a single arm seed it.",
+    techStack: ["NVIDIA Isaac Sim", "USD", "UR5e", "Vacuum Gripping", "Cell Design", "Python"],
+    media: { video: "images/projects/robotic_seeding_two_arm_cycle.mp4" },
+    demoLink: "/projects/robotic-seeding-cell.html"
+  },
+  {
     key: "llm-agents",
     title: "LLM-powered AI Agents for Robotic systems",
     subtitle: "Troubleshooting agents that understand the robot and ground every answer in verified documentation.",

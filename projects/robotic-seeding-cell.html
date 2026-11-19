@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robotic arm seeding cell - Alexandros Nikolaou</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="colorlib-page">
+    <div class="container-wrap">
+      <div class="project-content">
+        <h1 class="project-title">Robotic arm seeding cell for a vertical farm</h1>
+        <h3 class="project-subtitle">Cell design and seeding cycles in NVIDIA Isaac Sim (vfrog, 2026)</h3>
+
+        <div class="project-details">
+          <div class="project-description">
+            <h2>Description</h2>
+            <p>
+              A vertical farm seeds its grow trays by hand: a vacuum plate with 171 holes (9 x 19) picks up large coated seeds from a bin and releases them into a foam substrate, and the tray is then closed with a transparent and a blackout cover before it goes down a conveyor. After a site visit to the seeding line, I designed robotic cells that automate this in <strong>NVIDIA Isaac Sim</strong>, built as a Python-scripted USD stage (warehouse environment, steel tables, roller conveyor, UR5e arms) so every dimension can be updated as measurements come in.
+            </p>
+
+            <h2>Two-arm robotic seeding cycle</h2>
+            <video class="project-image" src="../images/projects/robotic_seeding_two_arm_cycle.mp4" autoplay muted loop playsinline></video>
+            <p>
+              The seed arm dips the vacuum plate face-down into the seed bin and releases the seeds over the substrate; the tray arm places the transparent and the blackout cover by suction and sets the finished tray on the roller conveyor. One tray takes about 64 s.
+            </p>
+
+            <h2>Human-robot seeding cell</h2>
+            <video class="project-image" src="../images/projects/robotic_seeding_human_robot_cell.mp4" autoplay muted loop playsinline></video>
+            <p>
+              A simpler concept with one arm: a worker loads a tray with foam into a locating nest with corner stops, an overhead camera measures where the foam actually sits, and the arm seeds at the measured position. The worker adds both covers and slides the tray onto the conveyor.
+            </p>
+
+            <h2>Seeding cell, two views</h2>
+            <video class="project-image" src="../images/projects/robotic_seeding_cell_two_views.mp4" autoplay muted loop playsinline></video>
+
+            <h2>Technologies Used</h2>
+            <ul class="tech-stack">
+              <li>NVIDIA Isaac Sim / Omniverse (USD)</li>
+              <li>Python scene scripting</li>
+              <li>Universal Robots UR5e</li>
+              <li>Vacuum (suction) end-effectors</li>
+              <li>Robot cell layout and cycle-time design</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
